@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <title>clickPlate</title>
+        <style>
+            img.ui-li-thumb {
+            vertical-align: middle;
+            margin: 22px 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="bdy">
+            <!-- MENU -->
+            <!-- <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+                <h2>testing ko!</h2>
+            </div> -->
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <img src="../www/img/logo.png" class="complogo" style="height:50px;">
+                <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a>
+            </div>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <h3 style="text-align:center;">Select Order Method </h3>
+                <ul data-role="listview" data-inset="true" data-corners="false" id="mylist">
+                    <li class="ui-li" data-id="reserve-tbl">
+                        <a href="info.html">
+                            <h3 class="ui-li-heading">Table Reservation</h3>
+                        </a>
+                    </li>
+                    <li class="ui-li" data-id="takeout">
+                        <a href="info.html">
+                            <h3 class="ui-li-heading">Takeout</h3>
+                        </a>
+                    </li>
+                    <li class="ui-li" data-id="delivery">
+                        <a href="info.html">
+                            <h3 class="ui-li-heading">Delivery</h3>
+                        </a>
+                    </li>
+                    <li class="ui-li" data-id="in-store">
+                        <a href="info.html">
+                            <h3 class="ui-li-heading">In-Store</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FOOTER-->
+        </div>
+
+
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <!-- // <script type="text/javascript" src="includes/js/resto_search.js"></script> -->
+        <script type="text/javascript">
+            app.initialize();
+
+                $('#mylist').delegate('li', 'click', function () {
+                    var id = $(this).attr('data-id');
+                    alert(id);
+                });
+        </script>
+    </body>
+</html>

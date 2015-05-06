@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <title>clickPlate</title>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="bdy">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <a href="home.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle"></h1>
+                <a href="#myPanel" data-icon="bars" class="ui-btn-right" data-iconpos="notext"></a>
+            </div>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <h3 style="text-align:center;font-weight:bold;">SELECT SERVICE BELOW</h3>
+                <ul data-role="listview" data-inset="true" id="mylist" data-ajax="true" data-theme="a">
+                    <li data-id="reserve-tbl">
+                        <a href="#">
+                            <h3>Table Reservation</h3>
+                        </a>
+                    </li>
+                    <li class="ui-li" data-id="instore">
+                        <a href="#">
+                            <h3>Function Room Reservation</h3>
+                        </a>
+                    </li>
+                    <li class="ui-li" data-id="takeout">
+                        <a href="#">
+                            <h3>Pickup</h3>
+                        </a>
+                    </li>
+                    <li class="ui-li" data-id="delivery">
+                        <a href="#">
+                            <h3>Delivery</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FOOTER-->
+            <div data-role="footer" data-theme="e" style="border:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <!-- // <script type="text/javascript" src="includes/js/resto_search.js"></script> -->
+        <script type="text/javascript">
+            app.initialize();
+            function display_profile(){
+              var logged_user = sessionStorage.logged_name;
+              var content = '';
+              if(typeof logged_user !== 'undefined'){
+                content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
+                  content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray</a></li>';
+                  content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
+                  content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                  content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
+                content += '</ul>';
+                $('#myPanel').html(content);
+              }else{
+                content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
+                    content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
+                content += '</ul>';
+                $('#myPanel').html(content);
+              }
+
+              $('#sidenav_user_profile').click(function(e){
+                  // console.log('Redirecting to Register Page...');
+                  window.location.href = "user_profile.html";
+              });
+              $('#sidenav_logout').click(function(e){
+                  // console.log('Redirecting to Index Page...');
+                  // sessionStorage.clear();
+                  window.location.href = 'index.html';
+              });
+            }
+            display_profile();
+
+            function goBack() {
+                window.history.back()
+            }
+            $('#mylist').delegate('li', 'click', function () {
+                var id = $(this).attr('data-id');
+                sessionStorage.order_method = id;
+                window.location = "info.html";
+            });
+        </script>
+    </body>
+</html>

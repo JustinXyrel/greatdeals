@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <title>clickPlate</title>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="bdy">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed">
+                <a href="home.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle"></h1>
+                <a href="#myPanel" data-icon="bars" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul style="border:1px black solid;">
+                        <li><a href="info.html" data-ajax="false">Info</a></li>
+                        <li><a href="menu.html" data-ajax="false">Menu</a></li>
+                        <li><a href="services.html" data-ajax="false" class="ui-btn-active">Services</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <div data-role="fieldcontain" id="loggedinlink">
+                    <h3 style="text-align:center;font-weight:bold;">SELECT SERVICE BELOW</h3>
+                    <ul data-role="listview" data-inset="true" id="mylist" data-ajax="true" data-theme="a">
+                        <li data-id="reserve-tbl">
+                            <a href="#">
+                                <h3>Table Reservation</h3>
+                            </a>
+                        </li>
+                        <li class="ui-li" data-id="instore">
+                            <a href="#">
+                                <h3>Function Reservation</h3>
+                            </a>
+                        </li>
+                        <li class="ui-li" data-id="takeout">
+                            <a href="#">
+                                <h3>Takeout/Pick Up</h3>
+                            </a>
+                        </li>
+                        <li class="ui-li" data-id="delivery">
+                            <a href="#">
+                                <h3>Delivery</h3>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-role="fieldcontain" id="loginlink">
+                    Proceeding to reservation requires you to <a href="login_form.html" data-ajax="false">LOGIN</a>
+                </div>
+            </div>
+
+            <!-- FOOTER-->
+            <div data-role="footer" data-theme="e" style="border:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <!-- // <script type="text/javascript" src="includes/js/resto_search.js"></script> -->
+        <script type="text/javascript">
+            app.initialize();
+            function display_profile(){
+                var logged_user = sessionStorage.logged_name;
+                var content = '';
+                if(typeof logged_user !== 'undefined'){
+                    content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
+                    content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
+                    content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
+                    content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                    content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout_" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
+                    content += '</ul>';
+                    $('#myPanel').html(content);
+                }else{
+                    content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
+                    content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
+                    content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                    content += '</ul>';
+                    $('#myPanel').html(content);
+                }
+
+                $('#sidenav_user_profile').click(function(e){
+                    window.location.href = "user_profile.html";
+                });
+                $('#sidenav_logout_').click(function(e){
+                    window.location.href = 'logout.html';
+                });
+                $('#sidenav_logout').click(function(e){
+                    window.location.href = 'login_form.html';
+                });
+                $('#sidenav_about').click(function(e){
+                    window.location.href = 'about_us.html';
+                });
+            }
+            display_profile();
+            function showCart() {
+                var item_cart = sessionStorage.orderCart;
+                item_cart = JSON.parse(item_cart);
+
+                content = '';
+                // content += '<div class="panel-content">';
+                // content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
+                // content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-d">My Tray</li>';
+                subtotal = 0;
+                // shipping_cost = 0;
+                ctr = 0;
+                gtotal = 0;
+                for(var i in item_cart){
+                    var line = JSON.parse(item_cart[i]);
+                    content += '<li data-role="list-divider" style="list-style-type: none;padding-left:30px;"><h4 style="white-space: normal;">'+unescape(line.name)+' </h4>@ ₱'+displayInCurr(line.price)+' - '+unescape(line.qty)+'pcs. <strong>₱'+unescape(line.qty*line.price)+'</strong></li><br><hr>';
+                    ctr++;
+                    subtotal += Number(line.qty*line.price);
+                    gtotal += Number(line.qty);
+                }
+                content += '<li style="text-align:right;">TOTAL : <strong>'+subtotal+'</strong></li>';
+                // content += '<li><span class="ui-btn-inner"><a href="order_method_details.html" class="customDialogOption2" data-role="button" data-theme="b">CHECKOUT</a></span></li>';
+                // content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-d"><a href="user_profile.html" style="color:white;text-decoration:none;">User Profile</a></li>';
+                // content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-d"><a href="about.html" style="color:white;text-decoration:none;">About clickPLATE</a></li>';
+                // content += '</ul>';
+                // content += ' <span><a data-role="button" href="#" class="toggle-panel ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-theme="a" data-icon="delete" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner"><span class="ui-btn-text">Checkout</a></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a></span></div>';
+                // $('.count_order').append(ctr);
+                $('#tray_content').html(content);
+                var icount = Object.keys(item_cart).length;
+                $('#tray_content').html(' ('+gtotal+')');
+                $('#tray_content').trigger('updatelayout');
+            }
+
+            $( '#panelTrgr').click(function(e){
+                // alert('zzzz');
+                showCart();
+            });
+
+            function goBack() {
+                window.history.back()
+            }
+            $('#mylist').delegate('li', 'click', function () {
+                var id = $(this).attr('data-id');
+                sessionStorage.order_method = id;
+                // window.location = "info.html";
+                window.location = "order_method_details.html";
+            });
+
+            var res_name = sessionStorage.res_name;
+            $('.pagetitle').html(res_name);
+
+            var user_id = '';
+            if(sessionStorage.user_id != undefined)
+                user_id = sessionStorage.user_id;
+
+            console.log('asdadadad'+(user_id.length));
+            // if(user_id.length > 0){
+            //     $('#loggedinlink').show();
+            //     $('#loginlink').hide();
+            // }else{
+            //     $('#loginlink').show();
+            //     $('#loggedinlink').hide();
+            // }
+            $('#loginlink').hide();
+        </script>
+    </body>
+</html>

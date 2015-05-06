@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+
+        <link href="plugins/starrating/rateit.css" rel="stylesheet" type="text/css">
+        <script src="plugins/starrating/jquery.rateit.js"></script>
+
+        <title>clickPlate</title>
+        <style>
+            img.ui-li-thumb {
+            vertical-align: middle;
+            margin: 22px 16px;
+            }
+            .item_price{
+                font-weight: bold;
+                color:#d12027;
+            }
+            /*@media all and (max-width: 35em) {
+                .my-breakpoint .ui-block-a,
+                .my-breakpoint .ui-block-b,
+                .my-breakpoint .ui-block-c,
+                .my-breakpoint .ui-block-d,
+                .my-breakpoint .ui-block-e {
+                    width: 100%;
+                    float:none;
+                }
+            }*/
+            .ui-corner-all {
+               -webkit-border-radius:.0 !important;
+               border-radius: 0 !important;
+            }
+            .pagetitle{
+                font-weight: bold;
+            }
+            .ui-icon-cart {
+                background-image: url(img/icons/cart-20.png) !important;
+                background-repeat: no-repeat;
+                background-position:center left;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="index">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+                <!-- <ul data-role="listview" data-icon="false">
+                    <li class="ui-li-static ui-first-child" data-icon-"false">History</li>
+                    <li class="ui-li-static ui-body-inherit" data-icon-"false">My Profile</li>
+                    <li class="ui-li-static ui-body-inherit">My Payments</li>
+                    <li class="ui-li-static ui-body-inherit">Food</li>
+                    <li class="ui-li-static ui-body-inherit">Locator</li>
+                    <li class="ui-li-static ui-body-inherit">Favorites</li>
+                    <li class="ui-li-static ui-body-inherit">FAQs</li>
+                    <li class="ui-li-static ui-body-inherit">Report a Problem</li>
+                    <li class="ui-li-static ui-body-inherit">Terms and Conditions</li>
+                    <li class="ui-li-static ui-body-inherit">Privacy Policy</li>
+                    <li class="ui-li-static ui-body-inherit ui-last-child">Logout</li>
+                </ul> -->
+            </div>
+            <!-- HEADER -->
+<!--             <div data-role="header">
+                 <img src="../www/img/logo.png" class="complogo" style="height:50px;">
+                 <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="info.html" data-icon="info">Info</a></li>
+                        <li><a href="menu.html" data-icon="tag" class="ui-btn-active">Menu</a></li>
+                        <li><a href="location.html" data-icon="location">Map</a></li>
+                        <li><a href="reviews.html" data-icon="comment">Reviews</a></li>
+                        <li><a href="share.html" data-icon="forward">Share</a></li>
+                    </ul>
+                </div>
+            </div> -->
+            <div data-role="header" data-position="fixed">
+                <a href="home.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle"></h1>
+                <a href="#myPanel" data-icon="bars" class="ui-btn-right" data-iconpos="notext" id="panelTrgr"></a>
+                <!-- <div data-role="navbar" data-iconpos="top">
+                    <ul style="border:1px black solid;">
+                        <li><a href="info.html" data-icon="info" data-ajax="false">Info</a></li>
+                        <li><a href="menu.html" data-icon="bullets" data-ajax="false" class="ui-btn-active">Menu</a></li>
+                        <li><a href="location.html" data-icon="location" data-ajax="false">Location</a></li>
+                        <li><a href="reviews.html" data-icon="star" data-ajax="false">Reviews</a></li>
+                    </ul>
+                </div> -->
+            </div>
+
+            <!-- BODY -->
+            <div role="page" class="ui-content">
+                <!-- http://demos.jquerymobile.com/1.4.0/collapsible/#&ui-state=dialog -->
+                <!-- <div data-role="collapsible-set" data-theme="b" data-content-theme="b" id="catlist" data-corners="false"> -->
+                <span class="ui-li-count ui-btn-corner-all countBubl ui-btn-a" style="background-color:#f6f6f6;border-color:#ddd;text-shadow:none;color:#333;top:14px;"><img src="img/icons/1412090651_icon-ios7-cart-16.png" style="vertical-align:middle;padding-top:5px;height:29px;"></span>
+                <ul data-role="listview" data-inset="false" data-corners="false" class="compHdr">
+                    <!-- <li id="subHdr_menupage" style="height:100px;" class="custom_listview_img"></li> -->
+                </ul>
+                <br>
+                <div data-role="collapsible-set" data-theme="a"  id="catlist" data-corners="false"></div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><input type="button" value="BACK TO SERVICES"  data-theme="c" style="white-space:normal;" id="back_to_menu"></div>
+                    <div class="ui-block-b"><input type="button" value="CHECKOUT"  data-theme="b" style="white-space:normal;" id="place_ordered"></div>
+                </div>
+                <form id="checkoutCart"></form>
+
+                <div data-role="popup" id="addtocart" data-theme="a" data-overlay-theme="a" class="ui-content" >
+                    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-btn-a ui-icon-check ui-btn-icon-left ui-mini">Add to Tray</a>
+                    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-btn-b ui-icon-forward ui-btn-icon-left ui-mini">Proceed to Checkout</a>
+                    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-mini">Cancel</a>
+                </div>
+
+                <script>
+                    $(document).ready(function() {
+                        function toObject(arr) {
+                            var rv = {};
+                            for (var i = 0; i < arr.length; ++i)
+                                if (arr[i] !== undefined) rv[i] = arr[i];
+
+                            return rv;
+                        }
+                        function display_profile(){
+                          var logged_user = sessionStorage.logged_name;
+                          var content = '';
+                          if(typeof logged_user !== 'undefined'){
+                            content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
+                              content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
+                              content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
+                              content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                              content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
+                            content += '</ul>';
+                            $('#myPanel').html(content);
+                          }else{
+                            content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
+                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
+                            content += '</ul>';
+                            $('#myPanel').html(content);
+                          }
+
+                          $('#sidenav_user_profile').click(function(e){
+                              // console.log('Redirecting to Register Page...');
+                              window.location.href = "user_profile.html";
+                          });
+                          $('#sidenav_logout').click(function(e){
+                              // console.log('Redirecting to Index Page...');
+                              // sessionStorage.clear();
+                              window.location.href = 'index.html';
+                          });
+                        }
+                        display_profile();
+                        function showCart() {
+                            var item_cart = sessionStorage.orderCart;
+                            // item_cart = JSON.parse(item_cart);
+                            // console.log(item_cart);
+
+                            // var item_cart = toObject(item_cart);
+                            // console.log(item_cart);
+
+                            // $.each(item_cart,function(k,v){
+                            //     var a = getUrlParameter(v);
+                            //     console.log(a);
+                            // });
+                            // console.log(item_cart);
+                        }
+
+                        $( '#panelTrgr').click(function(e){
+                            // alert('zzzz');
+                            showCart();
+                        });
+                        // panelTrgr
+                    // $(document).on('pagebeforeshow', '#ui-content', function(){
+                        /*************************************************************************************
+                        *****************************************HEADER***************************************
+                        *************************************************************************************/
+                        var subHeader = '';
+                        var br_name = sessionStorage.br_name;
+                        var br_address = sessionStorage.br_address;
+
+                        var res_name = sessionStorage.res_name;
+                        $('.pagetitle').html(res_name);
+
+                        $(function () { $('#rating_menupage').rateit({ max: 5, value: 5 }); });
+                        // subHeader += '<img src="img/urlogo.png" class="ui-li-thumb"><input type="hidden" id="backing6"><div id="rating_menupage" data-rateit-ispreset="true" data-rateit-readonly="true"><h2 id="compName" style="white-space : normal;">'+br_name+'</h2><p style="white-space : normal;">'+br_address+'</p>';
+                        // $('#subHdr_menupage').html(subHeader);
+                        subHeader += '<img src="img/urlogo.png" class="ui-li-thumb"><input type="hidden" id="backing6"><div id="rating_menupage" data-rateit-ispreset="true" data-rateit-readonly="true"><h2 id="compName" style="white-space : normal;">'+br_name+'</h2><p style="white-space : normal;">'+br_address+'</p>';
+                        $('#subHdr_menupage').html(subHeader);
+
+                        /*************************************************************************************
+                        ******************************************BODY****************************************
+                        *************************************************************************************/
+                        var categories = sessionStorage.categories;
+                        var cat_list = JSON.parse(categories);
+                        var res_id = sessionStorage.res_id;
+                        var content = '';
+
+                        $('#catlist').html('<div class="loader" style="text-align:center;"><img src="img/loader.gif">Loading...</div>');
+
+                        $.each(cat_list,function(k,v){
+                            var items = '';
+                            $.ajax({
+                              // url : remoteHost+"resto/restoList/restoItems/"+res_id+"/"+v.br_id,
+                              url : remoteHost+"clickPlatev2/app_menus/getBranchMenus/"+res_id+"/"+v.cat_id,
+                              type: 'POST',
+                              dataType : "json",
+                              cache: false,
+                              data: {"name":"JSON_Request"},
+                              success:function(data) {
+                                items = JSON.stringify(data.branchMenus);
+                                items = JSON.parse(items);
+                                var item_per_category = '';
+                                var content = '';
+                                var popups = '';
+                                var img = remoteHost+'clickPlatev2/img/noimage.png';
+
+                                // content += '<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u"><h4>'+v.br_name+'</h4>';
+                                content += '<div data-role="collapsible"><h2>'+v.cat_name+'</h2>';
+                                    content += '<ul data-role="listview" data-split-theme="e" data-divider-theme="e" id="itemlist">';
+                                    console.log(items);
+                                    $.each(items,function(k1,v1){
+                                        // alert(v.item_name);
+                                        // item_per_category += '<li ><a href="#" style="white-space: normal;"><img src="img/icon-72-hdpi.png" class="ui-li-thumb">'+v.item_name+'<p style="white-space: normal;">'+isEmpty(v.desc)+'</p><h5 class="item_price">₱'+displayInCurr(v.price)+'</h5></a><a href="#item-'+v.item_code+'" data-rel="popup" data-position-to="window" data-transition="pop">View</a></li>';
+                                        // console.log(v.image);
+
+                                        img = remoteHost+'/clickPlatev2/img/noimage.png';
+                                        item_per_category += '<li data-theme="e"><a href="#" style="white-space: normal;" attr-menu="'+v1.menu_id+'"><img src="'+img+'" class="ui-li-thumb" style="top:-15px;">'+v1.menu_name+'<p style="white-space: normal;">&nbsp;</p><h5 class="item_price">₱'+displayInCurr(v1.menu_price)+'</h5></a><a href="menu_details.html?res_id='+res_id+'&id='+v1.menu_id+'&reloaded=no" data-ajax="false" data-ajax="false">View</a></li>';
+
+                                        // if(img!=null)
+                                        //     item_per_category += '<li data-theme="e"><a href="#" style="white-space: normal;" data-theme="b" attr-menu="'+v1.menu_id+'"><img src="'+remoteHost+'resto/uploads/'+res_id+'/menu/'+v.image+'" class="ui-li-thumb">'+v1.menu_name+'<p style="white-space: normal;">&nbsp;</p><h5 class="item_price">₱'+displayInCurr(v1.menu_price)+'</h5></a><a href="test.html?id='+v1.menu_id+'">View</a></li>';
+                                        // else
+                                        //     item_per_category += '<li data-theme="e"><a href="#" style="white-space: normal;" attr-menu="'+v1.menu_id+'"><img src="'+remoteHost+'/resto/img/noimage.png" class="ui-li-thumb" style="top:-15px;">'+v1.menu_name+'<p style="white-space: normal;">&nbsp;</p><h5 class="item_price">₱'+displayInCurr(v1.menu_price)+'</h5></a><a href="test.html?id='+v1.menu_id+'">View</a></li>';
+                                        /***************************************************
+                                        create popup menu for items
+                                        ****************************************************/
+                                        // var popups = '';
+                                        // $( "item-"+v.item_code ).on({
+                                        //     popupbeforeposition: function() {
+                                        //         var maxHeight = $( window ).height() - 60 + "px";
+                                        //         $( ".photopopup img" ).css( "max-height", maxHeight );
+                                        //     }
+                                        // });
+                                        // popups += '<div data-role="popup" id="item-'+v.item_code+'" class="ui-content">';
+                                        // if(v.image!=null)
+                                        //     popups += '<ul data-role="listview" data-inset="true" data-corners="false" style="border:0px;"><li style="height:100px;white-space:normal;"><img src="'+remoteHost+'/resto/uploads/'+res_id+'/menu/'+v.image+'" class="ui-li-thumb"><h2 style="white-space:normal;">'+v1.menu_name+'</h2></li></ul>';
+                                        // else
+                                        //     popups += '<ul data-role="listview" data-inset="true" data-corners="false" style="border:0px;"><li style="height:100px;white-space:normal;"><img src="'+remoteHost+'/resto/img/noimage.png" class="ui-li-thumb" style="top:-15px;"><h2 style="white-space:normal;">'+v1.menu_name+'</h2></li></ul>';
+
+                                        // popups += '<p>'+isEmpty(v.desc)+'</p>';
+                                        // popups += '<div class="ui-grid-a"><div class="ui-block-a"></div><div class="ui-bar ui-bar-e"><div data-role="fieldcontain" class="ui-field-contain ui-body ui-br"><input type="hidden" name="item_price" id="item_price" value="'+v.price+'"><input type="number" name="qty" id="qty" maxlength="2" min="0" max="99" value="1" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset ui-mini" placeholder="Qty"></div></div></div>';
+                                        // popups += '<div class="ui-grid-a"><div class="ui-block-a"></div><div class="ui-block-b"><strong style="color:#d11f26">PRICE: ₱'+displayInCurr(v.price)+'</strong></div></div>';
+                                        // // popups += '<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-btn-c ui-icon-check ui-btn-icon-left ui-mini" data-item-id="'+v.item_id+'" id="addtotray">ADD TO TRAY</a>';
+                                        // // popups += '<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-btn-b ui-icon-forward ui-btn-icon-left ui-mini">CHECKOUT</a>';
+                                        // // popups += '<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-btn-a ui-mini">CANCEL</a>';
+                                        // popups += '<a href="#" class="customDialogOption1" data-role="button" data-item-id="'+v.item_id+'" data-item-name="'+v.item_name+'" data-item-desc="'+v.desc+'" data-item-price="'+v.price+'" data-item-image="'+v.image+'" data-theme="c" data-rel="back" data-icon="shop">ADD TO TRAY</a>';
+                                        // popups += '<a href="checkout.html" class="customDialogOption2" data-role="button" data-item-id="'+v.item_id+'" data-theme="b" data-icon="forward">CHECKOUT</a>';
+                                        // popups += '<a href="#" class="customDialogOption3" data-role="button" data-item-id="'+v.item_id+'" data-theme="a" data-rel="back" data-icon="delete">CANCEL</a>';
+                                        // popups += '</div>';
+                                        // popups += '</div>';
+
+                                        // $( "#checkoutCart" ).append(popups).enhanceWithin();
+                                    });
+
+                                    content += item_per_category;
+                                    content += '</ul>';
+                                content += '</div>';
+
+                                $('#catlist').find('.loader').remove();
+                                $( "#catlist" ).append( content );
+                                $('#catlist').enhanceWithin();
+
+                                var operation = "A"; //"A"=Adding; "E"=Editing
+                                var selected_index = -1; //Index of the selected list item
+                                var orderCart = sessionStorage.getItem("orderCart");//Retrieve the stored data
+                                orderCart = JSON.parse(orderCart); //Converts string to object
+                                if(orderCart == null) orderCart = [];//If there is no data, initialize an empty array
+
+                                // $('#itemlist').on('click', 'li', function() {
+                                //     alert("Works"); // id of clicked li by directly accessing DOMElement property
+                                // });
+                                $('.ui-content .customDialogOption1').click(function(e){
+                                    var item_id = $(this).attr('data-item-id');
+                                    var item_name = $(this).attr('data-item-name');
+                                    var item_desc = $(this).attr('data-item-desc');
+                                    var item_price = $(this).attr('data-item-price');
+                                    var item_img = $(this).attr('data-item-image');
+                                    var qty = $(this).parent().find('#qty').val();
+                                    var price = $(this).parent().find('#item_price').val();
+                                    console.log(qty);
+                                    console.log(price);
+
+                                    //session Storage
+                                    // var nested = [];
+                                    // nested = {'item_id':item_id,'quantity':qty, 'price': price};
+                                    // var asJson = JSON.stringify(nested);
+                                    // sessionStorage['data'] = asJson;
+                                    // var asObject = JSON.parse(sessionStorage['data']);
+
+                                    var line_order = JSON.stringify({ 'ID'    : item_id,
+                                                                      'qty'   : qty,
+                                                                      'name'  : item_name,
+                                                                      'desc'  : item_desc,
+                                                                      'price' : item_price,
+                                                                      'image' : item_img
+                                                                    });
+                                    orderCart.push(line_order);
+                                    sessionStorage.setItem("orderCart", JSON.stringify(orderCart));
+                                    // alert("The data was saved.");
+                                    // return true;
+
+                                    //temporarily save
+                                    // var db = openDatabase('clickPlate_db', '1.0', 'Test DB', 2 * 1024 * 1024);
+                                    // db.transaction(function (tx) {
+                                    //     tx.executeSql('DROP TABLE IF EXISTS order_cart;');
+                                    //     tx.executeSql('CREATE TABLE IF NOT EXISTS order_cart ' +
+                                    //                 ' (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
+                                    //                 ' item_id INTEGER NOT NULL, qty TEXT NOT NULL, price TEXT);');
+                                    //     tx.executeSql('INSERT INTO order_cart(item_id,item_name,price) VALUES (?,?,?);',[item_id, qty,'550.25']);
+                                    // });
+
+                                });
+
+
+                                    // return false;
+
+                                // subHeader = '<ul data-role="listview" data-inset="true"><li><a href="#"><img src="../_assets/img/album-bb.jpg"><h2>World Chicken</h2><p>Fastfood</p></a></li></ul>';
+                                // $( "#compHdr" ).append( subHeader ).collapsibleset( "refresh" );
+                                // $('.compName').val('zxzzz');
+                                // $('#compHdr').enhanceWithin();
+
+                                // $( "#checkoutCart" ).append(popups).refresh();
+                              },
+                              error: function(data) {
+                                alert('Error loading.'+data);
+                                console.log('error' + data);
+                              }
+                            });
+                        });
+
+                        $("div#itemlist ul").listview('refresh');
+                        // alert('zzz');
+                        // $('#itemlist').on("click",'li a' ,function(e){
+                        //     e.preventDefault();
+                        //    alert('triggered');
+                        // });
+                        $('div#pages').find('div.page#test');
+                        $('#itemlist').find('#addtotray').hide();
+
+
+                    //      <div class="ui-block-a"><input type="button" value="BACK TO MENU"  data-theme="c" style="white-space:normal;" id="back_to_menu"></div>
+                    // <div class="ui-block-b"><input type="button" value="CHECKOUT"  data-theme="b" style="white-space:normal;" id="place_ordered"></div>
+
+                        $('#place_ordered').click(function(e){
+                            window.location = 'checkout.html';
+                        });
+
+                        $('#back_to_menu').click(function(e){
+                            window.location = 'services.html';
+                        });
+
+                    });
+                </script>
+            </div><!-- /content -->
+
+            <!-- FOOTER-->
+            <div data-role="footer" data-theme="e" style="border:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <!-- // <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
+        <!-- // <script type="text/javascript" src="plugins/gmap/gmap3.js"></script> -->
+
+        <!-- // <script type="text/javascript" src="includes/js/menu.js"></script> -->
+
+    </body>
+</html>

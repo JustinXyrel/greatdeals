@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="js/phonegap-1.3.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+
+        var db;
+        //database varsion setting
+        var version = 1.0;
+        //database name setting
+        var dbName = "clickPlate";
+        //database display name setting
+        var dbDisplayName = "users";
+        //database size setting
+        var dbSize = 2 * 1024 * 1024;
+
+        function selectDB() {
+            if (window.openDatabase) {
+                //openDatabase(name, version, displayname, estimatedsize, callback);
+                db = openDatabase(dbName, version, dbDisplayName, dbSize);
+
+                dropTable(db);
+                createTable(db);
+
+                //inserting data in table
+                insertData(db, "jomar", "agbon");
+                dataView(db);
+
+            } else {
+                alert("Web SQL Database not supported in this browser");
+            }
+        }
+
+        //reads and displays values from the 'places' table
+        function dataView(db) {
+            var html = document.getElementById("tbody01");
+            var ddlHtml = document.getElementById("ddlTitle");
+            html.innerHTML = "";
+            ddlHtml.innerHTML = "";
+
+            db.transaction(function (t) {
+                t.executeSql("SELECT * FROM users", [],
+                function (tran, r) {
+                    ddlHtml.innerHTML = "<option value='all'>all</option>";
+                    for (var i = 0; i < r.rows.length; i++) {
+                        var id = r.rows.item(i).id;
+                        var title = r.rows.item(i).title;
+                        var content = r.rows.item(i).content;
+                        var insertday = r.rows.item(i).insertDay;
+
+                        //data list rendering
+                        if (html) {
+                            html.innerHTML += "<tr><td>" + id + "</td><td>" + title + "</td><td>" + content + "</td><td>" + insertday + "</td></tr>";
+                        }
+
+                        //select box rendering
+                        if (ddlHtml) {
+                            ddlHtml.innerHTML += "<option value=" + id + ">" + title + "</option>";
+                        }
+                    }
+                },
+                function (t, e) { alert("Error:" + e.message); }
+             );
+            });
+        }
+
+        // create table
+        function createTable(db) {
+            db.transaction(function (t) {
+                t.executeSql("CREATE TABLE users (id INTEGER PRIMARY KEY, title TEXT, content TEXT, insertDay DATETIME)", []);
+            });
+        }
+
+        //inserting data in table
+        function insertData(db, title, context) {
+            db.transaction(function (e) {
+                var day = new Date();
+                e.executeSql("INSERT INTO users(title, content, insertDay) VALUES (?, ?, ?)", [title, context, day], onSuccess, onError);
+            });
+        }
+
+        function onSuccess(e) { }
+        function onError(e) { }
+
+        // drop table
+        function dropTable(db) {
+            db.transaction(function (e) {
+                e.executeSql("DROP TABLE users");
+                // e.executeSql("DROP TABLE tizentable");
+            });
+        }
+
+        //Select the data conditions
+        function dataChange(value) {
+            if (value != "all") {
+                var html = document.getElementById("tbody01");
+                html.innerHTML = "";
+                db.transaction(function (t) {
+                    t.executeSql("SELECT * FROM users WHERE id=?", [value],
+                function (tran, r) {
+                    for (var i = 0; i < r.rows.length; i++) {
+                        var id = r.rows.item(i).id;
+                        var title = r.rows.item(i).title;
+                        var content = r.rows.item(i).content;
+                        var insertday = r.rows.item(i).insertDay;
+
+                        if (html) {
+                            html.innerHTML += "<tr><td>" + id + "</td><td>" + title + "</td><td>" + content + "</td><td>" + insertday + "</td></tr>";
+                        }
+                    }
+                },
+                function (t, e) { alert("Error:" + e.message); }
+             );
+                });
+            } else {
+                dataView(db);
+            }
+        }
+
+        window.onload = function () {
+            selectDB();
+        };
+
+    </script>
+
+    <script>
+        function checkConnection() {
+        var networkState = navigator.network.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        alert('Connection type: ' + states[networkState]);
+        }
+         checkConnection();
+    </script>
+  </head>
+  <body>
+    <h1>TESTING lang</h1>
+    <p>Database</p>
+
+    <table>
+        <thead id="ddlTitle"></thead>
+        <tbody id="tbody01">
+        </tbody>
+    </table>
+  </body>
+</html>

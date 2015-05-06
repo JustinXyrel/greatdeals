@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="includes/css/index.css" />
+        <title>clickPlate</title>
+        <style>
+            .div_logo{
+                margin: 0 auto;
+                margin-left: auto;
+                margin-right: auto;
+                align: center;
+                text-align: center;
+            }
+            .div_logo img{
+                height: 100px;
+                margin: 30px 20px;
+            }
+            .poweredby{
+                height: 40px;
+            }
+            .splash_logo{
+                height: 140px;
+                margin-top: 20%;
+            }
+
+            .index-button div{
+                padding: 20px !important;
+                margin: 10px;
+                margin-top:90px ;
+            }
+            .poweredby {
+                height: 55px !important;
+                vertical-align: middle !important;
+            }
+            .no-margin-grid .ui-grid-a [class*=ui-block-]>.ui-btn, .ui-grid-a [class*=ui-block-]>.ui-select,  .ui-grid-a [class*=ui-block-]>.ui-checkbox,  .ui-grid-a [class*=ui-block-]>.ui-radio,  .ui-grid-a [class*=ui-block-]>button.ui-btn-inline,  .ui-grid-a [class*=ui-block-]>button.ui-btn-icon-notext{
+                margin:0 auto !important;
+                /*height: 90px;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" id="splash">
+            <div class="splash_logo">
+                <center><img src="img/iFoods_logoxx.png" class="splash_logo"></center>
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="page">
+            <!-- MENU -->
+            <!-- HEADER -->
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <div class="div_logo">
+                    <img src="img/iFoods_logoxx.png">
+                </div>
+                <!-- <div class="ui-grid-a">
+                    <div class="ui-block-a" ><a href="#anylink" data-role="button" data-icon="search" data-iconpos="top" data-theme="c">Search</a></div>
+                    <div class="ui-block-b"><a href="#anylink" class="ui-btn ui-icon-lock ui-btn-icon-top">Login</a></div>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><a href="#anylink" data-role="button" data-icon="home" data-iconpos="top" data-theme="a">Restaurants</a></div>
+                    <div class="ui-block-b"><a href="#anylink" data-role="button" data-icon="star" data-iconpos="top" data-theme="c">Promos</a></div>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" data-theme="c"><a href="#anylink" data-role="button" data-icon="info" data-iconpos="top" data-theme="c">About Us</a></div>
+                    <div class="ui-block-b"><a href="#anylink" data-role="button" data-theme="e"><img src="img/poweredby.png" class="poweredby"></a></div>
+                </div> -->
+
+                <div class="no-margin-grid">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <a href="#" data-role="button" data-icon="home" data-iconpos="top" data-theme="a" data-ajax="false" id="resto">Restaurants</a>
+                        </div>
+                        <div class="ui-block-b">
+                            <a href="#anylink" data-role="button" data-icon="star" data-iconpos="top" data-theme="c" data-ajax="false">Promos</a>
+                        </div>
+                        <div class="ui-block-a">
+                            <a href="home.html" data-role="button" data-icon="search" data-iconpos="top" data-theme="c" data-ajax="false">Search</a>
+                        </div>
+                        <div class="ui-block-b">
+                            <a href="login_form.html" class="ui-btn ui-icon-lock ui-btn-icon-top" data-theme="a" data-ajax="false">Login</a>
+                        </div>
+                        <div class="ui-block-a"><a href="about_us.html" data-role="button" data-theme="a" data-icon="info" data-iconpos="top" data-theme="c" data-ajax="false">About Us</a></div>
+                        <div class="ui-block-b"><center  style=""><img src="img/poweredby.png" class="poweredby"></center></div>
+                    </div>
+                </div>
+            </div>
+            <!-- FOOTER-->
+            <!-- <div data-role="footer" data-theme="e" style="border:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div> -->
+        </div>
+
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
+        <link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+        <!-- // <script type="text/javascript" src="includes/js/index.js"></script> -->
+        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
+        <script>
+            $(document).on('pageinit','#splash',function(){
+                setTimeout(function(){
+                    $.mobile.changePage("#page", "fade");
+                }, 2000);
+            });
+            $(document).ready(function(){
+                function searchKeyword(param){
+                    // console.log(remoteHost+"clickPlatev2/app_resto/searchRestoByKeyword/"+param);
+                    $.ajax({
+                        url : remoteHost+"clickPlatev2/app_resto/searchRestoByKeyword/"+param,
+                        type: 'POST',
+                        dataType : "json",
+                        data: {"name":"JSON_Request"},
+                        success:function(data) {
+                            if(data.count > 0){
+                                sessionStorage.resto = JSON.stringify(data.resto);
+                                var search = JSON.parse(sessionStorage.resto);
+                                $.each(search,function(k,v){
+                                    window.location = "resto_search.html";
+                                });
+                            }else{
+                                alert('Keyword entered not found.');
+                            }
+                        },
+                        error: function() {alert('Keyword entered not found.'); }
+                    });
+                }
+                sessionStorage.clear();
+                /************************
+                    LOGIN
+                ************************/
+                $('#login').click(function(e){
+                    var uname = $('#l_login').val();
+                    var passwd = $('#l_passwd').val();
+                    console.log(remoteHost+"clickPlatev2/app_login/verifyUser/"+encodeURIComponent(uname)+"/"+passwd);
+                    $.ajax({
+                        url : remoteHost+"clickPlatev2/app_login/verifyUser/"+encodeURIComponent(uname)+"/"+passwd,
+                        type: 'POST',
+                        dataType : "json",
+                        data: {"name":"JSON_Request"},
+                        success:function(data) {
+                            console.log(data);
+                            if(data.user_count > 0){
+                                var curr_user = data.user;
+                                console.log(curr_user);
+                                sessionStorage.user_id = curr_user.user_id;
+                                sessionStorage.logged_name = curr_user.fname+' '+curr_user.lname;
+                                sessionStorage.unit_no = curr_user.unit_no;
+                                sessionStorage.building = curr_user.building;
+                                sessionStorage.block_no = curr_user.block_no;
+                                sessionStorage.street = curr_user.street;
+                                sessionStorage.subdivision = curr_user.subdivision;
+                                sessionStorage.barangay = curr_user.barangay;
+                                sessionStorage.city = curr_user.city;
+                                sessionStorage.province = curr_user.province;
+                                sessionStorage.zip_code = curr_user.zip_code;
+                                sessionStorage.mobile_no = curr_user.mobile_no;
+                                // alert('Welcome back, '+curr_user.fname+' '+curr_user.lname);
+                                // $.mobile.changePage("home.html", "fade");
+                                window.location.href = "home.html";
+                            }else{
+                                alert('Invalid login.');
+                                window.location.href = "#page";
+                            }
+                        },
+                        error: function() {
+                            alert('Invalid login.');
+                            window.location.href = "#page";
+                        }
+                    });
+                });
+                /************************
+                    REGISTER
+                ************************/
+                $('#register').click(function(e){
+                    console.log('Redirecting to Register Page...');
+                    window.location.href = "register.html";
+                });
+                /************************
+                    SKIP
+                ************************/
+                $('#skip').click(function(e){
+                    console.log('Redirecting to Home Page...');
+                    window.location.href = "home.html";
+                });
+
+                $('#resto').click(function(e){
+                    var keyword = 'all';
+                    searchKeyword(keyword);
+                });
+            });
+        </script>
+    </body>
+</html>

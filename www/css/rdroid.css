@@ -1,0 +1,241 @@
+/* Stack all blocks to start */
+.col2-div .ui-block-a,
+.col2-div .ui-block-b{
+    width: 100%;
+    float: none;
+}
+/* Stack all blocks to start */
+.flex-div .ui-block-a,
+.flex-div .ui-block-b,
+.flex-div .ui-block-c {
+    width: 100%;
+    float: none;
+}
+/* VIEW COLUMN DIV */
+.view-div .ui-block-a,
+.view-div .ui-block-b{
+    width: 100%;
+    float: none;
+}
+.view-div .ui-body {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+.view-div {
+    overflow: hidden; /* Use this or a "clearfix" to give the container height */
+}
+.view-div .ui-body .view-img-bg{
+    min-height: 15em;
+    border: none;
+}
+.view-div .view-desc{
+  min-height: 5em;
+  background-color: rgba(255,255,255,0.1);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+  color: #fff;
+}
+.view-div .view-desc-bar{
+  text-shadow: 0 1px 0 #111;
+  background-color: #000000;
+  border:none;
+  border-bottom: 2px solid #B6DB49;
+  color: #fff;
+  padding: 5px;
+}
+.view-div .view-desc p{
+  margin: 5px;
+}
+.view-div .ui-body .view-title{
+  position:absolute; /* absolute position (so we can position it where we want)*/
+  bottom:0px; /* position will be on bottom */
+  left:0px;
+  width:100%;
+  font-size:0.8em;
+  color:white;
+  /* styling bellow */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+}
+.view-div .view-title p{
+  margin: 8px;
+}
+
+/* tile boxes */
+.tile-div {
+    overflow: hidden; /* Use this or a "clearfix" to give the container height */
+}
+.tile-div .ui-block-a,
+.tile-div .ui-block-b,
+.tile-div .ui-block-c,
+.tile-div .ui-block-d{
+  float: left;
+  width: 49.95%;
+}
+.tile-div .ui-body {
+    min-height: 9em;
+    margin: 5px;
+    padding: 0;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.tile-div .ui-body .tile-bg{
+    min-height: 9em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+.tile-div .ui-body .tile-title{
+  position:absolute; /* absolute position (so we can position it where we want)*/
+  bottom:0px; /* position will be on bottom */
+  left:0px;
+  width:100%;
+  font-size:0.8em;
+  color:white;
+  /* styling bellow */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+  opacity: 0.8;
+  border-radius: 0 0 5px 5px;
+  text-align:center;
+}
+.tile-div .ui-body .tile-title p{
+  margin: 8px;
+}
+/* 1st breakpoint - Float B and C, leave A full width on top */
+@media all and (min-width: 42em) {
+    .flex-div {
+        overflow: hidden; /* Use this or a "clearfix" to give the container height */
+    }
+    .flex-div .ui-block-a,
+    .flex-div .ui-block-b,
+    .flex-div .ui-block-c {
+      float: left;
+      width: 49.95%;
+    }
+    .flex-div {
+        overflow: hidden; /* Use this or a "clearfix" to give the container height */
+    }
+    .view-div .ui-body .view-img-bg{
+        min-height: 23.5em;
+    }
+    /*.tile-div .ui-block-a,
+    .tile-div .ui-block-b,
+    .tile-div .ui-block-c,
+    .tile-div .ui-block-d{
+      float: left;
+      width: 33.33%;
+    }*/
+    .tile-div .ui-block-a,
+    .tile-div .ui-block-b,
+    .tile-div .ui-block-c,
+    .tile-div .ui-block-d{
+      float: left;
+      width: 49.95%;
+    }
+    .tile-div .ui-body,
+    .tile-div .ui-body .tile-bg{
+        min-height: 11em;
+    }
+    .tile-div .ui-body .tile-title{
+      font-size:.8em;
+    }
+}
+/* 2nd breakpoint - Float all, 50/25/25 */
+@media all and (min-width: 55em) {
+    /*.col2-div {
+        overflow: hidden;
+    }
+    .col2-div .ui-block-a,
+    .col2-div .ui-block-b{
+      float: left;
+      width: 49.95%;
+    }*/
+    .flex-div .ui-body {
+       min-height: 18em;
+    }
+    .flex-div .ui-block-a,
+    .flex-div .ui-block-b,
+    .flex-div .ui-block-c {
+      float: left;
+      width: 33.3%;
+    }
+    .view-div .ui-block-a{
+      float: left;
+      width: 49.95%;
+    }
+    .view-div .ui-body .view-img-bg{
+        min-height: 29em;
+    }
+    .view-div .ui-block-b {
+      float: left;
+      width: 49.95%;
+    }
+
+    /*.tile-div .ui-block-a,
+    .tile-div .ui-block-b,
+    .tile-div .ui-block-c,
+    .tile-div .ui-block-d{
+      float: left;
+      width: 24.925%;
+    }*/
+    .tile-div .ui-block-a,
+    .tile-div .ui-block-b,
+    .tile-div .ui-block-c,
+    .tile-div .ui-block-d{
+      float: left;
+      width: 49.95%;
+    }
+    .tile-div .ui-body,
+    .tile-div .ui-body .tile-bg{
+        min-height: 12em;
+    }
+    .tile-div .ui-body .tile-title{
+      font-size:.9em;
+    }
+}
+/* 3rd breakpoint - Bump up font size at very wide screens */
+@media all and (min-width: 75em) {
+    .flex-div .ui-body {
+      font-size: 125%;
+    }
+    .flex-div .ui-body {
+       min-height: 18em;
+    }
+    .flex-div .ui-block-a,
+    .flex-div .ui-block-b,
+    .flex-div .ui-block-c {
+      float: left;
+      width: 33.3%;
+    }
+    /*.tile-div .ui-block-a,
+    .tile-div .ui-block-b,
+    .tile-div .ui-block-c,
+    .tile-div .ui-block-d{
+      float: left;
+      width: 24.925%;
+    }*/
+    .tile-div .ui-body,
+    .tile-div .ui-body .tile-bg{
+        min-height: 14em;
+    }
+    .tile-div .ui-body .tile-title{
+      font-size:125%;
+    }
+}

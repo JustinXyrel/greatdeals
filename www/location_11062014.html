@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <title>clickPlate</title>
+        <style>
+            img.ui-li-thumb {
+            vertical-align: middle;
+            margin: 22px 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a">
+            <div data-role="header">
+                 <img src="../www/img/logo.png" class="complogo" style="height:50px;">
+                 <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="info.html" data-icon="info">Info</a></li>
+                        <li><a href="menu.html" data-icon="tag">Menu</a></li>
+                        <li><a href="location.html" data-icon="location" class="ui-btn-active">Map</a></li>
+                        <li><a href="reviews.html" data-icon="comment">Reviews</a></li>
+                        <li><a href="share.html" data-icon="forward">Share</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <!-- <div id="test1-result"></div> -->
+                <div role="main" class="ui-content">
+                <!-- <div id="test1-result"></div> -->
+                <div id="nav" class="gmap3 ui-responsive" style="display:block;overflow:hidden;position:relative;border:1px solid #aaaaaa;width: 100%;height: 450px;"></div>
+            </div>
+
+            <!-- FOOTER-->
+            <!-- -->
+            <script>
+                $(document).ready(function() {
+                  // alert('aaa');
+                    var addr = sessionStorage.br_base_location;
+                    // alert(addr);
+					console.log(addr);
+                    $('#nav').gmap3({
+                      // trigger:"resize",
+                      getgeoloc:{
+                          callback : function(latLng){
+                            if (latLng){
+                              // $('#test1-result').html('localised !');
+                              $("#nav").gmap3({
+                                getroute:{
+                                  action: 'setCenter',
+                                  options:{
+                                      origin:latLng,
+                                      // destination:"Ayala Triangle Gardens, Makati City",
+                                      destination:addr,
+                                      // destination: 'SM Megamall',
+                                      // destination:"Salcedo Village, Makati City",
+                                      travelMode: google.maps.TravelMode.WALKING,
+                                  },
+                                  callback: function(results){
+                                    if (!results) return;
+                                    $(this).gmap3({
+                                      map:{
+                                        options:{
+                                          zoom: 13,
+                                          center: [-33.879, 151.235]
+                                        }
+                                      },
+                                      directionsrenderer:{
+                                        container: $(document.createElement("div")).addClass("googlemap").insertAfter($("#test")),
+                                        options:{
+                                          directions:results
+                                        }
+                                      }
+                                    });
+                                  }
+                                }
+                              });
+                            } else {
+                              //$('#test1-result').html('not localised !');
+                            }
+                          }
+                      }
+                    });
+                });
+            </script>
+        </div>
+
+
+        <script type="text/javascript" src="js/index.js"></script>
+        <!-- // <script type="text/javascript" src="includes/js/rgmap.js"></script> -->
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script type="text/javascript" src="plugins/gmap/gmap3.js"></script>
+
+        <style>
+          .gmap3{
+            margin: 20px auto;
+            border: 1px dashed #C0C0C0;
+            width: 800px;
+            height: 500px;
+          }
+
+          .test1-result{
+            text-align:center;
+          }
+        </style>
+    </body>
+</html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+
+        <link href="plugins/starrating/rateit.css" rel="stylesheet" type="text/css">
+        <script src="plugins/starrating/jquery.rateit.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <title>clickPlate</title>
+        <style>
+            img.ui-li-thumb {
+            vertical-align: middle;
+            margin: 22px 16px;
+            }
+            .item_price{
+                font-weight: bold;
+                color:#d12027;
+            }
+            /*@media all and (max-width: 35em) {
+                .my-breakpoint .ui-block-a,
+                .my-breakpoint .ui-block-b,
+                .my-breakpoint .ui-block-c,
+                .my-breakpoint .ui-block-d,
+                .my-breakpoint .ui-block-e {
+                    width: 100%;
+                    float:none;
+                }
+            }*/
+            h3{
+                font-weight:bold;
+                text-align:center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="index">
+            <!-- MENU -->
+            <!-- <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+                <ul data-role="listview" data-icon="false">
+                    <li class="ui-li-static ui-first-child" data-icon-"false">History</li>
+                    <li class="ui-li-static ui-body-inherit" data-icon-"false">My Profile</li>
+                    <li class="ui-li-static ui-body-inherit">My Payments</li>
+                    <li class="ui-li-static ui-body-inherit">Food</li>
+                    <li class="ui-li-static ui-body-inherit">Locator</li>
+                    <li class="ui-li-static ui-body-inherit">Favorites</li>
+                    <li class="ui-li-static ui-body-inherit">FAQs</li>
+                    <li class="ui-li-static ui-body-inherit">Report a Problem</li>
+                    <li class="ui-li-static ui-body-inherit">Terms and Conditions</li>
+                    <li class="ui-li-static ui-body-inherit">Privacy Policy</li>
+                    <li class="ui-li-static ui-body-inherit ui-last-child">Logout</li>
+                </ul>
+            </div> -->
+            <!-- HEADER -->
+<!--             <div data-role="header">
+                 <img src="../www/img/logo.png" class="complogo" style="height:50px;">
+                 <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="info.html" data-icon="info">Info</a></li>
+                        <li><a href="menu.html" data-icon="tag" class="ui-btn-active">Menu</a></li>
+                        <li><a href="location.html" data-icon="location">Map</a></li>
+                        <li><a href="reviews.html" data-icon="comment">Reviews</a></li>
+                        <li><a href="share.html" data-icon="forward">Share</a></li>
+                    </ul>
+                </div>
+            </div> -->
+            <div data-role="header" data-position="fixed">
+                <a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle">Checkout</h1>
+                <!-- <a href="#myPanel" data-icon="bars" class="ui-btn-right" data-iconpos="notext" id="panelTrgr"></a> -->
+            </div>
+
+            <!-- BODY -->
+            <div role="page" class="ui-content">
+                <!-- http://demos.jquerymobile.com/1.4.0/collapsible/#&ui-state=dialog -->
+                <!-- <div data-role="collapsible-set" data-theme="b" data-content-theme="b" id="catlist" data-corners="false"> -->
+                <!-- <span class="ui-li-count ui-btn-corner-all countBubl ui-btn-a" style="background-color:#f6f6f6;border-color:#ddd;text-shadow:none;color:#333;top:14px;"><img src="img/icons/1412090651_icon-ios7-cart-16.png" style="vertical-align:middle;padding-top:5px;height:29px;"></span> -->
+                <!-- <ul data-role="listview" data-inset="false" data-corners="false" class="compHdr"> -->
+                    <!-- <li id="subHdr_menupage" style="height:100px;" class="custom_listview_img"></li> -->
+                <!-- </ul> -->
+                <!-- <br> -->
+                <!-- <div data-role="collapsible-set" data-theme="a"  id="catlist" data-corners="false"></div> -->
+                <h3 style="text-align:center;">CHECK YOUR SUMMARY BELOW</h3>
+                <div data-role="collapsible-set" data-theme="a"  id="orderList" data-corners="false"></div>
+                <h3>CUSTOMER DETAILS
+                <!-- <a href="order_method.html" data-ajax="false" data-role="button" data-inline="false" data-mini="true" data-icon="arrow-r" data-iconpos="right" class="jqm-api-link ui-btn ui-shadow ui-btn-corner-all ui-mini ui-btn-inline ui-btn-icon-right ui-btn-up-c" data-corners="false" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"><span class="ui-btn-inner"><span class="ui-btn-text">Edit Info</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></span></a> -->
+                </h3>
+                <ul data-role="listview" data-inset="true" data-corners="false" class="payment_details_checkout">
+                    <!-- <li data-role="list-divider">Order Method</li>
+                    <li>
+                        <h4 id="order_method" class="order_method_type" style="white-space:normal;"> </h4>
+                    </li>
+                    <li data-role="list-divider">Customer Name </li>
+                    <li>
+                        <h4 id="contact_person" class="del_contact_person res_contact_person" style="white-space:normal;"> </h4>
+                    </li>
+                    <li data-role="list-divider">Contact No</li>
+                    <li>
+                        <h2 id="contact_no" class="del_contact_no res_contact_no" style="white-space:normal;"> </h2>
+                    </li>
+                    <li data-role="list-divider">Address</li>
+                    <li>
+                        <h2 id="address" class="del_address res_address" style="white-space:normal;"> </h2>
+                    </li>
+                    <li data-role="list-divider">Table No.</li>
+                    <li>
+                        <h2 id="res_table_no" class="res_table_no" style="white-space:normal;"> </h2>
+                    </li>
+                    <li data-role="list-divider">Date</li>
+                    <li>
+                        <h2 id="res_date" class="res_date" style="white-space:normal;"> </h2>
+                    </li>
+                    <li data-role="list-divider">Time</li>
+                    <li>
+                        <h2 id="res_start_time" class="res_start_time" style="white-space:normal;"> </h2>
+                    </li>
+                    <li data-role="list-divider">No of Guest</li>
+                    <li>
+                        <h2 id="res_no_of_guest" class="res_no_of_guest" style="white-space:normal;"> </h2>
+                    </li>
+                    <li data-role="list-divider">Special Request</li>
+                    <li>
+                        <h2 id="res_special_request" class="res_special_request" style="white-space:normal;"> </h2>
+                    </li>
+                    <li data-role="list-divider">Payment Method</li>
+                    <li>
+                        <h2 id="res_payment_method" class="res_payment_method" style="white-space:normal;"> </h2>
+                    </li> -->
+                </ul>
+                <!-- <div data-role="fieldcontain">
+                    <a href="#" data-role="button" data-mini="true" id="place_ordered" data-icon="check" data-theme="b">Done</a>
+                    <a href="#" data-role="button" data-mini="true" id="place_ordered" data-icon="check" data-theme="b">Done</a>
+                </div> -->
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><input type="button" value="BACK TO MENU"  data-theme="c" style="white-space:normal;" id="back_to_menu"></div>
+                    <div class="ui-block-b"><input type="button" value="CHECKOUT"  data-theme="b" style="white-space:normal;" id="place_ordered"></div>
+                </div>
+
+                <form id="checkoutCart"></form>
+
+                <script>
+                    $(document).ready(function() {
+                    // $(document).on('pagebeforeshow', '#ui-content', function(){
+                        /*************************************************************************************
+                        *****************************************HEADER***************************************
+                        *************************************************************************************/
+                        var subHeader = '';
+                        var br_name = sessionStorage.br_name;
+                        var br_address = sessionStorage.br_address;
+                        // $(function () { $('#rating_menupage').rateit({ max: 5, value: 5 }); });
+                        // subHeader += '<img src="img/urlogo.png" class="ui-li-thumb"><input type="hidden" id="backing6"><div id="rating_menupage" data-rateit-ispreset="true" data-rateit-readonly="true"><h2 id="compName" style="white-space : normal;">'+br_name+'</h2><p style="white-space : normal;">'+br_address+'</p>';
+                        // $('#subHdr_menupage').html(subHeader);
+                        subHeader += '<img src="img/urlogo.png" class="ui-li-thumb"><input type="hidden" id="backing6"><div id="rating_menupage" data-rateit-ispreset="true" data-rateit-readonly="true"><h2 id="compName" style="white-space : normal;">'+br_name+'</h2><p style="white-space : normal;">'+br_address+'</p>';
+                        $('#subHdr_menupage').html(subHeader);
+
+                        /*************************************************************************************
+                        ******************************************BODY****************************************
+                        *************************************************************************************/
+
+                        var content = '';
+                        var orderCart = sessionStorage.orderCart;
+                        if(typeof orderCart !== "undefined") {
+                            orderCart = JSON.parse(orderCart);
+                            subtotal = 0;
+                            shipping_cost = 0;
+                            total = 0;
+
+                            /**************************************
+                            UNCOMMENT TO VIEW AS LISTVIEW...
+                            **************************************/
+                            content += '<ul data-role="listview" id="orderList" style="font-size:14px;border:0px;">';
+                            $.each(orderCart,function(k,v){
+                                console.log(v);
+                                // for(var i in v){
+                                    console.log(k);
+                                    console.log(v.menu_id);
+                                    content += '<li style="min-height:40px;"><span data-iconpos="right" style="position:relative;float:left;" id="editline-'+v.menu_id+'" data-rel="popup"></span><span style="white-space: normal;padding-left:10px;">'+unescape(v.menu_name)+'</span><span data-iconpos="right" style="position:relative;float:right;padding-right:5%;"></span><span style="border:0px;font-weight:bold !important;font-size:14px !important;color:#d11f26;float:right;">PHP'+displayInCurr(v.order_qty * v.menu_cost)+'</span><p style="width: 50%!important;overflow:hidden;text-overflow:ellipsis;font-weight:bold;padding-left:14%;" class="mod_'+k+'">';
+
+                                        var orderModCart = sessionStorage.orderModCart;
+                                        orderModCart = JSON.parse(orderModCart);
+                                        var mods = '';
+                                        console.log(orderModCart);
+
+                                        $.each(orderModCart, function(k1,v1){
+                                            // $('.mod_'+k).val();
+                                            // console.log(v1.line_id + ' ------' +k);
+                                            if(v1.line_id === k){
+                                            //     $('.mod_'+k).append('zzz');
+                                                mods += v1.mod_name+'<br>';
+                                            }
+                                            // console.log(v1.mod_name);
+                                        });
+                                    content += mods;
+                                    content += '</p><p style="width: 50%!important;overflow:hidden;text-overflow:ellipsis;font-weight:bold;padding-left:10px;">'+unescape(v.order_qty)+' @ PHP '+displayInCurr(v.menu_cost)+'</p></li>';
+                                    subtotal += v.menu_cost * v.order_qty;
+                                        // console.log(mods);
+                                        // $('.mod_'+k).html(mods);
+
+                                // }
+                            });
+                            content += '</ul>';
+
+                                // content += '<hr>';
+                            var om = sessionStorage.order_method;
+
+                            content += '<ul data-role="listview" style="border:0px;">';
+                                content += '<li style="border:0px;text-shadow:0;padding-left:10%;"><span>Sub-total:</span><span class="ui-li-count" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;"> PHP '+displayInCurr(subtotal)+'</span></li>';
+                            if(om == 'delivery'){
+                            // alert(om);
+                                content += '<li style="border:0px;text-shadow:0;padding-left:10%;"><span>Delivery Charge:</span><span class="ui-li-count" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;"> PHP '+displayInCurr(shipping_cost)+'</span></li>';
+                            }
+                                var total = subtotal += shipping_cost;
+                                sessionStorage.totalAmount = displayInCurr(total);
+                                content += '<li style="border:0px;text-shadow:0;padding-left:10%;background-color:#d11f26;color:white;"><span>Total:</span><span class="ui-li-count" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;background-color:#d11f26;color:white;"> PHP '+displayInCurr(total)+'</span></li>';
+                                content += '<span><hidden id="total" value="'+displayInCurr(total)+'"></span>';
+                                content += '<li><input type="text" placeholder="Add coupon code..." data-corners="false"></li>';
+                            content += '</ul>';
+                            content += '<a href="#" data-role="button" data-inset="true" data-theme="c">Apply</a>';
+                            content += '<br>';
+                        }
+                        $( "#orderList" ).append(content);
+                        $('#orderList').enhanceWithin();
+                        //------------------------------------------------------------------------------
+
+                        var orderCart = sessionStorage.order_header;
+                        if(typeof orderCart !== "undefined"){
+                            orderCart = JSON.parse(orderCart);
+                            subtotal = 0;
+                            shipping_cost = 0;
+                            total = 0;
+                            var order_method = sessionStorage.order_method;
+                            var order_method_short = '';
+                            var time_label = '';
+
+                            content += '<ul data-role="listview" id="orderList" style="font-size:14px;border:0px;" data-icon="star">';
+                                // $('.payment_details_checkout').append('<li data-role="list-divider">Payment Method</li>');
+                                if(order_method == 'reserve-tbl'){
+                                    order_method = 'Table Reservation';
+                                    order_method_short = 'table';
+                                    time_label = 'Reservation Time';
+                                }else if(order_method == 'instore'){
+                                    order_method = 'Function Reservation';
+                                    order_method_short = 'function';
+                                }else if(order_method == 'takeout'){
+                                    order_method = 'Takeout';
+                                    order_method_short = 'takeout';
+                                    time_label = 'Take-out Time';
+                                }else if(order_method == 'delivery'){
+                                    order_method = 'Delivery';
+                                    order_method_short = 'delivery';
+                                    time_label = 'Delivery Time';
+                                }else{
+                                    order_method = '';
+                                }
+                            // $('.payment_details_checkout').append('<li><h2>'+order_method+'</h2></li>');
+                            var cust_details = '';
+                            cust_details += '<div class="ui-grid-a" data-theme="a">';
+                                cust_details += '<div class="ui-block-a" style="font-weight:bold;min-height:25px;">Service Type: </div>';
+                                cust_details += '<div class="ui-block-b">'+order_method+'</div>';
+                            cust_details += '</div>';
+                            $('.payment_details_checkout').append(cust_details);
+
+                            $.each(orderCart,function(k,v){
+                                console.log(k + ' -- '+v);
+                                var page_title = page_content = '';
+                                if(k != 'user_id'){              //Excluded index to display...
+                                    switch(k){
+                                        case 'user_name'               : page_title = 'Customer Name';
+                                                                         page_content = v;
+                                        break;
+                                        case 'contact_no'              : page_title = 'Contact No.';
+                                                                         page_content = v;
+                                        break;
+                                        case 'table_no'                : page_title = 'Table No.';
+                                                                         page_content = v;
+                                        break;
+                                        case 'guest_no'                : page_title = 'No. of Guests';
+                                                                         page_content = v;
+                                        break;
+                                        case 'reserved_date'           : page_title = 'Reservation Date';
+                                                                         v = new Date(v);
+                                                                         v = v.format("mmmm dd, yyyy");
+                                                                         page_content = v;
+                                        break;
+                                        case 'reserved_time'           : page_title = time_label;
+                                                                         page_content = v;
+                                        break;
+                                        case 'reserved_start_time'     : page_title = 'From';
+                                                                         page_content = v;
+                                        break;
+                                        case 'reserved_end_time'       : page_title = 'To';
+                                                                         page_content = v;
+                                        break;
+                                        case 'special_request'         : page_title = 'Special Request';
+                                                                         page_content = v;
+                                        break;
+                                        case 'function_type'           : page_title = 'Function Type';
+                                                                         page_content = v;
+                                        break;
+                                        case 'function_type_others'    : page_title = 'Function Type Others';
+                                                                         page_content = v;
+                                        break;
+                                        case 'mobile_no'    : page_title = 'Mobile No. ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'del_floor'    : page_title = 'Floor No. ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'del_street'    : page_title = 'Street No. ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'del_village'    : page_title = 'Village ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'del_bldg'    : page_title = 'Bldg. No. ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'del_province'    : page_title = 'Province ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'del_city'    : page_title = 'City ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'del_landmark'    : page_title = 'Landmark ';
+                                                                         page_content = v;
+                                        break;
+                                        case 'payment_method'    : page_title = 'Payment Method ';
+                                                                         page_content = v;
+                                        break;
+                                        default                        : page_title = '----';
+                                                                         page_content = v;
+                                    }
+
+
+                                    // v.format("dd-m-yy");
+                                    // alert(dateString);
+
+                                    // $('.payment_details_checkout').append('<li data-role="list-divider">'+page_title+'</li>');
+                                    // $('.payment_details_checkout').append('<li><h2>'+page_content+'</h2></li>');
+                                    var cust_details = '';
+                                    cust_details += '<div class="ui-grid-a" data-theme="a">';
+                                        cust_details += '<div class="ui-block-a" style="font-weight:bold;min-height:20px;word-wrap: break-word;">'+page_title+': </div>';
+                                        cust_details += '<div class="ui-block-b" style="word-wrap: break-word;">'+page_content+'</div>';
+                                    cust_details += '</div>';
+                                    $('.payment_details_checkout').append(cust_details);
+                                }
+                            });
+                            content += '</ul>';
+                        }else{
+                            // setTimeout(function(e){
+                            //     alert('Please fill up first your details.');
+                            //     window.location = 'order_method_details.html';
+                            // },3000);
+                        }
+
+                        /**************************************
+                        UNCOMMENT TO VIEW AS TABLE...
+                        **************************************/
+                        // content += '';
+                        // content += '<ul data-role="listview" id="orderList" style="font-size:14px;border:0px;padding-bottom:50px;">';
+                        //     content += '<li>';
+                        //         $.each(orderCart,function(k,v){
+                        //             // content += '<div class="ui-block-a"></div>';
+                        //         });
+                        //     // content +='<div class="ui-grid-a">';
+                        //     //     content += '<div class="ui-block-a"><div class="ui-bar ui-bar-e" style="height:60px">Block A</div></div>';
+                        //     //     content += '<div class="ui-block-b"><div class="ui-bar ui-bar-e" style="height:60px">Block B</div></div>';
+                        //     // content += '</div>';
+                        //     content += '</li>';
+                        // content += '</ul>';
+
+                        // var categories = sessionStorage.categories;
+                        // var cat_list = JSON.parse(categories);
+                        // var res_id = sessionStorage.res_id;
+                        // var content = '';
+
+                        // $.each(cat_list,function(k,v){
+                        //     var items = '';
+                        //     $.ajax({
+                        //       url : remoteHost+"resto/restoList/restoItems/"+res_id+"/"+v.br_id,
+                        //       type: 'POST',
+                        //       dataType : "json",
+                        //       cache: false,
+                        //       data: {"name":"JSON_Request"},
+                        //       success:function(data) {
+                        //         items = JSON.stringify(data.items);
+                        //         items = JSON.parse(items);
+                        //         var item_per_category = '';
+                        //         var content = '';
+                        //         var popups = '';
+
+                        //         // content += '<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u"><h4>'+v.br_name+'</h4>';
+                        //         content += '<div data-role="collapsible"><h2>'+v.br_name+'</h2>';
+                        //             content += '<ul data-role="listview" data-split-icon="search" data-split-theme="a" id="itemlist">';
+                        //             // console.log(items);
+                        //             $.each(items,function(k,v){
+                        //                 item_per_category += '<li ><a href="#" style="white-space: normal;"><img src="img/icon-72-hdpi.png" class="ui-li-thumb">'+v.item_name+'<p style="white-space: normal;">'+isEmpty(v.desc)+'</p><h5 class="item_price">₱'+displayInCurr(v.price)+'</h5></a><a href="#item-'+v.item_code+'" data-rel="popup" data-position-to="window" data-transition="pop">View</a></li>';
+
+                        //                 $( "#checkoutCart" ).append(popups).enhanceWithin();
+                        //             });
+
+
+                        //             // $('.ui-content').hide();
+                        //             // $('#itemlist').children().find('#addtotray').each(function(){
+                        //             //     var item_id = $(this).attr('data-item-id');
+                        //             //     alert(item_id);
+                        //             // });
+
+                        //             content += item_per_category;
+                        //             content += '</ul>';
+                        //         content += '</div>';
+
+                        //         $( "#catlist" ).append( content );
+                        //         $('#catlist').enhanceWithin();
+                        //         $('.ui-content .customDialogOption1').click(function(e){
+                        //             var item_id = $(this).attr('data-item-id');
+                        //             var qty = $(this).parent().find('#qty').val();
+                        //             var price = $(this).parent().find('#item_price').val();
+
+                        //             //session Storage
+                        //             var nested = [];
+                        //             nested = {'item_id':item_id,'quantity':qty, 'price': price};
+                        //             var asJson = JSON.stringify(nested);
+                        //             sessionStorage['data'] = asJson;
+                        //             var asObject = JSON.parse(sessionStorage['data']);
+
+                        //             //temporarily save
+                        //             var db = openDatabase('clickPlate_db', '1.0', 'Test DB', 2 * 1024 * 1024);
+                        //             db.transaction(function (tx) {
+                        //                 tx.executeSql('DROP TABLE IF EXISTS order_cart;');
+                        //                 tx.executeSql('CREATE TABLE IF NOT EXISTS order_cart ' +
+                        //                             ' (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
+                        //                             ' item_id INTEGER NOT NULL, qty TEXT NOT NULL, price TEXT);');
+                        //                 tx.executeSql('INSERT INTO order_cart(item_id,item_name,price) VALUES (?,?,?);',[item_id, qty,'550.25']);
+                        //             });
+
+                        //         });
+
+
+                        //             // return false;
+
+                        //         // subHeader = '<ul data-role="listview" data-inset="true"><li><a href="#"><img src="../_assets/img/album-bb.jpg"><h2>World Chicken</h2><p>Fastfood</p></a></li></ul>';
+                        //         // $( "#compHdr" ).append( subHeader ).collapsibleset( "refresh" );
+                        //         // $('.compName').val('zxzzz');
+                        //         // $('#compHdr').enhanceWithin();
+
+                        //         // $( "#checkoutCart" ).append(popups).refresh();
+                        //       },
+                        //       error: function(data) {
+                        //         alert('Error loading.'+data);
+                        //         console.log('error' + data);
+                        //       }
+                        //     });
+                        // });
+                        $('div#pages').find('div.page#test');
+                        $('#itemlist').find('#addtotray').hide();
+
+                        $('#place_ordered').click(function(e){
+                            var orderCart = sessionStorage.order_header;
+                            var uname = type = '';
+                            var total = sessionStorage.totalAmount;
+                            var user_id = sessionStorage.user_id;
+
+
+                            // $.each(orderCart,function(k,v){
+                            // });
+                            // console.log(remoteHost+"clickPlatev2/app_orders/addTableReservation/"+user_id+"/"+order_method_short+"/"+total);
+
+                            ////////////////////////////////////////////////////////////////////////////
+                            //ADDING TO trans_sales
+                            ////////////////////////////////////////////////////////////////////////////
+                            orderMenuItems = sessionStorage.orderCart;
+                            if(typeof orderMenuItems !== 'undefined' && orderMenuItems !== null) {
+                                $.ajax({
+                                    url : remoteHost+"clickPlatev2/app_orders/addTableReservation/"+user_id+"/"+order_method_short+"/"+total,
+                                    type: 'POST',
+                                    dataType : "json",
+                                    cache: false,
+                                    data: {"name":"JSON_Request"},
+                                    success:function(data) {
+                                        var last_order_header_id = data.id;
+
+
+                                        ///////////////////////////////////////////////////////////////////////////////////////////
+                                        //INSERT TO APP ORDER TABLE
+                                        ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+                                        // orderMenuItems = sessionStorage.orderCart;
+                                        // if(typeof orderMenuItems !== 'undefined' && orderMenuItems !== null) {
+                                            orderMenuItems = JSON.parse(orderMenuItems);
+                                            console.log(orderMenuItems);
+                                            if(orderMenuItems.length > 0){
+                                                $.each(orderMenuItems,function(e,v){
+                                                    // console.log('----------------');
+                                                    // console.log(v);
+                                                    // console.log('----------------');
+                                                    //addTransSalesModifiers($sales_id=null,$line_id=null,$menu_id=null,$mod_id=null,$price=0,$qty=0)
+                                                    // console.log(remoteHost+"clickPlatev2/app_orders/addTransSalesMenu/"+last_order_header_id+"/"+v.line_id+"/"+v.menu_id+"/"+v.menu_cost+"/"+v.order_qty);
+                                                    $.ajax({
+                                                        url : remoteHost+"clickPlatev2/app_orders/addTransSalesMenu/"+last_order_header_id+"/"+v.line_id+"/"+v.menu_id+"/"+v.menu_cost+"/"+v.order_qty,
+                                                        type: 'POST',
+                                                        dataType : "json",
+                                                        cache: false,
+                                                        data: {"name":"JSON_Request"},
+                                                        success:function(data1) {
+                                                            // console.log('LAST SALES::'+last_sales_menu_id);
+                                                            // alert('LAST SALES:'+last_sales_menu_id);
+                                                            var orderCart = sessionStorage.order_header;
+                                                            var res_id = sessionStorage.res_id;
+                                                            if(typeof orderCart !== "undefined") {
+                                                                var last_sales_menu_id = data1.id;
+
+                                                                orderCart = JSON.parse(orderCart);
+                                                                var order_method = sessionStorage.order_method;
+                                                                if(order_method == 'reserve-tbl'){
+                                                                    var user_id,user_name,table_no,guest_no,reserve_date,reserve_time,request = '';
+                                                                    // addTableOrders($user_id=null,$user_name=null,$table_no=null,$guest_no=null,$reserve_date=null,$reserve_time=null,$request=null)
+                                                                    var user_id = sessionStorage.user_id;
+                                                                    var res_id = sessionStorage.res_id;
+                                                                    var br_id = sessionStorage.br_id;
+
+                                                                    $.each(orderCart,function(k,v){
+                                                                        // console.log(k+' - '+v);
+                                                                        if(k == 'user_name')    user_name = v;
+                                                                        else if(k == 'table_no')    table_no = v;
+                                                                        else if(k == 'guest_no')    guest_no = v;
+                                                                        else if(k == 'reserved_date')    reserve_date = v;
+                                                                        else if(k == 'reserved_start_time')    reserve_time = v;
+                                                                        else if(k == 'special_request')    request = v;
+                                                                    });
+                                                                    // console.log(remoteHost+"clickPlatev2/app_orders/addTableOrders/"+encodeURIComponent(last_order_header_id)+"/"+encodeURIComponent(res_id)+"/"+encodeURIComponent(branch_id)+"/"+encodeURIComponent(user_id)+"/"+encodeURIComponent(user_name)+"/"+encodeURIComponent(table_no)+"/"+encodeURIComponent(guest_no)+"/"+encodeURIComponent(reserve_date)+"/"+encodeURIComponent(reserve_time)+"/"+encodeURIComponent(request));
+                                                                    console.log('RES ID:: '+sessionStorage.res_id);
+                                                                    $.ajax({
+                                                                        url : remoteHost+"clickPlatev2/app_orders/addTableOrders/"+encodeURIComponent(last_order_header_id)+"/"+encodeURIComponent(res_id)+"/"+encodeURIComponent(br_id)+"/"+encodeURIComponent(user_id)+"/"+encodeURIComponent(user_name)+"/"+encodeURIComponent(table_no)+"/"+encodeURIComponent(guest_no)+"/"+encodeURIComponent(reserve_date)+"/"+encodeURIComponent(reserve_time)+"/"+encodeURIComponent(request),
+                                                                        type: 'POST',
+                                                                        dataType : "json",
+                                                                        cache: false,
+                                                                        data: {"name":"JSON_Request"},
+                                                                        success:function(data) {
+
+                                                                        }
+                                                                    });
+                                                                }else if(order_method == 'instore'){
+                                                                    var user_id,user_name,contact_no,reserve_date,time_from,time_to,function_type,function_type_others,request = '';
+                                                                    // addFunctionOrders($user_id=null,$user_name=null,$reserve_date=null,$time_from=null,$time_to=null,$function_type=null,$request=null)
+                                                                    var user_id = sessionStorage.user_id;
+                                                                    var res_id = sessionStorage.res_id;
+                                                                    var br_id = sessionStorage.br_id;
+                                                                    $.each(orderCart,function(k,v){
+                                                                        if(k == 'user_name')    user_name = v;
+                                                                        else if(k == 'contact_no')    landline_no = v;
+                                                                        else if(k == 'reserved_date')    reserve_date = v;
+                                                                        else if(k == 'reserved_start_time')    time_from = v;
+                                                                        else if(k == 'reserved_end_time ')    time_to = v;
+                                                                        else if(k == 'function_type')    function_type = v;
+                                                                        else if(k == 'function_type_others')    function_type_others = v;
+                                                                        else if(k == 'special_request')    request = v;
+                                                                    });
+                                                                    $.ajax({
+                                                                        url : remoteHost+"clickPlatev2/app_orders/addFunctionOrders/"+encodeURIComponent(last_order_header_id)+"/"+encodeURIComponent(res_id)+"/"+encodeURIComponent(br_id)+"/"+encodeURIComponent(user_id)+"/"+encodeURIComponent(user_name)+"/"+encodeURIComponent(contact_no)+"/"+encodeURIComponent(reserve_date)+"/"+encodeURIComponent(time_from)+"/"+encodeURIComponent(time_to)+"/"+encodeURIComponent(function_type)+"/"+encodeURIComponent(function_type_others)+"/"+encodeURIComponent(request),
+                                                                        type: 'POST',
+                                                                        dataType : "json",
+                                                                        cache: false,
+                                                                        data: {"name":"JSON_Request"},
+                                                                        success:function(data) {
+
+                                                                        }
+                                                                    });
+                                                                    // alert('zzzzzzzzzzzzzz');
+                                                                }else if(order_method == 'takeout'){
+                                                                    var user_id,user_name,contact_no,reserve_date,reserve_time,request = '';
+                                                                    var user_id = sessionStorage.user_id;
+                                                                    var res_id = sessionStorage.res_id;
+                                                                    var br_id = sessionStorage.br_id;
+                                                                    $.each(orderCart,function(k,v){
+                                                                        if(k == 'user_name')    user_name = v;
+                                                                        else if(k == 'contact_no')    contact_no = v;
+                                                                        else if(k == 'reserved_date')    reserve_date = v;
+                                                                        else if(k == 'reserved_time')    reserve_time = v;
+                                                                        else if(k == 'special_request')    request = v;
+                                                                    });
+                                                                    $.ajax({
+                                                                        url : remoteHost+"clickPlatev2/app_orders/addTakeoutOrders/"+encodeURIComponent(last_order_header_id)+"/"+encodeURIComponent(res_id)+"/"+encodeURIComponent(br_id)+"/"+encodeURIComponent(user_id)+"/"+encodeURIComponent(user_name)+"/"+encodeURIComponent(contact_no)+"/"+encodeURIComponent(reserve_date)+"/"+encodeURIComponent(reserve_time)+"/"+encodeURIComponent(request),
+                                                                        type: 'POST',
+                                                                        dataType : "json",
+                                                                        cache: false,
+                                                                        data: {"name":"JSON_Request"},
+                                                                        success:function(data) {
+
+                                                                        }
+                                                                    });
+                                                                }else if(order_method == 'delivery'){
+                                                                    var user_id,user_name,mobile_no,landline_no,floor,street,village,bldg,province,city,landmark,request,reserve_date,reserve_time,payment_method = '';
+                                                                    // addDeliveryOrders($user_id=null,$user_name=null,$mobile_no=null,$landline=null,$floor=null,$street=null,$village=null,$bldg=null,$province=null,$city=null,$landmark=null,$request=null,$reserve_date=null,$reserve_time=null,$payment_method=null)
+                                                                    var user_id = sessionStorage.user_id;
+                                                                    var res_id = sessionStorage.res_id;
+                                                                    var br_id = sessionStorage.br_id;
+                                                                    $.each(orderCart,function(k,v){
+                                                                        if(k == 'user_name')    user_name = v;
+                                                                        else if(k == 'mobile_no')    mobile_no = v;
+                                                                        else if(k == 'contact_no')    landline_no = v;
+                                                                        else if(k == 'del_floor')    floor = v;
+                                                                        else if(k == 'del_street')    street = v;
+                                                                        else if(k == 'del_village')    village = v;
+                                                                        else if(k == 'del_bldg')    bldg = v;
+                                                                        else if(k == 'del_province')    province = v;
+                                                                        else if(k == 'del_city')    city = v;
+                                                                        else if(k == 'del_landmark')    landmark = v;
+                                                                        else if(k == 'special_request')    request = v;
+                                                                        else if(k == 'reserved_date')    reserve_date = v;
+                                                                        else if(k == 'reserved_start_time')    reserve_time = v;
+                                                                        else if(k == 'payment_method')    payment_method = v;
+                                                                    });
+                                                                    $.ajax({
+                                                                        url : remoteHost+"clickPlatev2/app_orders/addDeliveryOrders/"+encodeURIComponent(last_order_header_id)+"/"+encodeURIComponent(res_id)+"/"+encodeURIComponent(br_id)+"/"+encodeURIComponent(user_id)+"/"+encodeURIComponent(user_name)+"/"+encodeURIComponent(mobile_no)+"/"+encodeURIComponent(landline_no)+"/"+encodeURIComponent(request)+"/"+encodeURIComponent(reserve_date)+"/"+encodeURIComponent(reserve_time)+"/"+encodeURIComponent(payment_method),
+                                                                        type: 'POST',
+                                                                        dataType : "json",
+                                                                        cache: false,
+                                                                        data: {"name":"JSON_Request"},
+                                                                        success:function(data) {
+                                                                            var order_id = data.id;
+                                                                             $.ajax({
+                                                                                url : remoteHost+"clickPlatev2/app_orders/addDelAdd/"+order_id+"/"+encodeURIComponent(floor)+"/"+encodeURIComponent(street)+"/"+encodeURIComponent(village)+"/"+encodeURIComponent(bldg)+"/"+encodeURIComponent(province)+"/"+encodeURIComponent(city)+"/"+encodeURIComponent(landmark),
+                                                                                type: 'POST',
+                                                                                dataType : "json",
+                                                                                cache: false,
+                                                                                data: {"name":"JSON_Request"},
+                                                                                success:function(data1) {
+                                                                                }
+                                                                            });
+                                                                            // +"/"+encodeURIComponent(landline)+"/"+encodeURIComponent(floor)+"/"+encodeURIComponent(street)+"/"+encodeURIComponent(village)+"/"+encodeURIComponent(bldg)+"/"+encodeURIComponent(province)+"/"+encodeURIComponent(city)+"/"+encodeURIComponent(landmark)
+
+                                                                        }
+                                                                    });
+                                                                }else{
+                                                                    //Here goes nothing...
+                                                                }
+                                                            }
+
+
+
+                                                            var user_id = sessionStorage.user_id;
+                                                            if(typeof user_id !== 'undefined'){
+                                                                orderModCart = sessionStorage.orderModCart;
+                                                                orderModCart = JSON.parse(orderModCart);
+                                                                // console.log(last_sales_menu_id);
+                                                                if(orderModCart.length > 0){
+                                                                    $.each(orderModCart,function(e1,v1){
+                                                                        // console.log(remoteHost+"clickPlatev2/app_orders/addTransSalesModifiers/"+last_sales_menu_id+"/"+v.line_id+"/"+v.menu_id+"/"+v1.mod_id+"/"+v.menu_cost+"/"+Number(1));
+                                                                        $.ajax({
+                                                                            url : remoteHost+"clickPlatev2/app_orders/addTransSalesModifiers/"+last_sales_menu_id+"/"+v.line_id+"/"+v.menu_id+"/"+v1.mod_id+"/"+v.menu_cost+"/"+Number(1),
+                                                                            type: 'POST',
+                                                                            dataType : "json",
+                                                                            cache: false,
+                                                                            data: {"name":"JSON_Request"},
+                                                                            success:function(data1) {
+                                                                                // console.log(data1);
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                    // sessionStorage.removeItem('orderCart');
+                                                                    // sessionStorage.removeItem('orderModCart');
+                                                                    // sessionStorage.removeItem('order_header');
+                                                                }else{
+                                                                    // sessionStorage.removeItem('orderCart');
+                                                                    // sessionStorage.removeItem('orderModCart');
+                                                                    // sessionStorage.removeItem('order_header');
+                                                                }
+                                                                window.location = 'final.html';
+                                                            }
+                                                            else{
+                                                                window.location = 'login_form.html';
+                                                                sessionStorage.prevURL = 'checkout';
+                                                            }
+
+                                                        }
+                                                    });
+                                                });
+                                            }
+                                        // }
+                                        // else{
+                                            // sessionStorage.removeItem('orderCart');
+                                            // sessionStorage.removeItem('orderModCart');
+                                            // sessionStorage.removeItem('order_header');
+                                            // window.location = 'final.html';
+                                        // }
+
+                                    }
+                                });
+                            }
+                            // sessionStorage.orderCart = sessionStorage.orderModCart = sessionStorage.order_header = '';
+                            // localStorage.removeItem('orderCart');
+                            // localStorage.removeItem('orderModCart');
+                            // localStorage.removeItem('order_header');
+
+                        });
+
+                        $('#back_to_menu').click(function(e){
+                            window.location = 'menu.html';
+                        });
+
+
+                        // $('.payment_details_checkout:first-child').each(function(){
+                        // $('.payment_details_checkout li:not(:first-child,:nth-child(2)):odd').each(function(data){
+                        //     // console.log('DATA:: '+data);
+                        //     // console.log(data);
+                        //     var aa  = $(this).text();
+                        //     // console.log('---------------------------------------');
+                        //     if(aa.length === 47){           //if no value...
+                        //         $(this).remove();
+                        //     }
+                        //     // var aaa = $(this).parent();
+                        //     // console.log(aaa.children().find('li').text());
+                        //     // console.log('----->'+$(this).parent().text());
+                        //     // console.log('---------------------------------------');
+                        // });
+                    });
+                </script>
+            </div><!-- /content -->
+
+            <!-- FOOTER-->
+        </div>
+
+
+
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.inputlimiter.1.3.1.min.js"></script>
+
+        <!-- // <script type="text/javascript" src="includes/js/menu.js"></script> -->
+
+    </body>
+</html>

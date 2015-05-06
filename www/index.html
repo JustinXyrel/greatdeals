@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="includes/css/index.css" />
+        <link rel="stylesheet" href="css/rdroid.css" />
+        <title>clickPlate</title>
+        <style>
+            .errormsg{
+                color:red !important;
+            }
+            #srch{
+                font-size: 12px;
+                height:20px !important;
+                line-height: 1.5;
+            }
+            .btn_tap{
+                text-align : left;
+            }
+            .pagination{
+                display: block;
+                margin: 0 auto;
+                width: 100%;
+            }
+            .ourbrands{
+                font-weight: bold;
+                font-size: 15px;
+                text-align: center;
+            }
+        </style>
+        <script>
+            // sessionStorage.clear();
+        </script>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="page">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <img src="../www/img/logo_ifoods.png" class="complogo" style="height:50px;margin-left:5px;">
+                <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-right"></a>
+            </div>
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <div class="col2-div">
+                    <div class="ui-block-a">
+                        <input type="search" name="srch" id="srch" value="" placeholder="Enter restaurant name or food">
+                        <div class="ui-grid-solo  ui-responsive">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide red-slide"></div>
+                                    <div class="swiper-slide blue-slide"></div>
+                                    <div class="swiper-slide orange-slide"></div>
+                                    <div class="swiper-slide green-slide"></div>
+                                    <div class="swiper-slide pink-slide"></div>
+                                </div>
+                                <div class="pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <!-- <a href="#" data-role="button" data-icon="arrow-r" class="btn_tap" data-ajax="false">TAP TO VIEW <BR> OUR BRANDS</a> -->
+                        <!-- <h4 class="ourbrands">Our Brands</h4> -->
+                        <div class="tile-div" id="brands-con">
+                        </div>
+                        <!-- ############### -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER-->
+            <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
+        <link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+        <script type="text/javascript" src="includes/js/home.js"></script>
+        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
+
+
+
+    </body>
+</html>

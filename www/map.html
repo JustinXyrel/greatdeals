@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+        <title>clickPlate</title>
+        <style>
+            img.ui-li-thumb {
+            vertical-align: middle;
+            margin: 22px 16px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div data-role="page" data-theme="a">
+            <div data-role="header">
+                 <img src="../www/img/logo.png" class="complogo" style="height:50px;">
+                 <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="info.html" data-icon="info" data-ajax="false">Info</a></li>
+                        <li><a href="menu.html" data-icon="tag" data-ajax="false">Menu</a></li>
+                        <li><a href="location.html" data-icon="location" data-ajax="false" class="ui-btn-active">Map</a></li>
+                        <li><a href="reviews.html" data-icon="comment" data-ajax="false">Reviews</a></li>
+                        <li><a href="share.html" data-icon="forward" data-ajax="false">Share</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <!-- <div id="test1-result"></div> -->
+                <div role="main" class="ui-content">
+                <!-- <div id="test1-result"></div> -->
+                <div id="nav" class="gmap3 ui-responsive" style="display:block;overflow:hidden;position:relative;border:1px solid #aaaaaa;width: 100%;height: 450px;"></div>
+    <div id="content-pane">
+      <div id="inputs">
+        <pre>
+var origin1 = new google.maps.LatLng(55.930, -3.118);
+var origin2 = 'Greenwich, England';
+var destinationA = 'Stockholm, Sweden';
+var destinationB = new google.maps.LatLng(50.087, 14.421);
+        </pre>
+        <p><button type="button" onclick="calculateDistances();">Calculate
+          distances</button></p>
+      </div>
+      <div id="outputDiv"></div>
+    </div>
+    <div id="map-canvas"></div>
+            </div>
+
+            <!-- FOOTER-->
+            <!-- -->
+        </div>
+
+
+        <!-- // <script type="text/javascript" src="js/index.js"></script> -->
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <!-- // <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
+        <!-- // <script type="text/javascript" src="plugins/gmap/gmap3.js"></script> -->
+                <script>
+                $(document).ready(function() {
+                    var addr = sessionStorage.br_base_location;
+
+                    // $('#nav').html('<div class="loader" style="text-align:center;"><img src="img/loader.gif">Loading...</div>');
+                });
+              var map;
+              var geocoder;
+              var bounds = new google.maps.LatLngBounds();
+              var markersArray = [];
+
+              var origin1 = new google.maps.LatLng(55.930, -3.118);
+              var origin2 = 'SM City Taytay';
+              var destinationA = 'Stockholm, Sweden';
+              var destinationB = 'Robinsons Galleria, Ortigas';
+
+              var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+origin2+'|FF0000|000000';
+              var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+destinationB+'|FFFF00|000000';
+
+              function initialize() {
+                var opts = {
+                  center: new google.maps.LatLng(55.53, 9.4),
+                  zoom: 10
+                };
+                map = new google.maps.Map(document.getElementById('map-canvas'), opts);
+                geocoder = new google.maps.Geocoder();
+              }
+
+              function calculateDistances() {
+                var service = new google.maps.DistanceMatrixService();
+                service.getDistanceMatrix(
+                  {
+                    origins: [origin2],
+                    destinations: [destinationB],
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                    avoidHighways: false,
+                    avoidTolls: false
+                  }, callback);
+              }
+
+              function callback(response, status) {
+                if (status != google.maps.DistanceMatrixStatus.OK) {
+                  alert('Error was: ' + status);
+                } else {
+                  var origins = response.originAddresses;
+                  var destinations = response.destinationAddresses;
+                  var outputDiv = document.getElementById('outputDiv');
+                  outputDiv.innerHTML = '';
+                  deleteOverlays();
+
+                  for (var i = 0; i < origins.length; i++) {
+                    var results = response.rows[i].elements;
+                    addMarker(origins[i], false);
+                    for (var j = 0; j < results.length; j++) {
+                      addMarker(destinations[j], true);
+                      outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
+                          + ': ' + results[j].distance.text + ' in '
+                          + results[j].duration.text + '<br>';
+                    }
+                  }
+                }
+              }
+
+              function addMarker(location, isDestination) {
+                var icon;
+                if (isDestination) {
+                  icon = destinationIcon;
+                } else {
+                  icon = originIcon;
+                }
+                geocoder.geocode({'address': location}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                    bounds.extend(results[0].geometry.location);
+                    map.fitBounds(bounds);
+                    var marker = new google.maps.Marker({
+                      map: map,
+                      position: results[0].geometry.location,
+                      icon: icon
+                    });
+                    markersArray.push(marker);
+                  } else {
+                    alert('Geocode was not successful for the following reason: '
+                      + status);
+                  }
+                });
+              }
+
+              function deleteOverlays() {
+                for (var i = 0; i < markersArray.length; i++) {
+                  markersArray[i].setMap(null);
+                }
+                markersArray = [];
+              }
+
+              google.maps.event.addDomListener(window, 'load', initialize);
+
+              initialize();
+              calculateDistances();
+          </script>
+        <style>
+          .gmap3{
+            margin: 20px auto;
+            border: 1px dashed #C0C0C0;
+            width: 800px;
+            height: 500px;
+          }
+
+          .test1-result{
+            text-align:center;
+          }
+        </style>
+    </body>
+</html>

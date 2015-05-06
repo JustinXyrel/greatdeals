@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+
+        <!-- <link rel="stylesheet" href="css/themes/clickPlate.min.css" /> -->
+        <!-- <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" /> -->
+        <script src="css/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="includes/css/index.css" />
+        <!-- Core CSS file -->
+        <link rel="stylesheet" href="plugins/photoswipe/css/photoswipe.css">
+
+        <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+             In the folder of skin CSS file there are also:
+             - .png and .svg icons sprite,
+             - preloader.gif (for browsers that do not support CSS animations) -->
+        <link rel="stylesheet" href="plugins/photoswipe/css/default-skin/default-skin.css">
+
+        <!-- Core JS file -->
+        <script src="plugins/photoswipe/js/photoswipe.min.js"></script>
+
+        <!-- UI JS file -->
+        <script src="plugins/photoswipe/js/photoswipe-ui-default.min.js"></script>
+
+        <script type="text/javascript" src="plugins/photoswipe/js/photoswipe.min.js"></script>
+        <link rel="stylesheet" href="plugins/photoswipe/css/photoswipe.css" />
+        <script type="text/javascript" src="js/index.js"></script>
+        <title>clickPlate</title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <!-- <div data-role="page" data-theme="a" id="page"> -->
+            <!-- MENU -->
+            <!-- <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+            </div> -->
+            <!-- HEADER -->
+            <!-- <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <img src="../www/img/logo.png" class="complogo" style="height:50px;margin-left:5px;">
+                <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-right"></a>
+            </div> -->
+            <!-- BODY -->
+            <!-- <div role="main" class="ui-content"> -->
+                <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                    <!-- Background of PhotoSwipe.
+                         It's a separate element, as animating opacity is faster than rgba(). -->
+                    <div class="pswp__bg"></div>
+
+                    <!-- Slides wrapper with overflow:hidden. -->
+                    <div class="pswp__scroll-wrap">
+
+                        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+                        <div class="pswp__container">
+                            <!-- don't modify these 3 pswp__item elements, data is added later on -->
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                        </div>
+
+                        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                        <div class="pswp__ui pswp__ui--hidden">
+                            <div class="pswp__top-bar">
+                                <!--  Controls are self-explanatory. Order can be changed. -->
+                                <div class="pswp__counter"></div>
+
+                                <button class="pswp__button pswp__button--close" title="Close (Esc)" id="back2info"></button>
+
+                                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                                <!-- element will get class pswp__preloader--active when preloader is running -->
+                                <div class="pswp__preloader">
+                                    <div class="pswp__preloader__icn">
+                                      <div class="pswp__preloader__cut">
+                                        <div class="pswp__preloader__donut"></div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                <div class="pswp__share-tooltip"></div>
+                            </div>
+
+                            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                            </button>
+
+                            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                            </button>
+
+                            <div class="pswp__caption">
+                                <div class="pswp__caption__center"></div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+
+            <!-- FOOTER-->
+            <!-- <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div> -->
+        <!-- </div> -->
+
+        <script>
+            $('#back2info').click(function(){
+                // alert('zzzz');
+                window.location = "info.html";
+            });
+            var openPhotoSwipe = function() {
+                var pswpElement = document.querySelectorAll('.pswp')[0];
+
+                // build items array
+                var items = [
+                    {
+                        src: remoteHost+'clickPlatev2/uploads/1/branches/2/1.png',
+                        w: 900, // image width
+                        h: 600, // image height
+                    },
+                    {
+                        src: remoteHost+'clickPlatev2/uploads/1/branches/2/2.png',
+                        w: 900,
+                        h: 600
+                    }
+                ];
+
+                // define options (if needed)
+                var options = {
+                         // history & focus options are disabled on CodePen
+                    history: false,
+                    focus: false,
+
+                    showAnimationDuration: 0,
+                    hideAnimationDuration: 0
+
+                };
+
+                var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+                gallery.init();
+            };
+
+            openPhotoSwipe();
+
+            // document.getElementById('btn').onclick = openPhotoSwipe;
+        </script>
+
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+
+
+
+        <!-- <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" /> -->
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+    </body>
+</html>

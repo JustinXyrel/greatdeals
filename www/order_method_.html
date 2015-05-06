@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+		
+		<link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <style>
+            .ui-btn {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        </style>
+        <title>clickPlate</title>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+                <h2>Main Menu</h2>
+                <ul data-role="listview" data-icon="false">
+                    <li class="ui-li-static ui-first-child" data-icon-"false">History</li>
+                    <li class="ui-li-static ui-body-inherit" data-icon-"false">My Profile</li>
+                    <li class="ui-li-static ui-body-inherit">My Payments</li>
+                    <li class="ui-li-static ui-body-inherit">Food</li>
+                    <li class="ui-li-static ui-body-inherit">Locator</li>
+                    <li class="ui-li-static ui-body-inherit">Favorites</li>
+                    <li class="ui-li-static ui-body-inherit">FAQs</li>
+                    <li class="ui-li-static ui-body-inherit">Report a Problem</li>
+                    <li class="ui-li-static ui-body-inherit">Terms and Conditions</li>
+                    <li class="ui-li-static ui-body-inherit">Privacy Policy</li>
+                    <li class="ui-li-static ui-body-inherit ui-last-child">Logout</li>
+                </ul>
+            </div>
+            <!-- HEADER -->
+            <header data-role="header">
+              <a href="menu.html" data-icon="back" data-rel="back" title="Go back">Back</a>
+              <h1 class="pagetitle"><b>ORDER METHOD</b></h1>
+              <span class="ui-li-count ui-btn-corner-all countBubl ui-btn-a" style="background-color:#f6f6f6;border-color:#ddd;text-shadow:none;color:#333;top:14px;"><img src="img/icons/1412090651_icon-ios7-cart-16.png" style="vertical-align:middle;padding-top:5px;height:29px;"></span>
+            </header>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <H2>ORDER METHOD</H2>
+                    <fieldset data-role="controlgroup" data-mini="true" data-inset="false">
+                        <legend>Select Order Method:</legend>
+                        <div data-role="tabs" id="tabs">
+                          <div data-role="navbar" data-corners="false">
+                            <ul>
+                              <li><a href="#reservetbl" data-ajax="false" class="ui-btn-active" data-corners="false">Reserve</a></li>
+                              <li><a href="#delivery" data-ajax="false" data-corners="false">Delivery</a></li>
+                              <li><a href="#takeout" data-ajax="false" data-corners="false">Takeout</a></li>
+                            </ul>
+                          </div>
+                          <div id="reservetbl" class="ui-body-d ui-content">
+                            <form id="reserve-tbl-form">
+                                <div data-role="fieldcontain">
+                                    <div class="ui-grid-a">
+                                        <div class="ui-block-a">
+                                            <input type="hidden" id="order_method_type" name="order_method_type" value="Reserve">
+                                            <label for="res_table_no">Table No.:</label>
+                                            <input type="text" name="res_table_no" id="res_table_no" data-mini="true" class="required"  data-corners="false"/>
+                                        </div>
+                                        <div class="ui-block-b">
+                                            <label for="res_capacity">Capacity:</label>
+                                            <input type="text" name="res_capacity" id="res_capacity" data-mini="true" class="required"  data-corners="false"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <div class="ui-grid-a">
+                                        <div class="ui-block-a">
+                                            <label for="res_date">Date:</label>
+                                            <input type="date" data-role="datebox" name="res_date" data-options='{"mode": "datebox", "mode": "flipbox","overrideSteDateButtonLabel": "Set Date"}'  data-corners="false"/>
+                                        </div>
+                                        <div class="ui-block-b">
+                                            <label for="res_start_time">Time:</label>
+                                            <input type="time" data-role="datebox" name="res_start_time" data-options='{"mode": "datebox", "mode": "timeflipbox"}'  data-corners="false"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <label for="res_no_of_guest">No of Guests:</label>
+                                    <input type="number" name="res_no_of_guest" id="res_no_of_guest" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false">
+                                </div>
+                                <div data-role="fieldcontain" data-mini="true">
+                                    <label for="res_special_request">Special Request:</label>
+                                    <textarea name="res_special_request" id="res_special_request" data-corners="false"></textarea>
+                                </div>
+
+
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <legend>Payment Method</legend>
+                                    <input type="radio" name="res_payment_method" id="cash" value="cash" checked="checked"  data-corners="false"/>
+                                    <label for="cash">Cash</label>
+                                    <input type="radio" name="res_payment_method" id="credit" value="credit" data-corners="false"/>
+                                    <label for="credit">Credit</label>
+                                </fieldset>
+
+                                <div data-role="fieldcontain">
+                                    <label for="res_contact_person">Contact Person:</label>
+                                    <input type="text" name="res_contact_person" id="res_contact_person" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false">
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <label for="res_contact_no">Contact Number:</label>
+                                    <input type="text" name="res_contact_no" id="res_contact_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false">
+                                </div>
+                                <div data-role="fieldcontain" data-mini="true">
+                                    <label for="res_special_request">Address:</label>
+                                    <textarea name="res_address" id="res_address" data-corners="false"></textarea>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <a href="#" data-role="button" data-mini="true" id="submit_reserve_table">Submit</a>
+                                </div>
+                            </form>
+                          </div>
+                          <div id="delivery" class="ui-body-d ui-content">
+                            <form id="delivery-form">
+                                <div data-role="fieldcontain">
+                                    <input type="hidden" id="order_method_type" name="order_method_type" value="Delivery">
+                                    <label for="del_contact_person">Contact Person:</label>
+                                    <input type="text" name="del_contact_person" id="del_contact_person" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false">
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <label for="del_contact_no">Contact Number:</label>
+                                    <input type="text" name="del_contact_no" id="del_contact_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false">
+                                </div>
+                                <div data-role="fieldcontain" data-mini="true">
+                                    <label for="del_address">Address:</label>
+                                    <textarea name="del_address" id="del_address" data-corners="false"></textarea>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <a href="#" data-role="button" data-mini="true" id="submit_delivery">Submit</a>
+                                </div>
+                            </form>
+                          </div>
+                          <div id="takeout" class="ui-body-d ui-content">
+                            <form id="takeout-form">
+                                <div data-role="fieldcontain">
+                                    <input type="hidden" id="order_method_type" name="order_method_type" value="Takeout">
+                                    <label for="sched_date">Date:</label>
+                                    <input type="date" data-role="datebox" name="tout_date" data-options='{"mode": "datebox", "mode": "flipbox","overrideSteDateButtonLabel": "Set Date"}' />
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <label for="sched_time_to">Time:</label>
+                                            <input type="time" data-role="datebox" name="tout_time_to" data-options='{"mode": "datebox", "mode": "timeflipbox"}' />
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <label for="sched_spec_request">Special Request:</label>
+                                    <textarea name="tout_spec_request" id="tout_spec_request" data-corners="false"></textarea>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <a href="#" data-role="button" data-mini="true" id="submit_takeout">Submit</a>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                </fieldset>
+            </div>
+
+            <script type="text/javascript">
+                // $(document).bind('mobileinit',function(){
+                //    $.mobile.selectmenu.prototype.options.nativeMenu = false;
+                //    // $('body *').removeClass('ui-btn-corner-all');
+                // });
+                // app.initialize();
+                $(document).ready(function() {
+                    window.location = 'order_method.html#loaded';
+                    $('select').selectmenu();
+                    sessionStorage.removeItem('order_method');
+                    $( "#reserve-tbl-form" ).enhanceWithin();
+                    $('#submit_reserve_table').click(function(e){
+                        var data = $("#reserve-tbl-form").serialize();
+                        sessionStorage.order_method = JSON.stringify(data);
+                        window.location = "checkout.html";
+                    });
+                    $('#submit_sched_events').click(function(e){
+                        var data = $("#sched-event-form").serialize();
+                        sessionStorage.order_method = JSON.stringify(data);
+                        window.location = "checkout.html";
+                    });
+                    $('#submit_delivery').click(function(e){
+                        var data = $("#delivery-form").serialize();
+                        sessionStorage.order_method = JSON.stringify(data);
+                        window.location = "checkout.html";
+                    });
+                    $('#submit_takeout').click(function(e){
+                        var data = $("#takeout-form").serialize();
+                        sessionStorage.order_method = JSON.stringify(data);
+                        window.location = "checkout.html";
+                    });
+
+                });
+            </script>
+
+            <!-- FOOTER-->
+        </div>
+
+        <!-- <script type="text/javascript" src="js/index.js"></script> -->
+        
+
+
+        <script type="text/javascript" src="plugins/datebox/jQM-DateBox.js"></script>
+        <script type="text/javascript" src="plugins/datebox/jqm-datebox.mode.customflip.min.js"></script>
+
+
+        <script type="text/javascript" src="http://cdn.jtsage.com/datebox/latest/jqm-datebox.core.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://cdn.jtsage.com/datebox/latest/jqm-datebox.min.css">
+        <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.flipbox.min.js"></script>
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+
+
+    </body>
+</html>

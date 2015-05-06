@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+		<link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <script type="text/javascript" src="plugins/datebox/jQM-DateBox.js"></script>
+        <script type="text/javascript" src="plugins/datebox/jqm-datebox.mode.customflip.min.js"></script>
+
+        <script type="text/javascript" src="http://cdn.jtsage.com/datebox/latest/jqm-datebox.core.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://cdn.jtsage.com/datebox/latest/jqm-datebox.min.css">
+        <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.flipbox.min.js"></script>
+
+        <style>
+        </style>
+        <title>clickPlate</title>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a"  id = "main-page">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed">
+                <a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle"></h1>
+                <a href="#myPanel" data-icon="bars" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul style="border:1px black solid;">
+                        <li><a href="info.html" data-ajax="false">Info</a></li>
+                        <li><a href="menu.html" data-ajax="false">Menu</a></li>
+                        <li><a href="order_method_details.html" data-ajax="false" class="ui-btn-active">Services</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div role="page" class="ui-content">
+                <!-- <H2>ORDER METHOD</H2> -->
+                    <fieldset data-role="controlgroup" data-mini="true" data-inset="false">
+                        <div id="branchservsel" class="ui-body-d ui-content">
+                            <div class="ui-grid-solo">
+                                <div style="text-align:center;"><label for="brsel" style="font-weight:bold;text-transform: uppercase;">Select Branch</label></div><br>
+                                <select id="brSel" data-theme="e"></select>
+                            </div><br>
+                            <div class="ui-grid-solo">
+                                <div style="text-align:center;"><label for="brsel" style="font-weight:bold;text-transform: uppercase;">Select Service</label></div><br>
+                                <select id="servSel" data-theme="e">
+                                    <option value="reserve-tbl">Table Reservation</option>
+                                    <option value="instore">Function Reservation</option>
+                                    <option value="takeout">Takeout/Pickup</option>
+                                    <option value="delivery">Delivery</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="reserve-tbl" class="ui-body-d ui-content">
+                            <form id="reserve-tbl-form">
+                                <!-- <h2>Table Reservation</h2> -->
+                                <div id="img-layout"></div>
+                                <div class="ui-grid-solo">
+                                    <input type="hidden" id="order_method" name="order_method" value="reserve">
+                                    <input type="hidden" id="res_user_id" name="res_user_id" value="">
+                                    <input type="text" name="res_user_name" id="res_user_name" value="" data-clear-btn="true" class="ui-input-text ui-body-c" placeholder="*CUSTOMER NAME">
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <input type="text" name="res_contact_no" id="res_contact_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" placeholder="*CONTACT NUMBER">
+                                </div>
+                                <!-- <div class="ui-grid-solo">
+                                    <input type="number" name="res_table_no" id="res_table_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="*TABLE NUMBER">
+                                </div> -->
+                                <div class="ui-grid-solo">
+                                    <select name="res_table_no" id="res_table_no" data-theme="e" style="text-align:left !important;">
+                                        <option value="">SELECT TABLE NO</option>
+                                    </select>
+                                </div>
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a" style="font-weight:bold !important;width:50% !important;">
+                                        <h3 style="font-weight:bold !important;">SEATING CAPACITY:</h3>
+                                    </div>
+                                    <div class="ui-block-b" style="width:50% !important;">
+                                    <input type="text" name="res_table_capacity" id="res_table_capacity" value="" data-corners="false">
+                                    </div>
+                                </div>
+                                <div class="ui-grid-b">
+                                    <div class="ui-block-a" style="font-weight:bold !important;width:50% !important;">
+                                        <h3 style="font-weight:bold !important;">NUMBER OF GUESTS:</h3>
+                                    </div>
+                                    <div class="ui-block-b" style="width:25% !important;">
+                                        <input type="text" name="res_guest_no" id="res_guest_no" value="1" data-corners="false" maxlength="3">
+                                    </div>
+                                    <div class="ui-block-c"  style="margin-top:5px;width:25% !important;">
+                                        <a href="#" class='qtyplus' attr-pointer-field='res_guest_no'><img src="img/icons/plus.png"></a>
+                                        <a href="#" class='qtyminus' attr-pointer-field='res_guest_no'><img src="img/icons/minus.png"></a>
+                                    </div>
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*RESERVATION DATE:</h3>
+                                    <input type="date" data-role="datebox" name="res_reserved_date" id="res_reserved_date" data-options='{"mode": "datebox", "mode": "flipbox","overrideSteDateButtonLabel": "Set Date","dateFormat": "%m/%d/%Y"}' />
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*RESERVATION TIME:</h3>
+                                    <script>
+
+                                    </script>
+                                    <input type="time" data-role="datebox" name="res_reserved_start_time" id="res_reserved_start_time" data-options='{"mode": "datebox", "mode": "timeflipbox", "overrideTimeFormat": 12}' />
+                                </div>
+                                <div data-role="fieldcontain" data-mini="true">
+                                    <!-- <label for="res_special_request">Special Request:</label> -->
+                                    <textarea name="res_special_request" id="res_special_request" data-corners="false" placeholder="SPECIAL REQUEST/INSTRUCTION"></textarea>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <a href="#" data-role="button" id="res_pre_order" data-icon="arrow-r" data-theme="c">Pre-order food</a>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <a href="#" data-role="button" id="res_submit" data-icon="check" data-theme="b">Submit</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="delivery" class="ui-body-d ui-content">
+                            <form id="delivery-form">
+                                <div class="ui-grid-solo">
+                                    <input type="hidden" id="order_method" name="order_method" value="delivery">
+                                    <input type="hidden" id="delivery_user_id" name="delivery_user_id" value="">
+                                    <input type="text" name="delivery_user_name" id="delivery_user_name" value="" data-clear-btn="true" class="ui-input-text ui-body-c" placeholder="CUSTOMER NAME">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <span style="color:#d11f26 !important;">*Please provide atleast one(1) contact number</span>
+                                </div>
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="text" name="delivery_mobile_no" id="delivery_mobile_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" placeholder="*MOBILE NO">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="text" name="delivery_contact_no" id="delivery_contact_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" placeholder="LANDLINE">
+
+                                    </div>
+                                </div>
+                                <ul data-role="listview" data-inset="true" data-corners="false" data-theme="d">
+                                    <li data-role="list-divider">DELIVERY ADDRESS</li>
+                                    <fieldset data-role="controlgroup"  data-theme="e">
+                                        <input type="radio" name="delivery_address" id="radio-choice-1" value="use-addr" checked="checked" />
+                                        <label for="radio-choice-1">USE REGISTERED ADDRESS</label>
+                                        <input type="radio" name="delivery_address" id="radio-choice-2" value="add-addr"  />
+                                        <label for="radio-choice-2">ADD NEW ADDRESS</label>
+                                    </fieldset>
+                                </ul>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="delivery_del_floor" id="delivery_del_floor" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="FLOOR,DEPARTMENT,HOUSE NO. OR STREET">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="delivery_del_street" id="delivery_del_street" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="STREET">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="delivery_del_village" id="delivery_del_village" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="VILLAGE/BARANGAY">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="delivery_del_bldg" id="delivery_del_bldg" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="BUILDING">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="delivery_del_city" id="delivery_del_city" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="CITY">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="delivery_del_province" id="delivery_del_province" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="PROVINCE">
+                                </div>
+                                <!-- <div data-role="fieldcontain">
+                                    <select name="delivery_del_province" id="delivery_del_province" class="provincesList">
+                                        <option value="">SELECT PROVINCE</option>
+                                    </select>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <select name="delivery_del_city" id="delivery_del_city" class="citiesList">
+                                        <option value="">SELECT CITY</option>
+                                    </select>
+                                </div> -->
+
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="delivery_del_landmark" id="delivery_del_landmark" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="LANDMARK">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <textarea name="delivery_special_request" id="delivery_special_request" placeholder="SPECIAL REQUEST/INSTRUCTION"></textarea>
+                                </div>
+                                <ul data-role="listview" data-inset="true" data-corners="false" data-theme="d">
+                                    <li data-role="list-divider">DELIVERY DATE</li>
+                                    <fieldset data-role="controlgroup"  data-theme="e">
+                                        <!-- <legend></legend> -->
+                                            <input type="radio" name="delivery_date_opts" id="del-now" value="date-now" checked="checked" />
+                                            <label for="del-now">TODAY</label>
+
+                                            <input type="radio" name="delivery_date_opts" id="del-spec" value="date-spec"  />
+                                            <label for="del-spec">SPECIFY DATE</label>
+
+                                    </fieldset>
+                                </ul>
+                                <div class="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*DELIVERY DATE:</h3>
+                                    <input type="date" data-role="datebox" name="delivery_reserved_date" id="delivery_reserved_date" data-options='{"mode": "datebox", "mode": "flipbox","overrideSteDateButtonLabel": "Set Date","dateFormat": "%m/%d/%Y"}' />
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*DELIVERY TIME:</h3>
+                                    <input type="time" data-role="datebox" name="delivery_reserved_time" id="delivery_reserved_time" data-options='{"mode": "datebox", "mode": "timeflipbox", "overrideTimeFormat": 12}' />
+                                </div>
+                                <ul data-role="listview" data-inset="true" data-corners="false" data-theme="d">
+                                    <li data-role="list-divider">*SELECT PAYMENT METHOD</li>
+                                    <fieldset data-role="controlgroup"  data-theme="e">
+                                        <!-- <legend></legend> -->
+                                            <input type="radio" name="delivery_payment_method" id="delivery_cash" value="CASH" checked="checked" />
+                                            <label for="delivery_cash">CASH</label>
+
+                                            <input type="radio" name="delivery_payment_method" id="delivery_credit_card" value="CREDIT CARD"  />
+                                            <label for="delivery_credit_card">CREDIT CARD</label>
+
+                                    </fieldset>
+                                </ul>
+                                <div data-role="ui-grid-solo">
+                                    <a href="#" data-role="button" data-mini="true" id="delivery_submit" data-icon="arrow-r" data-theme="c">Order Food</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="takeout" class="ui-body-d ui-content">
+                            <form id="takeout-form">
+                                <!-- <h2>Takeout</h2> -->
+                                <div class="ui-grid-solo">
+                                    <input type="hidden" id="order_method" name="order_method" value="takeout">
+                                    <input type="hidden" id="takeout_user_id" name="takeout_user_id" value="">
+                                    <input type="text" name="takeout_user_name" id="takeout_user_name" value="" data-clear-btn="true" class="ui-input-text ui-body-c" placeholder="*CUSTOMER NAME">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="takeout_contact_no" id="takeout_contact_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="*CONTACT NUMBER">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*TAKE-OUT DATE:</h3>
+                                    <input type="date" data-role="datebox" name="takeout_reserved_date" id="takeout_reserved_date" data-options='{"mode": "datebox", "mode": "flipbox","overrideSteDateButtonLabel": "Set Date","dateFormat": "%m/%d/%Y"}' />
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*TAKE-OUT TIME:</h3>
+                                    <input type="time" data-role="datebox" name="takeout_reserved_start_time" id="takeout_reserved_start_time" data-options='{"mode": "datebox", "mode": "timeflipbox", "overrideTimeFormat": 12}' />
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <textarea name="takeout_special_request" id="takeout_special_request" placeholder="SPECIAL REQUEST/INSTRUCTION"></textarea>
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <a href="#" data-role="button" data-mini="true" id="takeout_submit" data-icon="arrow-r" data-theme="c">Order Food</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="instore" class="ui-body-d ui-content">
+                            <form id="instore-form">
+                                <!-- <h2>fUNCTIOn room reservation</h2> -->
+                                <div class="ui-grid-solo">
+                                    <input type="hidden" id="order_method" name="order_method" value="function">
+                                    <input type="hidden" id="func_user_id" name="func_user_id" value="">
+                                    <input type="text" name="func_user_name" id="func_user_name" value="" data-clear-btn="true" class="ui-input-text ui-body-c" placeholder="*CUSTOMER NAME">
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="func_contact_no" id="func_contact_no" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="*CONTACT NUMBER">
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*FUNCTION DATE:</h3>
+                                    <input type="date" data-role="datebox" name="func_reserved_date" id="func_reserved_date" data-options='{"mode": "datebox", "mode": "flipbox","overrideSteDateButtonLabel": "Set Date","dateFormat": "%m/%d/%Y"}' />
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*FUNCTION TIME FROM: </h3>
+                                    <input type="time" data-role="datebox" name="func_reserved_start_time" id="func_reserved_start_time" data-options='{"mode": "datebox", "mode": "timeflipbox", "overrideTimeFormat": 12}' />
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <h3 style="font-weight:bold !important;">*FUNCTION TIME TO: </h3>
+                                    <input type="time" data-role="datebox" name="func_reserved_end_time" id="func_reserved_end_time" data-options='{"mode": "datebox", "mode": "timeflipbox", "overrideTimeFormat": 12}' />
+                                </div>
+                                <div class="ui-grid-solo">
+                                    <select name="func_function_type" id="func_function_type" data-theme="e" style="text-align:left !important;">
+                                        <!-- <option value="">FUNCTION TYPE</option> -->
+                                        <option value="WEDDING">Wedding</option>
+                                        <option value="BIRTHDAY">Birthday</option>
+                                        <option value="CONFERENCE">Conference</option>
+                                        <option value="MEETING">Meeting</option>
+                                        <option value="TRAINING">Training</option>
+                                        <option value="OTHERS">Others</option>
+                                    </select>
+                                </div>
+                                <div data-role="ui-grid-solo">
+                                    <input type="text" name="func_function_type_others" id="func_function_type_others" value="" data-clear-btn="true" class="ui-input-text ui-body-c" data-corners="false" placeholder="OTHERS, SPECIFY">
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <textarea name="func_special_request" id="func_special_request" placeholder="SPECIAL REQUEST/INSTRUCTION"></textarea>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <a href="#" data-role="button" id="func_pre_order" data-icon="arrow-r" data-theme="c">Pre-order food</a>
+                                </div>
+                                <div data-role="fieldcontain">
+                                    <a href="#" data-role="button" id="func_submit" data-icon="check" data-theme="b">Submit</a>
+                                </div>
+                            </form>
+                        </div>
+                    </fieldset>
+                <!-- FOOTER-->
+                <div data-role="footer" data-theme="e" style="border:0px;">
+                    <center><img src="img/poweredby.png" class="poweredby"></center>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    function display_profile(){
+                        var logged_user = sessionStorage.logged_name;
+                        var content = '';
+                        if(typeof logged_user !== 'undefined'){
+                            content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
+                            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
+                            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
+                            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout_" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
+                            content += '</ul>';
+                            $('#myPanel').html(content);
+                        }else{
+                            content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
+                            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
+                            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
+                            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                            content += '</ul>';
+                            $('#myPanel').html(content);
+                        }
+
+                        $('#sidenav_user_profile').click(function(e){
+                            window.location.href = "user_profile.html";
+                        });
+                        $('#sidenav_logout_').click(function(e){
+                            window.location.href = 'logout.html';
+                        });
+                        $('#sidenav_logout').click(function(e){
+                            window.location.href = 'login_form.html';
+                        });
+                        $('#sidenav_about').click(function(e){
+                            window.location.href = 'about_us.html';
+                        });
+                    }
+                    display_profile();
+                    function showCart() {
+                        var item_cart = sessionStorage.orderCart;
+                        item_cart = JSON.parse(item_cart);
+
+                        content = '';
+                        subtotal = 0;
+                        ctr = 0;
+                        gtotal = 0;
+                        for(var i in item_cart){
+                            var line = JSON.parse(item_cart[i]);
+                            content += '<li data-role="list-divider" style="list-style-type: none;padding-left:30px;"><h4 style="white-space: normal;">'+unescape(line.name)+' </h4>@ ₱'+displayInCurr(line.price)+' - '+unescape(line.qty)+'pcs. <strong>₱'+unescape(line.qty*line.price)+'</strong></li><br><hr>';
+                            ctr++;
+                            subtotal += Number(line.qty*line.price);
+                            gtotal += Number(line.qty);
+                        }
+                        content += '<li style="text-align:right;">TOTAL : <strong>'+subtotal+'</strong></li>';
+                        $('#tray_content').html(content);
+                        var icount = Object.keys(item_cart).length;
+                        $('#tray_content').html(' ('+gtotal+')');
+                        $('#tray_content').trigger('updatelayout');
+                    }
+
+                    $( '#panelTrgr').click(function(e){
+                      showCart();
+                    });
+
+                    var res_id = sessionStorage.res_id;
+
+
+                    // console.log(remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id);
+                    $.ajax({
+                        url : remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id,
+                        type: 'POST',
+                        dataType : "json",
+                        cache: false,
+                        data: {"name":"JSON_Request"},
+                        success:function(data) {
+                            // console.log(data);
+                            // tables = JSON.parse(data);
+                            var branch_list = '';
+                            var select = $('select#brSel');
+                            $.each(data.branches,function(k,v){
+                                // console.log(v.name);
+                                opt = '<option value="'+v.br_id+'">'+v.br_name+'</option>';
+                                select.append(opt);
+                                // alert(v.capacity);
+                                // $('#res_table_capacity').val(v.capacity);
+                                // $('#res_table_capacity').html(v.capacity);
+                            });
+                            select.selectmenu();
+                            select.selectmenu('refresh',true);
+                            $('select#brSel').trigger("change");
+                        }
+                    });
+
+                    $('select#brSel').change(function() {
+                        var val = $(this).val();
+                            // alert('zzz');
+                        // console.log(val);
+                        if(val != ''){
+                            sessionStorage.br_id = val;
+                            var res_id = sessionStorage.res_id;
+                            // location.reload();
+                            refreshTable(res_id,val);
+                        }
+                    });
+
+                    // var br_id = getUrlParameter('branch_id');
+
+                    $('#delivery_user_name,#res_user_name,#func_user_name,#takeout_user_name').val(sessionStorage.logged_name);
+                    $('#res_contact_no,#func_contact_no,#takeout_contact_no,#delivery_mobile_no').val(sessionStorage.mobile_no);
+                    if($("input[name=delivery_address]").is(':checked') === true) {
+                        var value = $( 'input[name=delivery_address]:checked' ).val();
+                        if(value != 'add-addr'){
+                            $('#delivery_del_floor').val(sessionStorage.unit_no);
+                            $('#delivery_del_street').val(sessionStorage.street);
+                            $('#delivery_del_village').val(sessionStorage.barangay);
+                            $('#delivery_del_bldg').val(sessionStorage.building);
+                            $('#delivery_del_city').val(sessionStorage.city);
+                            $('#delivery_del_province').val(sessionStorage.province);
+                        }else{
+                            $('#delivery_del_floor').val('');
+                            $('#delivery_del_street').val('');
+                            $('#delivery_del_village').val('');
+                            $('#delivery_del_bldg').val('');
+                            $('#delivery_del_city').val('');
+                            $('#delivery_del_province').val('');
+                        }
+                    }
+
+                    $('input[name=delivery_address]').change(function(){
+                        var value = $( 'input[name=delivery_address]:checked' ).val();
+                        // alert(value);
+                        if(value != 'add-addr'){
+                            $('#delivery_del_floor').val(sessionStorage.unit_no);
+                            $('#delivery_del_street').val(sessionStorage.street);
+                            $('#delivery_del_village').val(sessionStorage.barangay);
+                            $('#delivery_del_bldg').val(sessionStorage.building);
+                            $('#delivery_del_city').val(sessionStorage.city);
+                            $('#delivery_del_province').val(sessionStorage.province);
+                        }else{
+                            $('#delivery_del_floor').val('');
+                            $('#delivery_del_street').val('');
+                            $('#delivery_del_village').val('');
+                            $('#delivery_del_bldg').val('');
+                            $('#delivery_del_city').val('');
+                            $('#delivery_del_province').val('');
+
+                        }
+                    });
+                    // loadProvinces();
+                    // loadCities();
+
+                    $('#servSel').change(function(){
+                        var servSel = $(this).val();
+                        // alert('asa : '+servSel);
+                        $('#reserve-tbl,#delivery,#takeout,#instore').hide();
+                        $('#'+String(servSel)).show();
+                        sessionStorage.order_method = servSel;
+                    });
+
+                    if($("input[name=delivery_date_opts]").is(':checked') === true) {
+                        var value = $( 'input[name=delivery_date_opts]:checked' ).val();
+                        // alert(value);
+                        if(value == 'date-now'){
+                            var d = new Date();
+                            var month = d.getMonth()+1;
+                            // var day = d.getDate();
+                            var day = ("0" + d.getDate()).slice(-2);
+                            //("0" + (this.getMonth() + 1)).slice(-2)
+                            var strDate = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + day;
+                            // var strDate = (d.getMonth()+1) + "/"+ d.getDate() + "/" + d.getFullYear();
+                            $('#delivery_reserved_date').val(strDate);
+
+                            var seconds = d.getSeconds();
+                            var minutes = d.getMinutes();
+                            var hour = d.getHours();
+
+                            var strTime = hour + ":" + minutes;
+                            $('#delivery_reserved_time').val(strTime);
+                        }else{
+                            $('#delivery_reserved_date').val('');
+                        }
+                    }
+                    $('input[name=delivery_date_opts]').change(function(){
+                        var value = $( 'input[name=delivery_date_opts]:checked' ).val();
+                        if(value == 'date-now'){
+                            var d = new Date();
+                            var month = d.getMonth()+1;
+                            // var day = d.getDate();
+                            var day = ("0" + d.getDate()).slice(-2);
+                            //("0" + (this.getMonth() + 1)).slice(-2)
+                            var strDate = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + day;
+                            // var strDate = (d.getMonth()+1) + "/"+ d.getDate() + "/" + d.getFullYear();
+                            $('#delivery_reserved_date').val(strDate);
+
+                            var seconds = d.getSeconds();
+                            var minutes = d.getMinutes();
+                            var hour = d.getHours();
+
+                            var strTime = hour + ":" + minutes;
+                            $('#delivery_reserved_time').val(strTime);
+                        }else{
+                            $('#delivery_reserved_date').val('');
+                            $('#delivery_reserved_time').val('');
+                        }
+                    });
+
+                    //add or subtract amount to quantity field...
+                    var min_qty = 1;
+                    $('.qtyplus').click(function(e){
+                        e.preventDefault();
+                        fieldName = $(this).attr('attr-pointer-field');
+                        var currentVal = parseInt($('input[name='+fieldName+']').val());
+                        if (!isNaN(currentVal)) {
+                            $('input[name='+fieldName+']').val(currentVal + 1);
+                        } else {
+                            $('input[name='+fieldName+']').val(min_qty);
+                        }
+                    });
+                    $('.qtyminus').click(function(e){
+                        e.preventDefault();
+                        fieldName = $(this).attr('attr-pointer-field');
+                        var currentVal = parseInt($('input[name='+fieldName+']').val());
+                        if (!isNaN(currentVal) && currentVal > 1) {
+                            $('input[name='+fieldName+']').val(currentVal - 1);
+                        } else {
+                            $('input[name='+fieldName+']').val(min_qty);
+                        }
+                    });
+
+                    // $('#res_table_capacity').val('5').textinput('disable');
+
+                    //Others, function type...
+                    $('#res_function_type_others').hide();
+                    $('#res_function_type').change(function() {
+                        var sel = $('option:selected', this).val();
+                        if(sel == 'OTHERS' && sel != '')
+                            $('#res_function_type_others').show();
+                        else
+                            $('#res_function_type_others').hide();
+                    });
+
+
+                    $('#img-layout').html('<img src="'+remoteHost+'resto/uploads/'+res_id+'/layout.png" style="width:100%;">');
+
+
+                    var br_id = sessionStorage.br_id;
+                    refreshTable(res_id,br_id);
+                    function refreshTable(rr,br){
+                        console.log(remoteHost+"clickPlatev2/app_orders/getTables/"+encodeURIComponent(rr)+"/"+encodeURIComponent(br));
+                        //Table Number dropdown
+                        $.ajax({
+                            url : remoteHost+"clickPlatev2/app_orders/getTables/"+encodeURIComponent(rr)+"/"+encodeURIComponent(br),
+                            type: 'POST',
+                            dataType : "json",
+                            cache: false,
+                            data: {"name":"JSON_Request"},
+                            success:function(data) {
+                                console.log(data);
+                                // tables = JSON.parse(data);
+                                var table_list = '';
+                                var select = $('select#res_table_no');
+                                var opts = '';
+                                $.each(data.tables,function(k,v){
+                                    // console.log(v.name);
+                                    opts += '<option value="'+v.table_id+'" data-capacity="'+v.capacity+'">'+v.name+'</option>';
+                                    // alert(v.capacity);
+                                    // $('#res_table_capacity').val(v.capacity);
+                                    // $('#res_table_capacity').html(v.capacity);
+                                });
+                                select.html(opts);
+                                select.selectmenu();
+                                select.selectmenu('refresh',true);
+                                window.location = "#reload";
+                            }
+                        });
+                    }
+
+                    $('#res_table_capacity').val('').textinput('disable');
+                    $('select#res_table_no').change(function() {
+                        var id = $(this).val();
+                        // alert(capacity);
+                        // console.log(id+' -- '+capacity);
+                        // console.log(remoteHost+"clickPlatev2/app_orders/getTableCapacity///"+encodeURIComponent(id));
+                        if(id != '')
+                            $.ajax({
+                                url : remoteHost+"clickPlatev2/app_orders/getTableCapacity///"+encodeURIComponent(id),
+                                type: 'POST',
+                                dataType : "json",
+                                cache: false,
+                                data: {"name":"JSON_Request"},
+                                success:function(data) {
+                                    // console.log(data.capacity);
+                                    $('#res_table_capacity').val(data.capacity).textinput('disable');
+                                    // console.log('-------> '+$('#res_table_capacity').val());
+                                }
+                            });
+                        else
+                            $('#res_table_capacity').val('').textinput('disable');
+                    });
+
+
+                    var om = sessionStorage.order_method;
+                    var res_name = sessionStorage.res_name;
+                    // alert(om);
+                    //By default, initialize form fields hidden...
+                    $('#reserve-tbl,#delivery,#takeout,#instore').hide();
+                    $('#servSel option[value="'+om+'"]').attr("selected", "selected").change();
+                    // if(om.length > 0){
+                    if(typeof om !== "undefined") {
+                        switch(om){
+                            case 'reserve-tbl' :
+                                // var data = $("#reserve-tbl-form").serialize();
+                                // sessionStorage.order_method_details = JSON.stringify(data);
+
+                                // $('.pagetitle').html('TABLE RESERVATION');
+                                $('.pagetitle').html(res_name);
+                                var order_header = sessionStorage.order_header;
+                                // console.log('waw');
+                                console.log(order_header);
+                                if(order_header === "undefined"){
+                                    // console.log(order_header);
+                                    order_header = JSON.parse(order_header);
+                                    $.each(order_header,function(k,v){
+                                        console.log(k+'--------------------'+v);
+                                        $('#'+k).val(v);
+                                        switch(k){
+                                            // var br_id = $('#brSel').val();
+                                            // var res_id = sessionStorage.res_id;
+                                            // refreshTable(res_id,br_id);
+
+                                            case 'user_name': $('#res_user_name').val(v);   break;
+                                            case 'contact_no': $('#res_contact_no').val(v);   break;
+                                            case 'table_no': $('#res_table_no').val(v);   break;
+                                            case 'guest_no': $('#res_guest_no').val(v);   break;
+                                            case 'reserved_date': $('#res_reserved_date').val(v);   break;
+                                            case 'reserved_start_time': $('#res_reserved_start_time').val(v);   break;
+                                            case 'special_request': $('#res_special_request').val(v);   break;
+                                        }
+                                    });
+                                }
+                                else{
+                                    // $('#res_user_name').val();
+                                    // $('#res_contact_no').val();
+                                    // $('#res_table_no').val();
+                                    // $('#res_guest_no').val();
+                                    // $('#res_reserved_date').val();
+                                    // $('#res_reserved_start_time').val();
+                                    // $('#res_special_request').val();
+                                }
+                                break;
+                            case 'delivery' :
+                                // var data = $("#delivery-form").serialize();
+                                // sessionStorage.order_method_details = JSON.stringify(data);
+
+
+                                // $('.pagetitle').html('DELIVERY');
+                                $('.pagetitle').html(res_name);
+                                var order_header = sessionStorage.order_header;
+                                console.log('waw');
+                                if(order_header !== "undefined"){
+                                    console.log(order_header);
+                                    order_header = JSON.parse(order_header);
+                                    $.each(order_header,function(k,v){
+                                        console.log(k+'--------------------'+v);
+                                        $('#'+k).val(v);
+                                        switch(k){
+                                            // var br_id = $('#brSel').val();
+                                            // var res_id = sessionStorage.res_id;
+                                            // refreshTable(res_id,br_id);
+
+                                            case 'user_name': $('#delivery_user_name').val(v);   break;
+                                            case 'mobile_no': $('#delivery_mobile_no').val(v);   break;
+                                            case 'contact_no': $('#delivery_contact_no').val(v);   break;
+                                            case 'del_floor': $('#delivery_del_floor').val(v);   break;
+                                            case 'del_street': $('#delivery_del_street').val(v);   break;
+                                            case 'del_village': $('#delivery_del_village').val(v);   break;
+                                            case 'del_bldg': $('#delivery_del_bldg').val(v);   break;
+                                            case 'del_city': $('#delivery_del_city').val(v);   break;
+                                            case 'del_province': $('#delivery_del_province').val(v);   break;
+                                            case 'del_landmark': $('#delivery_del_landmark').val(v);   break;
+                                            case 'special_request': $('#delivery_special_request').val(v);   break;
+                                            case 'reserved_date': $('#delivery_reserved_date').val(v);   break;
+                                            case 'reserved_start_time': $('#delivery_reserved_time').val(v);   break;
+                                        }
+                                    });
+                                }
+                                break;
+                            case 'takeout' :
+                                // var data = $("#takeout-form").serialize();
+                                // sessionStorage.order_method_details = JSON.stringify(data);
+
+                                // $('.pagetitle').html('TAKEOUT');
+                                $('.pagetitle').html(res_name);
+                                var order_header = sessionStorage.order_header;
+                                console.log('waw');
+                                if(order_header !== "undefined"){
+                                    console.log(order_header);
+                                    order_header = JSON.parse(order_header);
+                                    $.each(order_header,function(k,v){
+                                        console.log(k+'--------------------'+v);
+                                        $('#'+k).val(v);
+                                        switch(k){
+                                            // var br_id = $('#brSel').val();
+                                            // var res_id = sessionStorage.res_id;
+                                            // refreshTable(res_id,br_id);
+
+                                            case 'user_name': $('#takeout_user_name').val(v);   break;
+                                            case 'contact_no': $('#takeout_contact_no').val(v);   break;
+                                            case 'reserved_date': $('#takeout_reserved_date').val(v);   break;
+                                            case 'reserved_time': $('#takeout_reserved_start_time').val(v);   break;
+                                            case 'special_request': $('#takeout_special_request').val(v);   break;
+                                        }
+                                    });
+                                }
+                                break;
+                            case 'instore' :
+                                // var data = $("#instore-form").serialize();
+                                // sessionStorage.order_method_details = JSON.stringify(data);
+
+                                // $('.pagetitle').html('FUNCTION RESERVATION');
+                                $('.pagetitle').html(res_name);
+                                var order_header = sessionStorage.order_header;
+                                console.log('waw');
+                                if(order_header !== "undefined"){
+                                    console.log(order_header);
+                                    order_header = JSON.parse(order_header);
+                                    $.each(order_header,function(k,v){
+                                        console.log(k+'--------------------'+v);
+                                        $('#'+k).val(v);
+                                        switch(k){
+                                            // var br_id = $('#brSel').val();
+                                            // var res_id = sessionStorage.res_id;
+                                            // refreshTable(res_id,br_id);
+
+                                            case 'user_name': $('#func_user_name').val(v);   break;
+                                            case 'contact_no': $('#func_contact_no').val(v);   break;
+                                            case 'reserved_date': $('#func_reserved_date').val(v);   break;
+                                            case 'reserved_start_time': $('#func_reserved_start_time').val(v);   break;
+                                            case 'reserved_end_time': $('#func_reserved_end_time').val(v);   break;
+                                            case 'function_type': $('#func_function_type').val(v);   break;
+                                            case 'function_type_others': $('#func_function_type_others').val(v);   break;
+                                            case 'special_request': $('#func_special_request').val(v);   break;
+                                        }
+                                    });
+                                }
+                                break;
+                        }
+                        // window.location = "checkout.html";
+                        $('#'+String(om)).show();
+                    }else{
+                        sessionStorage.order_method = 'reserve-tbl';
+                        window.location.reload();
+                    }
+
+                    // window.location = 'order_method_details.html#loaded';
+
+                    var redirectTo = "menu.html";
+
+                    // $('select').selectmenu();
+                    // sessionStorage.removeItem('order_method');
+                    // $( "#reserve-tbl-form" ).enhanceWithin();
+                    $('#res_submit').click(function(e){
+                        var capacity =  $('#res_table_capacity').val();
+                        var guest_no = $('#res_guest_no').val();
+                        if(capacity == ''){
+                            alert('Please select table no.');
+                        }else if(capacity < guest_no){
+                            alert('Please do not exceed to maximum table capacity.');
+                        }else{
+                            if($('#res_user_name').val() == '' || $('#res_contact_no').val() == '' || $('#res_table_no').val() == '' || $('#res_guest_no').val() == '' || $('#res_reserved_date').val() == '' || $('#res_reserved_start_time').val() == ''){
+                                alert('Please fill up required fields.');
+                            }else{
+                                var details = {
+                                            user_id: $('#res_user_id').val(),
+                                            user_name: $('#res_user_name').val(),
+                                            contact_no: $('#res_contact_no').val(),
+                                            table_no: $('#res_table_no').val(),
+                                            guest_no: $('#res_guest_no').val(),
+                                            reserved_date: $('#res_reserved_date').val(),
+                                            reserved_start_time: $('#res_reserved_start_time').val(),
+                                            special_request: $('#res_special_request').val()
+                                        }
+                                sessionStorage.order_header = JSON.stringify(details);
+
+                                window.location = 'checkout.html';
+                            }
+                        }
+                    });
+
+                    $('#res_pre_order').click(function(e){
+                        if($('#res_user_name').val() == '' || $('#res_contact_no').val() == '' || $('#res_table_no').val() == '' || $('#res_guest_no').val() == '' || $('#res_reserved_date').val() == '' || $('#res_reserved_start_time').val() == ''){
+                            alert('Please fill up required fields.');
+                        }else{
+                            var capacity =  $('#res_table_capacity').val();
+                            var guest_no = $('#res_guest_no').val();
+                            var res_table_no = $('#res_table_no').val();
+                            if(capacity == ''){
+                                alert('Please select table no.');
+                            }else if(capacity < guest_no){
+                                alert('Please do not exceed to maximum table capacity.');
+                            }else{
+                                var details = {
+                                            user_id: $('#res_user_id').val(),
+                                            user_name: $('#res_user_name').val(),
+                                            contact_no: $('#res_contact_no').val(),
+                                            table_no: $('#res_table_no').val(),
+                                            guest_no: $('#res_guest_no').val(),
+                                            reserved_date: $('#res_reserved_date').val(),
+                                            reserved_start_time: $('#res_reserved_start_time').val(),
+                                            special_request: $('#res_special_request').val()
+                                        }
+                                sessionStorage.order_header = JSON.stringify(details);
+                                sessionStorage.table_no = res_table_no;
+                                window.location = redirectTo;
+                            }
+                        }
+                    });
+
+                    $("#func_pre_order").click(function(e){
+                        if($('#func_user_name').val() == '' || $('#func_contact_no').val() == '' || $('#func_reserved_date').val() == '' || $('#func_reserved_start_time').val() == '' || $('#func_reserved_end_time').val() == '' || $('#func_function_type').val() == ''){
+                            alert('Please fill up required fields.');
+                        }else{
+                            var details = {
+                                        user_id: $('#func_user_id').val(),
+                                        user_name: $('#func_user_name').val(),
+                                        contact_no: $('#func_contact_no').val(),
+                                        reserved_date: $('#func_reserved_date').val(),
+                                        reserved_start_time: $('#func_reserved_start_time').val(),
+                                        reserved_end_time: $('#func_reserved_end_time').val(),
+                                        function_type: $('#func_function_type').val(),
+                                        function_type_others: $('#func_function_type_others').val(),
+                                        special_request: $('#func_special_request').val()
+                                    }
+                            sessionStorage.order_header = JSON.stringify(details);
+                            window.location = redirectTo;
+                        }
+                    })
+                    $('#func_submit').click(function(e){
+                        // alert('func');
+                        if($('#func_user_name').val() == '' || $('#func_contact_no').val() == '' || $('#func_reserved_date').val() == '' || $('#func_reserved_start_time').val() == '' || $('#func_reserved_end_time').val() == '' || $('#func_function_type').val() == ''){
+                            alert('Please fill up required fields.');
+                        }else{
+                            var details = {
+                                        user_id: $('#func_user_id').val(),
+                                        user_name: $('#func_user_name').val(),
+                                        contact_no: $('#func_contact_no').val(),
+                                        reserved_date: $('#func_reserved_date').val(),
+                                        reserved_start_time: $('#func_reserved_start_time').val(),
+                                        reserved_end_time: $('#func_reserved_end_time').val(),
+                                        function_type: $('#func_function_type').val(),
+                                        function_type_others: $('#func_function_type_others').val(),
+                                        special_request: $('#func_special_request').val()
+                                    }
+                            sessionStorage.order_header = JSON.stringify(details);
+                            window.location = 'checkout.html';
+                        }
+                    });
+                    $('#delivery_submit').click(function(e){
+                        // alert('del');
+                        // alert($("input[type='radio'][name='delivery_payment_method']:checked").val());
+                        if($('#delivery_user_name').val() == '' || $('#delivery_mobile_no').val() == '' || $('#delivery_reserved_date').val() == '' || $('#delivery_reserved_time').val() == ''){
+                            alert('Please fill up required fields.');
+                        }else{
+                            var details = {
+                                        user_id: $('#delivery_user_id').val(),
+                                        user_name: $('#delivery_user_name').val(),
+                                        mobile_no: $('#delivery_mobile_no').val(),
+                                        contact_no: $('#delivery_contact_no').val(),
+                                        del_floor: $('#delivery_del_floor').val(),
+                                        del_street: $('#delivery_del_street').val(),
+                                        del_village: $('#delivery_del_village').val(),
+                                        del_bldg: $('#delivery_del_bldg').val(),
+                                        del_province: $('#delivery_del_province').val(),
+                                        del_city: $('#delivery_del_city').val(),
+                                        del_landmark: $('#delivery_del_landmark').val(),
+                                        special_request: $('#delivery_special_request').val(),
+                                        reserved_date: $('#delivery_reserved_date').val(),
+                                        reserved_start_time: $('#delivery_reserved_time').val(),
+                                        payment_method: $("input[type='radio'][name='delivery_payment_method']:checked").val()
+
+                                    }
+                            sessionStorage.order_header = JSON.stringify(details);
+                            window.location = redirectTo;
+                        }
+                    });
+                    $('#takeout_submit').click(function(e){
+                        // alert('takeout');
+                        if($('#takeout_user_name').val() == '' || $('#takeout_contact_no').val() == '' || $('#takeout_reserved_date').val() == '' || $('#takeout_reserved_start_time').val() == ''){
+                            alert('Please fill up required fields.');
+                        }else{
+                            var details = {
+                                        user_id: $('#takeout_user_id').val(),
+                                        user_name: $('#takeout_user_name').val(),
+                                        contact_no: $('#takeout_contact_no').val(),
+                                        reserved_date: $('#takeout_reserved_date').val(),
+                                        reserved_time: $('#takeout_reserved_start_time').val(),
+                                        special_request: $('#takeout_special_request').val()
+                                    }
+                            sessionStorage.order_header = JSON.stringify(details);
+                            window.location = redirectTo;
+                        }
+                    });
+
+                    $('#page-ref').click(function(e){
+                      location.reload();
+                    });
+
+                });
+
+            </script>
+
+            <!-- FOOTER-->
+        </div>
+
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+
+
+    </body>
+</html>

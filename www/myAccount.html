@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="plugins/datetimepicker/DateTimePicker.css" />
+        <script type="text/javascript" src="plugins/datetimepicker/DateTimePicker.js"></script>
+
+        <title>clickPlate</title>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+                <h2>Main Menu</h2>
+                <!-- <ul data-role="listview" class="ui-listview" > -->
+                <ul data-role="listview" data-icon="false">
+                    <li class="ui-li-static ui-first-child" data-icon-"false">History</li>
+                    <li class="ui-li-static ui-body-inherit" data-icon-"false">My Profile</li>
+                    <li class="ui-li-static ui-body-inherit">My Payments</li>
+                    <li class="ui-li-static ui-body-inherit">Food</li>
+                    <li class="ui-li-static ui-body-inherit">Locator</li>
+                    <li class="ui-li-static ui-body-inherit">Favorites</li>
+                    <li class="ui-li-static ui-body-inherit">FAQs</li>
+                    <li class="ui-li-static ui-body-inherit">Report a Problem</li>
+                    <li class="ui-li-static ui-body-inherit">Terms and Conditions</li>
+                    <li class="ui-li-static ui-body-inherit">Privacy Policy</li>
+                    <li class="ui-li-static ui-body-inherit ui-last-child">Logout</li>
+                </ul>
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <img src="../www/img/logo.png" class="complogo" style="height:50px;margin-left: 10px;">
+                <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a>
+            </div>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <fieldset>
+                    <legend><H2>PERSONAL DETAILS</H2></legend>
+                <form id="myaccount">
+                    <div data-role="fieldcontain">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" data-mini="true" class="required" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="contact">Contact No:</label>
+                        <input type="text" name="contact" id="contact" data-mini="true" class="required" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" data-mini="true" class="required" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="gender">Gender:</label>
+                        <select name="gender" id="gender" data-role="slider" class="required">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="address">Address:</label>
+                        <textarea name="address" id="address" class="required"></textarea>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="town">Town:</label>
+                        <input type="text" name="town" id="town" data-mini="true" class="required" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="city">City:</label>
+                        <input type="text" name="city" id="city" data-mini="true" class="required" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="dateofbirth">Date of Birth:</label>
+                        <input type="date" id="dateofbirth" data-field="date" readonly>
+                        <div id="dtBox"></div>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password" data-mini="true" class="required" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="cpassword">Confirm Password:</label>
+                        <input type="password" name="cpassword" id="cpassword" data-mini="true" class="required" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <!-- <div class="ui-block-a"><a href="#" class="ui-btn ui-shadow ui-corner-all">Submit</a></div> -->
+                        <input type="submit" value="Update" id="update">
+                    </div>
+                </form>
+                </fieldset>
+            </div>
+
+            <!-- FOOTER-->
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/countryList.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+
+        <script type="text/javascript">
+            app.initialize();
+
+            $("#dtBox").DateTimePicker();
+
+            $('#update').click(function(){
+                // var form = $('#myaccount').serialize();
+                var form = $('#myaccount').serializeArray();
+                // alert(form);
+
+                return false;
+            });
+        </script>
+    </body>
+</html>

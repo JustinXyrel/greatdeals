@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="includes/css/index.css" />
+        <title>clickPlate</title>
+        <style>
+            .ui-header .ui-title,.pagetitle {
+                margin-right: 10% !important;
+                margin-left: 10% !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="page">
+            <!-- MENU -->
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed">
+                <h1 class="pagetitle_cust">REGISTER AN ACCOUNT</h1>
+            </div>
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <form class="userform" style="line-height:3px;" />
+                    <input type="text" name="fname" id="fname" value="" placeholder="*First Name" class="rOkay" />
+                    <input type="text" name="mname" id="mname" value="" placeholder="Middle Name" data-corners="true"/>
+                    <input type="text" name="lname" id="lname" value="" placeholder="*Last Name" data-corners="true" class="rOkay" />
+                    <input type="text" name="suffix" id="suffix" value="" placeholder="Suffix" data-corners="true" />
+                    <select name="gender" id="gender">
+                        <option value="male">*SELECT GENDER</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <h3>*Birthdate:</h3>
+                    <input type="date" data-role="datebox" name="delivery_reserved_date" id="delivery_reserved_date" data-options='{"mode": "datebox", "mode": "flipbox","overrideSteDateButtonLabel": "Set Date"}' />
+                    <hr/>
+                    <input type="text" name="mobile_no" id="mobile_no" value="" placeholder="*Mobile No." data-corners="true" class="rOkay" />           
+                    <input type="email" name="email" id="email" value="" placeholder="*E-mail Address" data-corners="true" class="rOkay" />
+                    <hr/>
+                    <input type="text" name="unit_no" id="unit_no" value="" placeholder="Unit No." data-corners="true" />
+                    <input type="text" name="building" id="building" value=""  placeholder="Building Name" data-corners="true" />
+                    <input type="text" name="block_no" id="block_no" value="" placeholder="Block No." data-corners="true" />
+                    <input type="text" name="street" id="street" value=""  placeholder="*Street Name" data-corners="true" class="rOkay" />
+                    <input type="text" name="subdivision" id="subdivision" value="" placeholder="Subdivision" data-corners="true" />
+                    <input type="text" name="barangay" id="barangay" value="" placeholder="*Barangay" data-corners="true" class="rOkay" />
+                    <input type="text" name="city" id="city" value="" placeholder="City" data-corners="true" class="rOkay" />
+                    <input type="text" name="province" id="province" value=""  placeholder="*Province" data-corners="true" class="rOkay" />
+                    <input type="text" name="zip_code" id="zip_code" value="" placeholder="Zip Code" data-corners="true" />
+                    <hr/>
+                    <input type="password" name="password" id="password" value="" placeholder="Enter Password" data-corners="true" class="rOkay matched" >
+                    <input type="password" name="retype_password" id="retype_password" value="" placeholder="Re-type Password" data-corners="true" class="rOkay matched" >
+
+                    <button id="login"  class="show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-theme="b" data-corners="true" data-icon="check">Done</button>
+                </form>
+            </div>
+            <!-- FOOTER-->
+            <div data-role="footer" data-theme="e" style="border:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+
+         <script>
+                $(document).ready(function() {
+                    $('#login').click(function(e){
+                        var $this = $( this ),
+                            theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+                            msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+                            textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+                            textonly = !!$this.jqmData( "textonly" );
+                            html = $this.jqmData( "html" ) || "";
+
+                            $.mobile.loading( "show", {
+                                    text: msgText,
+                                    textVisible: textVisible,
+                                    theme: theme,
+                                    textonly: textonly,
+                                    html: html
+                            });
+
+                        checkRequiredFields($('.userform'));
+
+                        $.mobile.loading( "hide" );
+                        e.preventDefault();
+                    });
+
+                    // $( document ).on( "click", ".show-page-loading-msg", function() {
+
+                    // });
+
+                    var checkRequiredFields = function(form){
+                        var check = true;
+                        var msg = '';
+                        $(".rOkay").each(function() {
+                           if( $(this).val() == '' )
+                           {
+                                $(this).css('background-color','#FFD0D0');
+                                check = false;
+                                msg = 'Required fields must be filled in.'
+                           }else{
+                                $(this).css('background','none');
+                           }
+                        });
+
+                        if( $('#password').val() == $('#retype_password').val() )
+                        {
+                            if($('#password').val() == '' || $('#retype_password').val() == '')
+                            {
+                                check = false;
+                                $('#password, #retype_password').css('background-color','#FFD0D0');
+                            }
+                        }else{
+                             check = false;
+                             msg = 'Password does not match.';
+                             $('#password, #retype_password').css('background-color','#FFD0D0');
+                        }
+
+                        if(check){
+                            var details = form.serialize();
+                            $.ajax({
+                                  url :  remoteHost+"clickPlatev2/app_menus/addAppUsers/",
+                                  type: 'POST',
+                                  dataType : "json",
+                                  cache: false,
+                                  data: {"details":details},
+                                  success:function(data) {
+                                    if(data.error == 1)
+                                    {
+                                        alert('Email address already exists.');
+                                    }else{
+                                        alert('Added successfully!  You will receive an email shortly.');
+                                        console.log(remoteHost+"clickPlatev2/app_menus/send_confirm_registration_mail/"+data.id);
+                                        $.ajax({
+                                              url :  remoteHost+"clickPlatev2/app_menus/send_confirm_registration_mail/"+data.id,
+                                              type: 'POST',
+                                              dataType : "json",
+                                              cache: false,
+                                        });
+                                         // window.location.href = 'index.html';
+                                    }
+
+                                  }
+                            });
+                        }else{
+                            alert(msg);
+                        }
+
+                    };
+        });
+
+        </script>
+
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
+        <link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+        <!-- // <script type="text/javascript" src="includes/js/index.js"></script> -->
+        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
+    </body>
+</html>

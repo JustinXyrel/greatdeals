@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="includes/css/index.css" />
+        <!-- Core CSS file -->
+        <link rel="stylesheet" href="plugins/photoswipe/css/photoswipe.css">
+
+        <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+             In the folder of skin CSS file there are also:
+             - .png and .svg icons sprite,
+             - preloader.gif (for browsers that do not support CSS animations) -->
+        <link rel="stylesheet" href="plugins/photoswipe/css/default-skin/default-skin.css">
+
+        <!-- Core JS file -->
+        <script src="plugins/photoswipe/js/photoswipe.min.js"></script>
+
+        <!-- UI JS file -->
+        <script src="plugins/photoswipe/js/photoswipe-ui-default.min.js"></script>
+
+        <script type="text/javascript" src="plugins/photoswipe/js/photoswipe.min.js"></script>
+        <link rel="stylesheet" href="plugins/photoswipe/css/photoswipe.css" />
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="plugins/isotopes/isotope.js"></script>
+        <title>clickPlate</title>
+        <style>
+            .isotope {
+              /*border: 1px solid #333;*/
+              padding: 1px;
+              /*text-align: center;*/
+              height:100%;
+            }
+
+            /* clear fix */
+            .isotope:after {
+              content: '';
+              display: block;
+              clear: both;
+            }
+
+            /* ---- .element-item ---- */
+
+            .element-item {
+              position: relative;
+              float: left;
+              width: 100px !important;
+              height: 100px !important;
+              margin: 1px;
+              padding: 1px;
+              /*background: #888;*/
+              /*color: #262524;*/
+            }
+
+            .element-item > a * {
+              margin: -15px;
+              padding: 0;
+              height: 100px;
+              width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="page">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <img src="../www/img/logo.png" class="complogo" style="height:50px;margin-left:5px;">
+                <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-right"></a>
+            </div>
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <div class="isotope">
+                    Loading...
+                </div>
+            </div>
+
+            <!-- FOOTER-->
+            <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+
+
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script>
+            $(document).ready(function() {
+                function display_profile(){
+                    var logged_user = sessionStorage.logged_name;
+                    var content = '';
+                    if(typeof logged_user !== 'undefined'){
+                        content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
+                        content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
+                        content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
+                        content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                        content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout_" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
+                        content += '</ul>';
+                        $('#myPanel').html(content);
+                    }else{
+                        content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
+                        content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
+                        content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
+                        content += '</ul>';
+                        $('#myPanel').html(content);
+                    }
+
+                    $('#sidenav_user_profile').click(function(e){
+                        window.location.href = "user_profile.html";
+                    });
+                    $('#sidenav_logout_').click(function(e){
+                        window.location.href = 'logout.html';
+                    });
+                    $('#sidenav_logout').click(function(e){
+                        window.location.href = 'login_form.html';
+                    });
+                    $('#sidenav_about').click(function(e){
+                        window.location.href = 'about_us.html';
+                    });
+                }
+                display_profile();
+                function showCart() {
+                    var item_cart = sessionStorage.orderCart;
+                    item_cart = JSON.parse(item_cart);
+
+                    content = '';
+                    // content += '<div class="panel-content">';
+                    // content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
+                    // content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-d">My Tray</li>';
+                    subtotal = 0;
+                    // shipping_cost = 0;
+                    ctr = 0;
+                    gtotal = 0;
+                    for(var i in item_cart){
+                        var line = JSON.parse(item_cart[i]);
+                        content += '<li data-role="list-divider" style="list-style-type: none;padding-left:30px;"><h4 style="white-space: normal;">'+unescape(line.name)+' </h4>@ ₱'+displayInCurr(line.price)+' - '+unescape(line.qty)+'pcs. <strong>₱'+unescape(line.qty*line.price)+'</strong></li><br><hr>';
+                        ctr++;
+                        subtotal += Number(line.qty*line.price);
+                        gtotal += Number(line.qty);
+                    }
+                    content += '<li style="text-align:right;">TOTAL : <strong>'+subtotal+'</strong></li>';
+                    // content += '<li><span class="ui-btn-inner"><a href="order_method_details.html" class="customDialogOption2" data-role="button" data-theme="b">CHECKOUT</a></span></li>';
+                    // content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-d"><a href="user_profile.html" style="color:white;text-decoration:none;">User Profile</a></li>';
+                    // content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-d"><a href="about.html" style="color:white;text-decoration:none;">About clickPLATE</a></li>';
+                    // content += '</ul>';
+                    // content += ' <span><a data-role="button" href="#" class="toggle-panel ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-theme="a" data-icon="delete" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner"><span class="ui-btn-text">Checkout</a></span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a></span></div>';
+                    // $('.count_order').append(ctr);
+                    $('#tray_content').html(content);
+                    var icount = Object.keys(item_cart).length;
+                    $('#tray_content').html(' ('+gtotal+')');
+                    $('#tray_content').trigger('updatelayout');
+                }
+
+                $( '#panelTrgr').click(function(e){
+                    showCart();
+                });
+
+                var $container = $('.isotope').isotope({
+                    itemSelector: '.element-item',
+                    layoutMode: 'fitRows',
+                  });
+                var br_id = sessionStorage.br_id;
+                var img_collections = '';
+                console.log(remoteHost+"clickPlatev2/app_orders/getGalleryImages/"+br_id);
+
+                $.ajax({
+                    url : remoteHost+"clickPlatev2/app_orders/getGalleryImages/"+br_id,
+                    type: 'POST',
+                    dataType : "json",
+                    cache: false,
+                    data: {"name":"JSON_Request"},
+                    success:function(data) {
+                        // console.log(data.gallery_imgs);
+                        if(Number((data.gallery_imgs).length) > 1){
+                            items = JSON.stringify(data.gallery_imgs);
+                            items = JSON.parse(items);
+                            content = '';
+                            //<div data-role="popup" id="myPopup">
+                            //   <p>This is my picture!</p>
+                            //   <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="skaret.jpg" style="width:800px;height:400px;" alt="Skaret View">
+                            // </div>
+                            // content += '<ul data-role="listview" id="reviewList">';
+                            $.each(items,function(k,v){
+                                content += '<div class="element-item"><a href="#item-'+v.img_id+'" data-rel="popup" data-position-to="window"><img class="pswp_img" src="'+remoteHost+'/clickPlatev2/'+v.img_path+'"></a></div>';
+                                content += '<div data-role="popup" id="item-'+v.img_id+'"><a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="'+remoteHost+'/clickPlatev2/'+v.img_path+'" style="width:800px;height:400px;"></div>';
+
+                            });
+
+                            $('.isotope').html(content).enhanceWithin();
+                        }else{
+                            $('.isotope').html('No Image for this branch yet.');
+                        }
+                    }
+                });
+            });
+        </script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+
+        <link href="plugins/starrating/rateit.css" rel="stylesheet" type="text/css">
+        <script src="plugins/starrating/jquery.rateit.js"></script>
+
+        <title>clickPlate</title>
+
+        <style>
+            .pagetitle{
+                font-weight: bold;
+            }
+            .ui-icon-cart {
+                background-image: url(img/icons/cart-20.png) !important;
+                background-repeat: no-repeat;
+                background-position:center left;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="index">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed">
+              <a href="order_method.html" data-icon="back" title="Go back" data-ajax="false">Back</a>
+              <h1 class="pagetitle"></h1>
+              <!-- <span class="ui-li-count ui-btn-corner-all countBubl ui-btn-a" style="background-color:#f6f6f6;border-color:#ddd;text-shadow:none;color:#333;top:14px;"><img src="img/icons/1412090651_icon-ios7-cart-16.png" style="vertical-align:middle;padding-top:5px;height:29px;"></span> -->
+                <!-- <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext" id="panelTrgr"></a> -->
+                <a data-icon="cart" href="#myPanel" id="panelTrgr" class="ui-btn-icon-notext ui-nodisc-icon">Cart</a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="info.html" data-icon="info" data-ajax="false">Info</a></li>
+                        <li><a href="menu.html" data-icon="tag" data-ajax="false">Menu</a></li>
+                        <li><a href="location.html" data-icon="location" data-ajax="false">Map</a></li>
+                        <li><a href="reviews.html" data-icon="comment" data-ajax="false">Reviews</a></li>
+                        <li><a href="share.html" data-icon="forward" data-ajax="false" class="ui-btn-active">Share</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div role="page" class="ui-content">
+                <!-- <div id="fb-root"></div> -->
+                <!--
+                <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=588287327903857&version=v2.0";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                -->
+                <!-- <div class="fb-like-box" data-href="https://www.facebook.com/pages/BonChon-Chicken-SM-Megamall/209497469084506?fref=ts" data-colorscheme="light" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div> -->
+                <center>
+                    <ul data-role="listview" data-inset="true" data-corners="false" data-theme="b" data-content-theme="b" id="mylist">
+                        <li data-role="list-divider">Facebook</li>
+                        <li style="white-space: normal !important;">
+                            <div id="fb-root"></div>
+                            <script>(function(d, s, id) {
+                              var js, fjs = d.getElementsByTagName(s)[0];
+                              if (d.getElementById(id)) return;
+                              js = d.createElement(s); js.id = id;
+                              js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=588287327903857&version=v2.0";
+                              fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));
+
+                            $(document).ready(function(){
+                                var fb_link = sessionStorage.facebook_url;
+                                // alert(fb_link);
+                                if(fb_link != '' && fb_link != 'null'){
+                                    $('.fb-like').attr('data-href',fb_link);
+                                }
+                                else{
+                                    $('.fb-like').removeClass('fb-like').addClass('fb-error');
+                                    $('.fb-error').html('Not Available.');
+                                }
+
+                            })
+
+							$(document).bind('pageshow', function() {
+								try{
+									FB.XFBML.parse();
+								} catch(err){}
+							});
+                            </script>
+                            <div class="fb-like" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" style="white-space: normal !important;"></div>
+                        </li>
+
+
+                        <li data-role="list-divider">Twitter</li>
+                        <li style="white-space: normal !important;" data-theme="a">
+                            <span>
+                                <script type="text/javascript">
+                                    $(document).ready(function(){
+                                        function showCart() {
+                                            var item_cart = sessionStorage.orderCart;
+                                            item_cart = JSON.parse(item_cart);
+
+                                            content = '';
+
+                                            content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="overflow: auto;position: absolute;top: 0; left: 0; right: 0; bottom: 0;-webkit-overflow-scrolling: touch;">';
+                                            content += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b" data-position="fixed">My Cart</li>';
+                                            subtotal = 0;
+                                            shipping_cost = 0;
+                                            ctr = 0;
+                                            for(var i in item_cart){
+                                                var line = JSON.parse(item_cart[i]);
+                                                content += '<li data-role="list-divider" style="list-style-type: none;padding-left:30px;"><h4 style="white-space: normal;">'+unescape(line.name)+' </h4>@ ₱'+displayInCurr(line.price)+' - '+unescape(line.qty)+'pcs. <p class="ui-li-aside ui-li-desc"><strong>₱'+unescape(line.qty*line.price)+'</strong></p></li><br><hr>';
+                                                ctr++;
+                                            }
+                                            content += '</ul>';
+
+                                            $('.count_order').append(ctr);
+                                            $('#myPanel').html(content);
+                                            $('#myPanel').trigger('updatelayout');
+                                        }
+
+                                        $( '#panelTrgr').click(function(e){
+                                            showCart();
+                                        });
+
+
+                                        var res_name = sessionStorage.res_name;
+                                        $('.pagetitle').html(res_name);
+
+                                        var tw_link = sessionStorage.twitter_url;
+                                        if(tw_link != '' && tw_link != 'null'){
+                                            $('.tw-like').html('<a class="twitter-follow-button" href="'+tw_link+'" id="tw-like" data-show-count="false" data-lang="en">Follow Us!</a>');
+                                        }else{
+                                            $('.tw-like').removeClass('tw-like').addClass('tw-error');
+                                            $('.tw-error').html('Not Available.');
+                                        }
+                                    });
+                                    window.twttr = (function (d, s, id) {
+                                        var t, js, fjs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) return;
+                                        js = d.createElement(s); js.id = id;
+                                        js.src= "https://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                        return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+                                    }(document, "script", "twitter-wjs"));
+                                </script>
+                                <span class="tw-like"></span>
+                                <!-- <a class="twitter-follow-button"
+                                  href="https://twitter.com/twitterdev"
+                                  id="tw-like"
+                                  data-show-count="false"
+                                  data-lang="en">
+                                Follow Us!
+                                </a> -->
+                            </span>
+                          </li>
+                    </ul>
+
+                <br>
+
+                </center>
+            </div><!-- /content -->
+
+            <!-- FOOTER-->
+        </div>
+
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+    </body>
+</html>

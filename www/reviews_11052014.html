@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+
+        <link href="plugins/starrating/rateit.css" rel="stylesheet" type="text/css">
+        <script src="plugins/starrating/jquery.rateit.js"></script>
+
+        <title>clickPlate</title>
+        <style>
+            .pagetitle{
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="index">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+                <ul data-role="listview" data-icon="false">
+                    <li class="ui-li-static ui-first-child" data-icon-"false">History</li>
+                    <li class="ui-li-static ui-body-inherit" data-icon-"false">My Profile</li>
+                    <li class="ui-li-static ui-body-inherit">My Payments</li>
+                    <li class="ui-li-static ui-body-inherit">Food</li>
+                    <li class="ui-li-static ui-body-inherit">Locator</li>
+                    <li class="ui-li-static ui-body-inherit">Favorites</li>
+                    <li class="ui-li-static ui-body-inherit">FAQs</li>
+                    <li class="ui-li-static ui-body-inherit">Report a Problem</li>
+                    <li class="ui-li-static ui-body-inherit">Terms and Conditions</li>
+                    <li class="ui-li-static ui-body-inherit">Privacy Policy</li>
+                    <li class="ui-li-static ui-body-inherit ui-last-child">Logout</li>
+                </ul>
+            </div>
+            <!-- HEADER -->
+            <header data-role="header">
+              <a href="resto_search.html" data-icon="back" title="Go back" data-ajax="false">Back</a>
+              <h1 class="pagetitle"><b>Bonchon Chicken</b></h1>
+              <span class="ui-li-count ui-btn-corner-all countBubl ui-btn-a" style="background-color:#f6f6f6;border-color:#ddd;text-shadow:none;color:#333;top:14px;"><img src="img/icons/1412090651_icon-ios7-cart-16.png" style="vertical-align:middle;padding-top:5px;height:29px;"></span>
+            </header>
+            <div data-role="header">
+                 <a href="#" data-icon="back" data-rel="back" title="Go back">Back</a>
+                 <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="info.html" data-icon="info" data-ajax="false">Info</a></li>
+                        <li><a href="menu.html" data-icon="tag" data-ajax="false">Menu</a></li>
+                        <li><a href="location.html" data-icon="location" data-ajax="false">Map</a></li>
+                        <li><a href="reviews.html" data-icon="comment" data-ajax="false" class="ui-btn-active">Reviews</a></li>
+                        <li><a href="share.html" data-icon="forward" data-ajax="false">Share</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div role="page" class="ui-content">
+                <div data-role="fieldcontain">
+                    <textarea name="comment" id="comment" data-corners="false" placeholder="Tell us your experience..."></textarea>
+                    <a href="#" class="customDialogOption1 ui-btn ui-btn-a ui-icon-check ui-btn-icon-left ui-shadow ui-mini" data-role="button" data-item-id="20" data-theme="a" data-rel="back" role="button" id="sbmt">Submit</a>
+                    <br>
+                    <h3>What do people think of US? </h3>
+                    <div data-role="collapsible-set" data-theme="a"  id="reviewList" data-corners="false"></div>
+                </div>
+            </div><!-- /content -->
+            <script>
+                $(document).ready(function() {
+                    var res_id = sessionStorage.res_id;
+                    var br_id = sessionStorage.br_id;
+                    $('#sbmt').click(function(e){
+                        var comment = $('#comment').val();
+                        // alert('zzz');
+
+                        // comment = jQuery.param( comment );
+                        // alert(remoteHost+"resto/restoList/restoAddBranchReviews/"+res_id+"/"+br_id+"/\""+escape(comment)+"\"");
+                        $.ajax({
+                              url : remoteHost+"resto/restoList/restoAddBranchReviews/"+res_id+"/"+br_id+"/\""+escape(comment)+"\"",
+                              type: 'POST',
+                              dataType : "json",
+                              cache: false,
+                              data: {"name":"JSON_Request"},
+                              success:function(data) {
+                                // alert(data);
+                                 // $( "#reviewList" ).append(content);
+                              }
+                        });
+                        // $('#reviewList').listview('refresh');
+                        // $('#reviewList').enhanceWithin();
+                        window.location = 'reviews.html';
+
+                        //Clear comment box...
+                        $('#comment').val('');
+                        return false;
+                    });
+
+                    // alert(remoteHost+"resto/restoList/restoBranchReviews/"+res_id+"/"+br_id);
+                    $.ajax({
+                          url : remoteHost+"resto/restoList/restoBranchReviews/"+res_id+"/"+br_id,
+                          type: 'POST',
+                          dataType : "json",
+                          cache: false,
+                          data: {"name":"JSON_Request"},
+                          success:function(data) {
+                            // alert(data.items);
+                            items = JSON.stringify(data.items);
+                            items = JSON.parse(items);
+                            content = '';
+
+                            content += '<ul data-role="listview" id="reviewList">';
+                            $.each(items,function(k,v){
+                                // content += '<li><img src="../_assets/img/album-bb.jpg"><h5>'+unescape(v.comment)+'</h5></li>';
+                                content += '<li><h5 style="white-space: normal;">'+unescape(v.comment)+'</h5><p>Posted on: '+v.comment_last+'</p></li>';
+                            });
+                            content += '</ul>';
+                            $( "#reviewList" ).append(content);
+                            $('#reviewList').enhanceWithin();
+
+                          }
+                    });
+                });
+            </script>
+            <!-- FOOTER-->
+        </div>
+
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <!-- // <script type="text/javascript" src="includes/js/menu.js"></script> -->
+
+    </body>
+</html>

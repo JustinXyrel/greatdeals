@@ -1,0 +1,94 @@
+/*
+Body
+*/
+@font-face {
+    font-family: gothic;
+    src: url(gothic.woff);
+}
+*{
+  -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+  font-family: 'gothic' !important;
+}
+*:not(input,textarea) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+/*
+Swiper
+*/
+.swiper-container {
+  /*width: 660px;*/
+  height: 250px;
+  color: #fff;
+  text-align: center;
+}
+.red-slide {
+  background-image: url('../../img/ads/kogi.png');
+  /*background-repeat: repeat-y;*/
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+}
+.blue-slide {
+  background-image: url('../../img/ads/PeriPeri.png');
+  /*background-repeat: repeat-y;
+  background-size: 100% 100%;*/
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+}
+.orange-slide {
+  background-image: url('../../img/ads/Stackers.png');
+  /*background-repeat: repeat-y;
+  background-size: 100% 100%;*/
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+}
+.green-slide {
+  background-image: url('../../img/ads/TokyoCafe.png');
+  /*background-repeat: repeat-y;
+  background-size: 100% 100%;*/
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+}
+.pink-slide {
+  background-image: url('../../img/ads/Wafu.png');
+  /*background-repeat: repeat-y;
+  background-size: 100% 100%;*/
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+}
+.swiper-slide .title {
+  font-style: italic;
+  font-size: 42px;
+  margin-top: 80px;
+  margin-bottom: 0;
+  line-height: 45px;
+}
+.pagination {
+  position: absolute;
+  z-index: 20;
+  left: 10px;
+  bottom: 10px;
+}
+.swiper-pagination-switch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #222;
+  margin-right: 5px;
+  opacity: 0.8;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.swiper-visible-switch {
+  background: #aaa;
+}
+.swiper-active-switch {
+  background: #d11f26;
+}
+ui-listview {
+  border: 0px !important;
+}

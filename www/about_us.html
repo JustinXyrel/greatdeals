@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <title>clickPlate</title>
+        <style>
+            .banner_img{
+                /*margin: 0 !important;*/
+                padding: 0 !important;
+                border: 0px !important;
+            }
+            .comp_logo img{
+                height: 10%;
+            }
+            .banner_img img{
+                max-width: 100%;
+            }
+            .notes{
+                border: 0px !important;
+                white-space:normal !important;
+                text-overflow: none !important;
+                font-size: 14px;
+            }
+            .notes p img{
+                height: 40px;
+            }
+            .share .ui-block-a img{
+                width: 50px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="index">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed">
+                <a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle">About Us</h1>
+                <!-- <a href="#myPanel" data-icon="bars" class="ui-btn-right" data-iconpos="notext" id="panelTrgr"></a> -->
+
+            </div>
+
+            <!-- BODY -->
+            <div role="page" class="ui-content">
+                <ul data-role="listview" data-inset="false" data-theme="d" data-divider-theme="e" style="white-space:normal">
+                    <li class="banner_img"><center><img src="img/clickPLATE_AboutUsBanner.png"></center></li>
+                    <li class="notes"><p><img src="img/1Mobile_aboutUsLogo.png"></p><span>clickPLATE is a mobile application that gives you the freedom and flexibility of requesting for the services of the restaurant of your choice right at your fingertips - hassle-free, fast and easy!</span></li>
+                    <li class="notes"><span class="ui-icon-location ui-btn-icon-left " style="position:relative;" />Lorem ipsum dolor sit amet</li>
+                    <li class="notes"><span class="ui-icon-mail ui-btn-icon-left " style="position:relative;" />sales@1mobileintegratedsolutions.com</li>
+                    <li class="notes"><span class="ui-icon-phone ui-btn-icon-left " style="position:relative;" />+12 34567890</li>
+                </ul>
+                <br>
+                <br>
+                <div class="ui-grid-a" class="share">
+                    <div class="ui-block-a"><center><a href="#"><img src="img/FB_icon.png" style="width:160px;"></a></center></div>
+                    <div class="ui-block-b"><center><a href="#"><img src="img/Twitter_icon.png" style="width:160px;"></a></center></div>
+                </div>
+            </div>
+
+            <!-- FOOTER-->
+            <div data-role="footer" data-position="fixed" data-theme="e" style="border:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+
+        <title>clickPlate</title>
+
+        <style>
+             @media (min-width: 768px) {
+                .rounded {
+                    -webkit-border-radius: 6px;
+                    -moz-border-radius: 6px;
+                    border-radius: 6px;
+                    background-color: white;
+                    margin: 0 auto;
+                    margin-top: 15%;
+                    width: 300px;
+                    padding: 20px;
+                }
+            }
+            @media (max-width: 768px) {
+                .rounded {
+                    -webkit-border-radius: 6px;
+                    -moz-border-radius: 6px;
+                    border-radius: 6px;
+                    background-color: white;
+                    margin: 0 auto;
+                    margin-top: 35%;
+                    width: 220px;
+                    padding: 20px;
+                }
+            }
+            .complogo{
+                height: 120px;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="b">
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+               <!--  <img src="../www/img/logo.png" class="complogo" style="height:50px;">
+                <a href="#myPanel" data-icon="grid" class="ui-btn-right" data-iconpos="notext"></a> -->
+            </div>
+            <div role="main" class="rounded">
+                <div data-role="fieldcontain" class="ui-hide-label">
+                    <div class="ui-grid-a" style="text-align:center;margin-top:-90px;">
+                        <img src="../www/img/clickPlate.png" class="complogo">
+                        <h2 style="color:#d12027;">clickPlate</h2>
+                    </div>
+                    <form id="loginForm" class="ui-hide-label">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" id="username" value="" placeholder="Username"/>
+                        <label for="username">Password:</label>
+                        <input type="password" name="password" id="password" value="" placeholder="Password"/>
+
+                        <div class="ui-grid-a">
+                            <!-- <div class="ui-block-a"><a href="#" class="ui-btn ui-shadow ui-corner-all">Submit</a></div>
+                            <div class="ui-block-b"><a href="#" class="ui-btn ui-shadow ui-corner-all">Register</a></div> -->
+
+                            <div class="ui-block-a"><input type="submit" value="Submit" id="submit"/></div>
+                            <div class="ui-block-b"><input type="submit" value="Register" id="register"/></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ui-grid-a">
+                <center><a href="#">Forgot Password?</a></center>
+            </div>
+        </div>
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script type="text/javascript" src="js/kinvey-phonegap-1.1.8.min.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+        <script type="text/javascript">
+            // app.initialize();
+
+            // $('#submit').click(function(){
+            //     // var login = $('#loginForm').serialize();
+            //     var uname = $('#username').val();
+            //     var passwd = $('#password').val();
+            //     // passwd = md5(passwd);
+            //     // alert(remoteHost+"resto/appLogin/verify/"+uname+'/'+passwd);
+            //     // addr = remoteHost+"/resto/appLogin/verify/"+uname+'/'+passwd;
+            //     // add = remoteHost.split('/').pop();
+            //     // alert(add);
+            //     // $.post(remoteHost+"resto/appLogin/verify/"+uname+'/'+passwd, function( data ) {
+            //     //   console.log(data.user);
+            //     //   console.log(data.user_count);
+            //     // });
+
+            //     $.post(remoteHost+"resto/appLogin/verify/"+uname+'/'+passwd,function(data){
+            //       console.log(data.user);
+            //       console.log(data.user_count);
+            //       // $.mobile.changePage( "index.html", {
+            //       //       transition: "slide",
+            //       //       reverse: true
+            //       //   });
+            //         // window.location.href = "index.html";
+
+
+            //         linkLocation = 'index.html';
+            //          $("body").fadeOut(1000, redirectPage(linkLocation));
+            //     }).fail(function(){
+            //         // alert('error ako!');
+            //         $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1>Invalid Login.</h1></div>").css({ "display": "block", "background-color": "white", "top": $(window).scrollTop() })
+            //           .appendTo( $.mobile.pageContainer )
+            //           .delay( 1500 )
+            //           .fadeOut( 400, function(){
+            //             $(this).remove();
+            //           });
+            //     });
+
+            //     return false;
+            // });
+
+            // function redirectPage(link) {
+            //     window.location = link;
+            // }
+
+
+            // if (window.navigator.onLine) {
+            //   alert("Online")
+            // } else {
+            //   alert("Offline")
+            // }
+
+            // var isOffline = 'onLine' in navigator && !navigator.onLine;
+
+            // if ( isOffline ) {
+            //     //local db
+            //     alert('zzzzz');
+            // }
+            // else {
+            //     // internet data
+            //     alert('yehey');
+            // }
+            // var connectionStatus = false;
+
+            // $(document).on('pagebeforeshow', '#index', function () {
+            //     setInterval(function () {
+            //         connectionStatus = navigator.onLine ? 'online' : 'offline';
+            //     }, 100);
+            //     $(document).on('click', '#check-connection', function () {
+            //         alert(connectionStatus);
+            //     });
+            // });
+
+$('#submit').click(function(){
+    var uname = $('#username').val();
+    var passwd = $('#password').val();
+
+    $.ajax({
+        type: 'GET',
+        url: remoteHost+"resto/appLogin/verify/"+uname+'/'+passwd,
+        timeout: 15000,
+        success: function(data) {
+            console.log('success');
+            console.log(data);
+            window.location.href = "index.html"
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest);
+            console.log(textStatus);
+            console.log(errorThrown);
+            console.log(remoteHost+"resto/appLogin/verify/"+uname+'/'+passwd);
+            alert('Invalid username/password.');
+        }
+    });
+
+// function checkConnection() {
+    // var networkState = navigator.network.connection.type;
+
+    // var states = {};
+    // states[Connection.UNKNOWN]  = 'Unknown connection';
+    // states[Connection.ETHERNET] = 'Ethernet connection';
+    // states[Connection.WIFI]     = 'WiFi connection';
+    // states[Connection.CELL_2G]  = 'Cell 2G connection';
+    // states[Connection.CELL_3G]  = 'Cell 3G connection';
+    // states[Connection.CELL_4G]  = 'Cell 4G connection';
+    // states[Connection.NONE]     = 'No network connection';
+
+    // alert('Connection type: ' + states[networkState]);
+// }
+
+// checkConnection();
+});
+        </script>
+    </body>
+</html>

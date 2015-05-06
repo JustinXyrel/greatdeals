@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <script src="css/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="includes/css/index.css" />
+        <title>clickPlate</title>
+        <style>
+            .errormsg{
+                color:red !important;
+            }
+            #srch{
+                font-size: 12px;
+                height:20px !important;
+                line-height: 1.5;
+            }
+            .poweredby{
+                height:40px !important;
+            }
+            .btn_tap{
+                text-align : left;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="page">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+                <form class="userform" style="line-height:3px;">
+                    <h3>Login</h3>
+                    <span class="errormsg">Please fill in the fields.</span>
+                    <br><br><br><br>
+                    <label for="l_login">Email:</label>
+                    <input type="text" name="l_login" id="l_login" value="" data-clear-btn="true" data-mini="true">
+                    <label for="l_passwd">Password:</label>
+                    <input type="password" name="l_passwd" id="l_passwd" value="" data-clear-btn="true" autocomplete="off" data-mini="true">
+                    <div class="ui-grid-a">
+                        <div align="right"><button id="login" data-theme="a" type="button" href="home.html" data-mini="false" data-inline="true" >Enter</button></div>
+                    </div>
+                </form>
+                <hr>
+                <center>
+                    <span>No Account yet?<a href="#">Register here.</a></span>
+                </center>
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed" data-tap-toggle="false">
+                <img src="../www/img/logo.png" class="complogo" style="height:50px;margin-left:5px;">
+                <!-- <a href="#myPanel" data-icon="refresh" class="ui-btn-right" data-iconpos="notext" id="page-ref"></a> -->
+                <!-- <a href="#myPanel" class="ui-btn-right" data-iconpos="notext" id="page-ref">Login</a> -->
+                <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-right"></a>
+            </div>
+
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                    <input type="search" name="srch" id="srch" value="" placeholder="Enter restaurant name or food">
+                <div id='pullmsg'>
+                    <span class='glyphicon glyphicon-arrow-down'></span> pull this
+                </div>
+                <div class="ui-grid-solo  ui-responsive">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide red-slide">
+                          </div>
+                          <div class="swiper-slide blue-slide">
+                          </div>
+                          <div class="swiper-slide orange-slide">
+                          </div>
+                          <div class="swiper-slide green-slide">
+                          </div>
+                          <div class="swiper-slide pink-slide">
+                          </div>
+                        </div>
+                        <div class="pagination"></div>
+                      </div>
+                </div>
+                <a href="index.html" data-role="button" data-icon="arrow-r" class="btn_tap">TAP TO VIEW OUR <BR>RESTAURANT BRANDS</a>
+            </div>
+
+            <!-- FOOTER-->
+            <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="css/jquery.mobile-1.4.3.min.js"></script>
+
+        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
+        <link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+        <script type="text/javascript" src="includes/js/index.js"></script>
+        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
+
+
+
+    </body>
+</html>
