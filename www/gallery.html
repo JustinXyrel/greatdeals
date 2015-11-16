@@ -8,31 +8,33 @@
         <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-
         <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />	
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-        <script src="css/jquery-1.11.1.min.js"></script>
         <link rel="stylesheet" href="includes/css/index.css" />
         <!-- Core CSS file -->
         <link rel="stylesheet" href="plugins/photoswipe/css/photoswipe.css">
-
         <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
              In the folder of skin CSS file there are also:
              - .png and .svg icons sprite,
              - preloader.gif (for browsers that do not support CSS animations) -->
         <link rel="stylesheet" href="plugins/photoswipe/css/default-skin/default-skin.css">
+		<link rel="stylesheet" href="plugins/photoswipe/css/photoswipe.css" />
+		<link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
 
         <!-- Core JS file -->
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/jquery.mobile-1.4.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
         <script src="plugins/photoswipe/js/photoswipe.min.js"></script>
-
         <!-- UI JS file -->
         <script src="plugins/photoswipe/js/photoswipe-ui-default.min.js"></script>
-
         <script type="text/javascript" src="plugins/photoswipe/js/photoswipe.min.js"></script>
-        <link rel="stylesheet" href="plugins/photoswipe/css/photoswipe.css" />
+		<script src="plugins/isotopes/isotope.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script src="plugins/isotopes/isotope.js"></script>
-        <title>clickPlate</title>
+
+
+        <title>Great Deals</title>
         <style>
             .isotope {
               /*border: 1px solid #333;*/
@@ -75,8 +77,9 @@
             <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
             </div>
             <!-- HEADER -->
-            <div data-role="header" data-position="fixed" data-tap-toggle="false">
-                <img src="../www/img/logo.png" class="complogo" style="height:50px;margin-left:5px;">
+            <div data-role="header" data-position="fixed" >
+				<a href="info.html" data-icon="back" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle">GALLERY</h1>
                 <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-right"></a>
             </div>
             <!-- BODY -->
@@ -88,7 +91,7 @@
 
             <!-- FOOTER-->
             <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
-                <center><img src="img/poweredby.png" class="poweredby"></center>
+                <center><a href="index.html"  data-ajax="false"><img src="img/poweredby.png" class="poweredby"></a></center>
             </div>
         </div>
 
@@ -191,7 +194,7 @@
                             // </div>
                             // content += '<ul data-role="listview" id="reviewList">';
                             $.each(items,function(k,v){
-                                content += '<div class="element-item"><a href="#item-'+v.img_id+'" data-rel="popup" data-position-to="window"><img class="pswp_img" src="'+remoteHost+'/clickPlatev2/'+v.img_path+'"></a></div>';
+                                content += '<div class="element-item"><a href="#item-'+v.img_id+'" class="popupz" data-rel="popup" data-position-to="window"><img class="pswp_img" src="'+remoteHost+'/clickPlatev2/'+v.img_path+'"></a></div>';
                                 content += '<div data-role="popup" id="item-'+v.img_id+'"><a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="'+remoteHost+'/clickPlatev2/'+v.img_path+'" style="width:800px;height:400px;"></div>';
 
                             });
@@ -202,9 +205,12 @@
                         }
                     }
                 });
+				
+				$('.popupz').magnificPopup({
+					 type: 'image'
+						  // other options
+				});
             });
         </script>
-        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
-        <script src="css/jquery.mobile-1.4.3.min.js"></script>
     </body>
 </html>

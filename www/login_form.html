@@ -8,12 +8,22 @@
         <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css" />	
         <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-        <script src="css/jquery-1.11.1.min.js"></script>
         <link rel="stylesheet" href="includes/css/index.css" />
-        <title>clickPlate</title>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+		<link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
+		<script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+		<script type="text/javascript" src="js/sweetalert.min.js"></script>
+        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
+        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
+		<script type="text/javascript" src="includes/js/login.js" defer></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		    
+
+        <title>Great Deals</title>
         <style>
             .div_logo{
                 margin: 0 auto;
@@ -42,35 +52,41 @@
         </style>
     </head>
     <body>
-        <div data-role="page" id="splash">
-            <div class="splash_logo">
-                <center><img src="img/iFoods_logoxx.png" class="splash_logo"></center>
-            </div>
-            <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
-                <center><img src="img/poweredby.png" class="poweredby"></center>
-            </div>
-        </div>
+  
         <div data-role="page" data-theme="a" id="page">
             <!-- MENU -->
             <!-- HEADER -->
-            <header class="hdr">
-                Login to continue
-            </header>
+              <div data-role="header" data-position="fixed">
+                <a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle">Login to continue</h1>
+                <!-- <div data-role="navbar" data-iconpos="top">
+                    <ul style="border:1px black solid;">
+                        <li><a href="info.html" data-ajax="false" class="ui-btn-active">Info</a></li>
+                        <li><a href="menu.html" data-ajax="false">Menu</a></li>
+                        <li><a href="order_method_details.html" data-ajax="false">Services</a></li>
+                    </ul>
+                </div> -->
+            </div>
             <!-- BODY -->
             <div role="main" class="ui-content">
                 <div class="div_logo">
                     <a href="index.html" data-ajax="false"><img src="img/iFoods_logoxx.png"></a>
                 </div>
                 <form class="userform" style="line-height:3px;">
-                    <input type="text" name="l_login" id="l_login" value="" data-clear-btn="true" data-mini="true" placeholder="Email">
-                    <input type="password" name="l_passwd" id="l_passwd" value="" data-clear-btn="true" autocomplete="off" data-mini="true" placeholder="Password">
-                    <button id="login" data-theme="b" data-mini="false" data-icon="forward">Login</button>
+               		<input type="text" name="fname" id="fname" value="" placeholder="*First Name" class="rOkay" />
+                    <input type="text" name="mname" id="mname" value="" placeholder="Middle Name" data-corners="true"/>
+                    <input type="text" name="lname" id="lname" value="" placeholder="*Last Name" data-corners="true" class="rOkay" />
+				    <input type="email" name="email" id="email" value="" placeholder="*E-mail Address" data-corners="true" class="rOkay" />
+					<input type="text" name="mobile_no" id="mobile_no" value="" placeholder="*Mobile No." data-corners="true" class="rOkay" /> 
+					<input type="text" name="barangay" id="barangay" value="" placeholder="*Barangay" data-corners="true" class="rOkay" />
+                    <input type="text" name="city" id="city" value="" placeholder="*City" data-corners="true" class="rOkay" />
+<!--                     <input type="password" name="l_passwd" id="l_passwd" value="" data-clear-btn="true" autocomplete="off" data-mini="true" placeholder="Password">
+ -->                    <button id="login" data-theme="b" data-mini="false" data-icon="forward">Login</button>
                 </form>
-                    <button id="register" data-theme="c" data-mini="false" data-icon="edit">Register</button>
-                    <!-- <button id="skip" data-theme="d" data-mini="false" data-icon="arrow-r">Skip this step</button> -->
+                    <!-- <button id="register" data-theme="c" data-mini="false" data-icon="edit">Register</button>
                     <center>
                         <a href="forgot_password.html" data-ajax="false">Forgot Password?</a>
-                    </center>
+                    </center> -->
             </div>
             <!-- FOOTER-->
             <div data-role="footer" data-theme="e" style="border:0px;">
@@ -78,110 +94,5 @@
             </div>
         </div>
 
-        <!--<script type="text/javascript" src="cordova.js"></script>-->
-        <script type="text/javascript" src="js/index.js"></script>
-        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
-        <script src="css/jquery.mobile-1.4.3.min.js"></script>
-
-        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
-        <link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
-
-        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
-        <!-- // <script type="text/javascript" src="includes/js/index.js"></script> -->
-        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
-        <script>
-            $(document).on('pageinit','#splash',function(){
-                setTimeout(function(){
-                    $.mobile.changePage("#page", "fade");
-
-                    var order_header  = sessionStorage.order_header;
-                    if(order_header === "undefined"){
-                        console.log(order_header);
-                        sessionStorage.clear();
-                    }
-                }, 2000);
-            });
-            $(document).ready(function(){
-
-                /************************
-                    LOGIN
-                ************************/
-                $('#login').click(function(e){
-                    var user_id = sessionStorage.user_id;
-                    console.log(user_id);
-                    // alert(user_id);
-                    var uname = $('#l_login').val();
-                    var passwd = $('#l_passwd').val();
-                    console.log(remoteHost+"clickPlatev2/app_login/verifyUser/"+encodeURIComponent(uname)+"/"+passwd);
-                    $.ajax({
-                        url : remoteHost+"clickPlatev2/app_login/verifyUser/"+encodeURIComponent(uname)+"/"+passwd,
-                        type: 'POST',
-                        dataType : "json",
-                        data: {"name":"JSON_Request"},
-                        success:function(data) {
-                            console.log(data);
-                            if(data.user_count > 0){
-                                var curr_user = data.user;
-                                console.log(curr_user);
-                                sessionStorage.user_id = curr_user.user_id;
-                                sessionStorage.logged_name = curr_user.fname+' '+curr_user.lname;
-                                sessionStorage.unit_no = curr_user.unit_no;
-                                sessionStorage.building = curr_user.building;
-                                sessionStorage.block_no = curr_user.block_no;
-                                sessionStorage.street = curr_user.street;
-                                sessionStorage.subdivision = curr_user.subdivision;
-                                sessionStorage.barangay = curr_user.barangay;
-                                sessionStorage.city = curr_user.city;
-                                sessionStorage.province = curr_user.province;
-                                sessionStorage.zip_code = curr_user.zip_code;
-                                sessionStorage.mobile_no = curr_user.mobile_no;
-                                // alert('Welcome back, '+curr_user.fname+' '+curr_user.lname);
-                                // $.mobile.changePage("home.html", "fade");
-                                window.location.href = "index.html";
-                                // var oldURL = document.referrer;
-                                // console.log(oldURL);
-                                // window.location.href = oldURL;
-                                var pURL = sessionStorage.prevURL;
-                                // alert('zzzzzzzzzz');
-                                if(typeof pURL !== 'undefined' ){
-                                    if(pURL == 'checkout')
-                                        window.location = 'checkout.html';
-                                }else{
-                                    window.location = 'index.html';
-                                }
-                            }
-                            // }else{
-                            //     alert('Invalid login.');
-                            //     window.location.href = "#page";
-                            // }
-                        },
-                        error: function() {
-                            alert('Invalid login.');
-                            window.location.href = "#page";
-                        }
-                    });
-                    if(typeof user_id === 'undefined'){
-                        // window.location = "index.html";
-                    }else{
-                        console.log('---------------');
-                        // window.location = "checkout.html";
-                    }
-                });
-                /************************
-                    REGISTER
-                ************************/
-                $('#register').click(function(e){
-                    console.log('Redirecting to Register Page...');
-                    window.location.href = "register.html";
-                });
-                /************************
-                    SKIP
-                ************************/
-                $('#skip').click(function(e){
-                    console.log('Redirecting to Home Page...');
-                    window.location.href = "index.html";
-                });
-            });
-        </script>
     </body>
 </html>

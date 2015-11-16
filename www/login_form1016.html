@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="includes/css/index.css" />
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+		<link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
+		<script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
+        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
+		<script type="text/javascript" src="includes/js/login.js" defer></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		    
+
+        <title>clickPlate</title>
+        <style>
+            .div_logo{
+                margin: 0 auto;
+                margin-left: auto;
+                margin-right: auto;
+                align: center;
+                text-align: center;
+            }
+            .div_logo img{
+                height: 100px;
+                margin: 30px 20px;
+            }
+            .poweredby{
+                height: 40px;
+            }
+            .splash_logo{
+                height: 140px;
+                margin-top: 20%;
+            }
+            .hdr{
+                text-align:center;
+                background-color:#000;
+                color:#fff;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" id="splash">
+            <div class="splash_logo">
+                <center><img src="img/iFoods_logoxx.png" class="splash_logo"></center>
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="e" style="border-top:0px;">
+                <center><img src="img/poweredby.png" class="poweredby"></center>
+            </div>
+        </div>
+        <div data-role="page" data-theme="a" id="page">
+            <!-- MENU -->
+            <!-- HEADER -->
+              <div data-role="header" data-position="fixed">
+                <a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle">Login to continue</h1>
+                <!-- <div data-role="navbar" data-iconpos="top">
+                    <ul style="border:1px black solid;">
+                        <li><a href="info.html" data-ajax="false" class="ui-btn-active">Info</a></li>
+                        <li><a href="menu.html" data-ajax="false">Menu</a></li>
+                        <li><a href="order_method_details.html" data-ajax="false">Services</a></li>
+                    </ul>
+                </div> -->
+            </div>
+            <!-- BODY -->
+            <div role="main" class="ui-content">
+                <div class="div_logo">
+                    <a href="index.html" data-ajax="false"><img src="img/iFoods_logoxx.png"></a>
+                </div>
+                <form class="userform" style="line-height:3px;">
+                    <input type="text" name="l_login" id="l_login" value="" data-clear-btn="true" data-mini="true" placeholder="Email">
+                    <input type="password" name="l_passwd" id="l_passwd" value="" data-clear-btn="true" autocomplete="off" data-mini="true" placeholder="Password">
+                    <button id="login" data-theme="b" data-mini="false" data-icon="forward">Login</button>
+                </form>
+                    <button id="register" data-theme="c" data-mini="false" data-icon="edit">Register</button>
+                    <!-- <button id="skip" data-theme="d" data-mini="false" data-icon="arrow-r">Skip this step</button> -->
+                    <center>
+                        <a href="forgot_password.html" data-ajax="false">Forgot Password?</a>
+                    </center>
+            </div>
+            <!-- FOOTER-->
+            <div data-role="footer" data-theme="e" style="border:0px;">
+                <center><a href="index.html" data-ajax="false"><img src="img/poweredby.png" class="poweredby"></a></center>
+            </div>
+        </div>
+
+    </body>
+</html>

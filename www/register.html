@@ -8,11 +8,13 @@
         <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css" />		
         <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-        <script src="css/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/sweetalert.min.js"></script>
         <link rel="stylesheet" href="includes/css/index.css" />
+
         <title>clickPlate</title>
         <style>
             .ui-header .ui-title,.pagetitle {
@@ -20,12 +22,154 @@
                 margin-left: 10% !important;
             }
         </style>
+		
+         <script>
+                $(document).ready(function() {
+
+				console.log(remoteHost+"clickPlatev2/app_menus/addAppUsers/");
+                    $('#login').click(function(e){
+                        var $this = $( this ),
+                            theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+                            msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+                            textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+                            textonly = !!$this.jqmData( "textonly" );
+                            html = $this.jqmData( "html" ) || "";
+
+                            $.mobile.loading( "show", {
+                                    text: msgText,
+                                    textVisible: textVisible,
+                                    theme: theme,
+                                    textonly: textonly,
+                                    html: html
+                            });
+						
+                        checkRequiredFields($('.userform'));
+
+                        $.mobile.loading( "hide" );
+                        e.preventDefault();
+                    });
+
+                    // $( document ).on( "click", ".show-page-loading-msg", function() {
+
+                    // });
+
+                    var checkRequiredFields = function(form){
+                        var check = true;
+                        var msg = '';
+						loaderzShow();
+                        $(".rOkay").each(function() {
+                           if( $(this).val() == '' )
+                           {
+                                $(this).css('background-color','#FFD0D0');
+                                check = false;
+                                msg = 'Required fields must be filled in.'
+                           }else{
+                                $(this).css('background','none');
+                           }
+                        });
+
+                        if( $('#password').val() == $('#retype_password').val() )
+                        {
+                            if($('#password').val() == '' || $('#retype_password').val() == '')
+                            {
+                                check = false;
+                                $('#password, #retype_password').css('background-color','#FFD0D0');
+                            }
+                        }else{
+                             check = false;
+                             msg = 'Password does not match.';
+                             $('#password, #retype_password').css('background-color','#FFD0D0');
+                        }
+
+                        if(check){
+							
+                            var details = form.serialize();
+                            $.ajax({
+                                  url :  remoteHost+"clickPlatev2/app_menus/addAppUsers/",
+                                  type: 'POST',
+                                  dataType : "json",
+                                  cache: false,
+                                  data: {"details":details},
+                                  success:function(data) {
+								  console.log(data);
+									
+                                    if(data.error == 1)
+                                    {
+									
+										swal({   
+											title: "Oops..",  
+											text: "Email address already exists.",  
+											type: "warning",  
+											showCancelButton: false, 
+											confirmButtonColor: "#d11f26",   
+											confirmButtonText: "Okay!",  
+											closeOnConfirm: true });
+										 loaderzHide();
+                                        //alert('Email address already exists.');
+                                    }else{
+										//swal("Added successfully!", "You will receive an email shortly.", "success")
+                                       // alert('Added successfully!  You will receive an email shortly.');
+									   swal({   
+										title: "Added successfully!",
+										text: "You will receive an email shortly.",  
+										type: "success",
+										showConfirmButton: false
+									  });
+                                        console.log(remoteHost+"clickPlatev2/app_menus/send_confirm_registration_mail/"+data.id);
+                                        $.ajax({
+                                              url :  remoteHost+"clickPlatev2/app_menus/send_confirm_registration_mail/"+data.id,
+                                              type: 'POST',
+                                              dataType : "json",
+                                              cache: false,
+											  success:function(data) {
+												console.log(data);
+											  }
+                                        });
+										 loaderzHide();
+										 setTimeout(function(){
+                                          window.location.href = 'index.html';
+										  },2000);
+                                    }
+									loaderzHide();
+                                  }
+                            });
+                        }else{
+						
+							swal({   
+											title: "Oops..",  
+											text: msg,  
+											type: "warning",  
+											showCancelButton: false, 
+											confirmButtonColor: "#d11f26",   
+											confirmButtonText: "Okay!",  
+											closeOnConfirm: true });
+                           // alert(msg);
+						   loaderzHide();
+                        }
+
+                    };
+        });
+
+        </script>
+
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+
+        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
+        <link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
+
+        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
+        <!-- // <script type="text/javascript" src="includes/js/index.js"></script> -->
+        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
     </head>
     <body>
         <div data-role="page" data-theme="a" id="page">
             <!-- MENU -->
             <!-- HEADER -->
             <div data-role="header" data-position="fixed">
+				<a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
                 <h1 class="pagetitle_cust">REGISTER AN ACCOUNT</h1>
             </div>
             <!-- BODY -->
@@ -52,7 +196,7 @@
                     <input type="text" name="street" id="street" value=""  placeholder="*Street Name" data-corners="true" class="rOkay" />
                     <input type="text" name="subdivision" id="subdivision" value="" placeholder="Subdivision" data-corners="true" />
                     <input type="text" name="barangay" id="barangay" value="" placeholder="*Barangay" data-corners="true" class="rOkay" />
-                    <input type="text" name="city" id="city" value="" placeholder="City" data-corners="true" class="rOkay" />
+                    <input type="text" name="city" id="city" value="" placeholder="*City" data-corners="true" class="rOkay" />
                     <input type="text" name="province" id="province" value=""  placeholder="*Province" data-corners="true" class="rOkay" />
                     <input type="text" name="zip_code" id="zip_code" value="" placeholder="Zip Code" data-corners="true" />
                     <hr/>
@@ -64,110 +208,9 @@
             </div>
             <!-- FOOTER-->
             <div data-role="footer" data-theme="e" style="border:0px;">
-                <center><img src="img/poweredby.png" class="poweredby"></center>
+                <center><a href="index.html" data-ajax="false"><img src="img/poweredby.png" class="poweredby"></a></center>
             </div>
         </div>
 
-         <script>
-                $(document).ready(function() {
-                    $('#login').click(function(e){
-                        var $this = $( this ),
-                            theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
-                            msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
-                            textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
-                            textonly = !!$this.jqmData( "textonly" );
-                            html = $this.jqmData( "html" ) || "";
-
-                            $.mobile.loading( "show", {
-                                    text: msgText,
-                                    textVisible: textVisible,
-                                    theme: theme,
-                                    textonly: textonly,
-                                    html: html
-                            });
-
-                        checkRequiredFields($('.userform'));
-
-                        $.mobile.loading( "hide" );
-                        e.preventDefault();
-                    });
-
-                    // $( document ).on( "click", ".show-page-loading-msg", function() {
-
-                    // });
-
-                    var checkRequiredFields = function(form){
-                        var check = true;
-                        var msg = '';
-                        $(".rOkay").each(function() {
-                           if( $(this).val() == '' )
-                           {
-                                $(this).css('background-color','#FFD0D0');
-                                check = false;
-                                msg = 'Required fields must be filled in.'
-                           }else{
-                                $(this).css('background','none');
-                           }
-                        });
-
-                        if( $('#password').val() == $('#retype_password').val() )
-                        {
-                            if($('#password').val() == '' || $('#retype_password').val() == '')
-                            {
-                                check = false;
-                                $('#password, #retype_password').css('background-color','#FFD0D0');
-                            }
-                        }else{
-                             check = false;
-                             msg = 'Password does not match.';
-                             $('#password, #retype_password').css('background-color','#FFD0D0');
-                        }
-
-                        if(check){
-                            var details = form.serialize();
-                            $.ajax({
-                                  url :  remoteHost+"clickPlatev2/app_menus/addAppUsers/",
-                                  type: 'POST',
-                                  dataType : "json",
-                                  cache: false,
-                                  data: {"details":details},
-                                  success:function(data) {
-                                    if(data.error == 1)
-                                    {
-                                        alert('Email address already exists.');
-                                    }else{
-                                        alert('Added successfully!  You will receive an email shortly.');
-                                        console.log(remoteHost+"clickPlatev2/app_menus/send_confirm_registration_mail/"+data.id);
-                                        $.ajax({
-                                              url :  remoteHost+"clickPlatev2/app_menus/send_confirm_registration_mail/"+data.id,
-                                              type: 'POST',
-                                              dataType : "json",
-                                              cache: false,
-                                        });
-                                         // window.location.href = 'index.html';
-                                    }
-
-                                  }
-                            });
-                        }else{
-                            alert(msg);
-                        }
-
-                    };
-        });
-
-        </script>
-
-        <!--<script type="text/javascript" src="cordova.js"></script>-->
-        <script type="text/javascript" src="js/index.js"></script>
-        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
-        <script src="css/jquery.mobile-1.4.3.min.js"></script>
-
-        <script type="text/javascript" src="plugins/swiper/js/idangerous.swiper.min.js"></script>
-        <link rel="stylesheet" href="plugins/swiper/css/idangerous.swiper.css">
-
-        <!-- <link rel="stylesheet" href="css/themes/font-awesome.min.css" /> -->
-        <!-- // <script type="text/javascript" src="includes/js/index.js"></script> -->
-        <script type="text/javascript" src="plugins/pull2refresh/jquery.p2r.min.js" defer></script>
     </body>
 </html>

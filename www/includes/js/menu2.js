@@ -1,3 +1,4 @@
+
 function display_profile(){
     var logged_user = sessionStorage.logged_name;
     var content = '';
@@ -65,9 +66,8 @@ function show_brands(){
     var res_id = sessionStorage.res_id;
     var block = ['a','b','c','d'];
     var ctr = 0;
-    // console.log(remoteHost+"clickPlatev2/app_menus/getCategories/"+res_id);
     $.ajax({
-      url : remoteHost+"clickPlatev2/app_menus/getCategories/"+res_id,
+      url : remoteHost+"clickPlatevp/app_menus/getCategories/"+res_id,
       type: 'POST',
       dataType : "json",
       data: {"name":"JSON_Request"},
@@ -81,14 +81,13 @@ function show_brands(){
             'class':'gray-listview'
         });
         $.each(items,function(k,v){
-          console.log(k+' -- '+v.cat_name);
             if(ctr == 4)
               ctr = 0;
             var li = $('<li/>').css({
                 'border-raduis': '2px'
             });
             var img = $('<img>').attr({
-                                'src': remoteHost+'clickPlatev2/uploads/'+res_id+'/categories/'+k+'.png',
+                                'src': remoteHost+'clickPlatevp/uploads/'+res_id+'/categories/'+k+'.png',
                                 'height':'80px'
                             });
             var h2 = $('<h2/>').text(v.cat_name);
@@ -103,8 +102,7 @@ function show_brands(){
                         'margin-top':'5px',
                         'margin-bottom':'5px'
                     }).click(function(){
-                        // var cat_id = $(this).parent().attr('cat_id');
-                        // alert(cat_id);
+						loaderzShow();
                         sessionStorage.menu_cat_id = v.cat_id;
                         sessionStorage.menu_cat_name = v.cat_name;
                         window.location = "menu_items.html";
@@ -112,32 +110,13 @@ function show_brands(){
                     }).append(img).append(h2);
             li.append(a);
             ul.append(li);
-            // var main = $('<div/>').addClass('ui-block-'+block[ctr]);
-            // var body = $('<div/>').addClass('ui-body ui-body-a ui-corner-all').attr('cat_id',v.cat_id);
-            // var tile = $('<div/>').addClass('tile-bg');
-            // var title = $('<div/>').addClass('tile-title').append('<p>'+v.cat_name+'</p>');
-
-            // title.appendTo(tile);
-            // console.log(remoteHost+'clickPlatev2/uploads/'+res_id+'/categories/'+k+'.png');
-            // tile.css({
-            //   'background':'url("'+remoteHost+'clickPlatev2/uploads/'+res_id+'/categories/'+k+'.png") 100% 100% no-repeat ',
-            //   'href':'menu.html',
-            //   'background-position':'center',
-            //   'background-size':'cover'
-            // }).appendTo(body);
-
-            // tile.click(function(){
-            //   var cat_id = $(this).parent().attr('cat_id');
-            //   // alert(cat_id);
-            //   sessionStorage.menu_cat_id = cat_id;
-            //   window.location = "menu_items.html";
-            // });
-            // body.appendTo(main);
-            // $('#category_list').append(main);
+     
             ctr++;
         });
         $('#category_list').append(ul);
         $("#cat-list").listview().listview("refresh");
+		
+		
       }
     });
 }

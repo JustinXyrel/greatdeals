@@ -62,8 +62,9 @@ $(document).ready(function() {
   var data = sessionStorage.resto_branches;
   console.log(data);
 
-  if(typeof data === "undefined") {
+  //if(typeof data != "undefined") {
     var res_id = sessionStorage.res_id;
+	console.log(res_id);
     console.log(remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id);
     $.ajax({
       url : remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id,
@@ -71,15 +72,131 @@ $(document).ready(function() {
       dataType : "json",
       data: {"name":"JSON_Request"},
       success:function(data) {
-        console.log(data.branches);
+       // console.log(data.branches);
         sessionStorage.resto_branches = JSON.stringify(data.branches);
-        data = sessionStorage.resto_branches;
+       // data = sessionStorage.resto_branches;
+	   
+	     var search = JSON.parse(sessionStorage.resto_branches);
+
+	    console.log( sessionStorage.resto_branches);
+          var ctr = 1;
+		$.each(search,function(k,v){
+			console.log('PAGPOPULATE......................................................................................');
+			console.log(v.br_base_loc);
+			console.log('------------------------------------------------------------------------------------------------jomss');
+
+			   var sel = 'line-'+v.br_id;
+			   var item = "";
+			  item += '<li id="btn-'+v.br_id+'" data-id="'+v.br_id+'" data-icon="false"><a href="#" data-ajax="false" id="branches_id-'+v.br_id+'" data-r="'+v.br_id+'"><h3 class="ui-li-heading" style="white-space : normal;">'+v.br_name+'</h3><p style="white-space : normal;width: 80%;">'+v.br_address+'</p></a>';
+
+			  // sessionStorage.countStars = 0;
+			  item += '</li>';
+			  $('#mylist').append(item);
+			  var stars = '';
+			  var brID = v.br_id;
+				  $.ajax({
+				  url: remoteHost+"clickPlatev2/reviews/get_branch_reviews_avg/"+v.br_id,
+				  type: 'POST',
+				  dataType : "json",
+				  cache: false,
+				  data: {"name":"JSON_Request"},
+				  success:function(data) {
+					  var ratings = data.avg;
+					  for(var i=0;i<ratings;i++){
+						$('#branches_id-'+brID).append('<img src="plugins/raty/lib/images/star-on.png">');
+					  }
+				  }
+			  });
+			  // var ratings = sessionStorage.countStars;
+
+
+			  ctr++;
+		});
+
+		$('#mylist').delegate('li', 'click', function () {
+		  var id = $(this).attr('data-id');
+		  var res_id = sessionStorage.res_id;
+		  sessionStorage.br_id = id;
+	  	  console.log(remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id+"/"+id);
+			$.ajax({
+			  // url : remoteHost+"resto/restoList/branchDetails/"+id,
+			  url : remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id+"/"+id,
+			  type: 'POST',
+			  dataType : "json",
+			  data: {"name":"JSON_Request"},
+			  success:function(data) {
+				sessionStorage.branch_details = JSON.stringify(data.branches);
+				var search = JSON.parse(sessionStorage.branch_details);
+				$.each(search,function(k,v){
+				  // console.log('ADDRESS AKO!!!' + v.br_address);
+				  console.log('fb ako:: '+v.facebook_url);
+				  sessionStorage.br_id = v.br_id;
+				  sessionStorage.br_name = v.br_name;
+				  sessionStorage.br_address = v.br_address;
+				  sessionStorage.br_contact_no = v.br_contact_no;
+				  sessionStorage.br_delivery_no = v.br_delivery_no;
+				  sessionStorage.br_base_location = v.br_base_loc;
+				  // sessionStorage.facebook_url = v.facebook_url;
+				  // sessionStorage.twitter_url = v.twitter_url;
+				  // window.location = "info.html";
+//console.log(sessionStorage.br_base_location);
+				  // alert(v.br_delivery_no);
+
+
+				  var res_id = sessionStorage.res_id;
+
+				  $.ajax({
+					// url : remoteHost+"resto/restoList/restoCategories/"+res_id,
+					url : remoteHost+"clickPlatev2/app_menus/getCategories/"+res_id,
+					type: 'POST',
+					dataType : "json",
+					data: {"name":"JSON_Request"},
+					success:function(data) {
+					  sessionStorage.categories = JSON.stringify(data.categories);
+
+						var user_id = '';
+						if(sessionStorage.user_id != undefined)
+						  user_id = sessionStorage.user_id;
+
+						console.log('---------> '+user_id);
+						// if(user_id.length > 0){
+						//   window.location = "menu.html";
+						// }else{
+						//   window.location = "menu.html";
+						// }
+					  // });
+
+					},
+					error: function(data) {
+					  // alert('Keyword entered not found.'+data);
+					  console.log('error' + data);
+					}
+				  // window.location = "info.html";
+				  });
+				});
+				
+								 window.location.href = "direction.html";
+
+			  },
+			  error: function(data) {
+				// alert('Keyword entered not found.'+data);
+				console.log('error' + data);
+			  }
+			});
+		});
+			// Enhance new listview element
+		  $('#mylist').listview('refresh');
+		  // Hide first listview element
+		  $('#mylist li').eq(0).addClass('ui-screen-hidden');
+		  
       }
     });
-  }else{
-    data = sessionStorage.resto_branches;
-  }
-  var search = JSON.parse(sessionStorage.resto_branches);
+  //}else{
+  //  data = sessionStorage.resto_branches;
+//  }
+   console.log( localStorage.getItem('resto_branches'));
+
+console.log(sessionStorage.resto_branchex);
   var item = '';
 
   var map;
@@ -209,134 +326,6 @@ $(document).ready(function() {
     });
   }
 
-  var ctr = 1;
-  $.each(search,function(k,v){
-    console.log('PAGPOPULATE......................................................................................');
-    console.log(v.br_base_loc);
-    console.log('------------------------------------------------------------------------------------------------jomss');
-
-      // item += '<li id="btn" data-id="'+v.br_id+'"><a href="#" id="branches_id" data-r="'+v.br_id+'"><img src="img/urlogo.png" class="ui-li-thumb"><h3 class="ui-li-heading" style="white-space : normal;">'+v.br_name+'</h3><p class="ui-li-desc" style="white-space : normal;"><strong>'+v.br_address+'</strong></p></a></li>';
-      // item += '<li id="btn" data-id="'+v.br_id+'"><a href="#" id="branches_id" data-r="'+v.br_id+'"><h3 class="ui-li-heading" style="white-space : normal;">'+v.br_name+'</h3><p class="ui-li-desc" style="white-space : normal;"><strong>'+v.br_address+'</strong></p><span class="ui-li-count ui-btn-up-c ui-btn-corner-all">12 km</span></a></li>';
-      var sel = 'line-'+v.br_id;
-      // console.log(sel);
-      // localStorage.setItem('selected',sel);
-
-      // calculateDistance(pointA,v.br_base_loc,sel);
-      // item += '<li id="btn" data-id="'+v.br_id+'"><a href="#" id="branches_id" data-r="'+v.br_id+'"><h3 class="ui-li-heading" style="white-space : normal;">'+v.br_name+'</h3><p class="ui-li-desc" style="white-space : normal;"><strong>'+v.br_address+'</strong></p><span class="ui-li-count ui-btn-up-c ui-btn-corner-all line-'+v.br_id+'"></span></a></li>';
-      var item = "";
-      item += '<li id="btn-'+v.br_id+'" data-id="'+v.br_id+'" data-icon="false"><a href="#" id="branches_id-'+v.br_id+'" data-r="'+v.br_id+'"><h3 class="ui-li-heading" style="white-space : normal;">'+v.br_name+'</h3><p style="white-space : normal;width: 80%;">'+v.br_address+'</p></a>';
-
-      // sessionStorage.countStars = 0;
-      item += '</li>';
-      $('#mylist').append(item);
-      var stars = '';
-      var brID = v.br_id;
-      // $.post(remoteHost+"clickPlatev2/reviews/get_branch_reviews_avg/"+v.br_id,{"name":"JSON_Request"},function(data){
-      //   alert(data);
-      // });
-      $.ajax({
-          url: remoteHost+"clickPlatev2/reviews/get_branch_reviews_avg/"+v.br_id,
-          type: 'POST',
-          dataType : "json",
-          cache: false,
-          data: {"name":"JSON_Request"},
-          success:function(data) {
-              var ratings = data.avg;
-              for(var i=0;i<ratings;i++){
-                $('#branches_id-'+brID).append('<img src="plugins/raty/lib/images/star-on.png">');
-              }
-          }
-      });
-      // var ratings = sessionStorage.countStars;
-
-
-      ctr++;
-  });
-
- 	$('#mylist').delegate('li', 'click', function () {
- 	  var id = $(this).attr('data-id');
- 		sessionStorage.br_id = id;
-
-    // alert(remoteHost+"resto/restoList/branchDetails/"+id);
-    // alert('zzzz');
-    var res_id = sessionStorage.res_id;
-    console.log(remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id+"/"+id);
-    $.ajax({
-      // url : remoteHost+"resto/restoList/branchDetails/"+id,
-      url : remoteHost+"clickPlatev2/app_resto/searchBranches/"+res_id+"/"+id,
-      type: 'POST',
-      dataType : "json",
-      data: {"name":"JSON_Request"},
-      success:function(data) {
-        sessionStorage.branch_details = JSON.stringify(data.branches);
-        var search = JSON.parse(sessionStorage.branch_details);
-        $.each(search,function(k,v){
-          // console.log('ADDRESS AKO!!!' + v.br_address);
-          console.log('fb ako:: '+v.facebook_url);
-          sessionStorage.br_id = v.br_id;
-          sessionStorage.br_name = v.br_name;
-          sessionStorage.br_address = v.br_address;
-          sessionStorage.br_contact_no = v.br_contact_no;
-          sessionStorage.br_delivery_no = v.br_delivery_no;
-          sessionStorage.br_base_location = v.br_base_loc;
-          // sessionStorage.facebook_url = v.facebook_url;
-          // sessionStorage.twitter_url = v.twitter_url;
-          // window.location = "info.html";
-
-          // alert(v.br_delivery_no);
-
-
-          var res_id = sessionStorage.res_id;
-
-          $.ajax({
-            // url : remoteHost+"resto/restoList/restoCategories/"+res_id,
-            url : remoteHost+"clickPlatev2/app_menus/getCategories/"+res_id,
-            type: 'POST',
-            dataType : "json",
-            data: {"name":"JSON_Request"},
-            success:function(data) {
-              // alert('zzz');
-              // console.log(remoteHost+"resto/restoList/restoCategories/"+res_id);
-              // console.log(data.categories);
-              sessionStorage.categories = JSON.stringify(data.categories);
-              // var cat = JSON.parse(sessionStorage.categories);
-              // $.each(cat,function(k,v){
-              //   sessionStorage.br_cat_id = v.br_id;
-              //   sessionStorage.br_cat_name = v.br_name;
-
-                // window.location = "order_method.html";
-                // window.location = "info.html";
-
-                var user_id = '';
-                if(sessionStorage.user_id != undefined)
-                  user_id = sessionStorage.user_id;
-
-                console.log('---------> '+user_id);
-                // if(user_id.length > 0){
-                //   window.location = "menu.html";
-                // }else{
-                //   window.location = "menu.html";
-                // }
-              // });
-
-            },
-            error: function(data) {
-              // alert('Keyword entered not found.'+data);
-              console.log('error' + data);
-            }
-          // window.location = "info.html";
-          });
-        });
-
-      },
-      error: function(data) {
-        // alert('Keyword entered not found.'+data);
-        console.log('error' + data);
-      }
-    // window.location = "info.html";
-    });
-
-  });
 
   // Enhance new listview element
   $('#mylist').listview('refresh');

@@ -78,12 +78,8 @@ $(document).ready(function() {
     // });
 
     $.each(search,function(k,v){
-     //  console.log('resid '+v.res_id);
-      // console.log('img '+v.res_image);
-      // item += '<li id="btn" data-id="'+v.res_id+'" data-name="'+v.res_name+'" data-inset="true"><a href="#" id="restaurant_id" data-r="'+v.res_id+'"><img src="'+remoteHost+'resto/uploads/'+v.res_id+'/'+v.res_image+'" class="ui-li-thumb" style="position: absolute;left: 1px;top: 0;max-height: 60px;max-width: 60px;"><h3 class="ui-li-heading">'+(v.res_name).toUpperCase()+'</h3><p class="ui-li-desc"><strong>'+v.res_type+'</strong></p><span style="position:relative;font-size:4px !important;" /><img src="img/icons/coffee.png"/><span style="font-size:12px;">'+v.res_desc+'</span></a></li>';
-      // if(v.res_image == null) img_src = remoteHost+"/clickPlatev2/img/noimage.png";
-     //  else img_src = remoteHost+'resto/uploads/'+v.res_id+'/'+v.res_image;
-      item += '<li id="btn_'+v.res_id+'" data-id="'+v.res_id+'" data-name="'+v.res_name+'" data-inset="true"><a href="#" id="restaurant_id" data-r="'+v.res_id+'"><img id="img_'+v.res_id+'" class="ui-li-thumb" style="position: absolute;left: 1px;top: 0;max-height: 60px;max-width: 60px;"><h3 class="ui-li-heading">'+(v.res_name).toUpperCase()+'</h3><p class="ui-li-desc"><strong>'+v.res_type+'</strong></p><span style="position:relative;font-size:4px !important;" /><span style="font-size:12px;"><strong>Description: </strong>'+v.res_desc+'</span></a></li>';
+	console.log(v);
+      item += '<li id="btn_'+v.res_id+'" data-id="'+v.res_id+'" data-name="'+v.res_name+'" data-code="'+v.res_code+'" data-inset="true"><a href="#" id="restaurant_id" data-r="'+v.res_id+'"><img id="img_'+v.res_id+'" class="ui-li-thumb" style="position: absolute;left: 1px;top: 0;max-height: 60px;max-width: 60px;"><h3 class="ui-li-heading">'+(v.res_name).toUpperCase()+'</h3><p class="ui-li-desc"><strong>'+v.res_type+'</strong></p><span style="position:relative;font-size:4px !important;" /><span style="font-size:12px;"><strong>Description: </strong>'+v.res_desc+'</span></a></li>';
       $.post(remoteHost+"clickPlatev2/get/resto_logos/"+v.res_id,function(data){
           $.each(data,function(resto_id,val){
               console.log(val.path);
@@ -121,11 +117,12 @@ $(document).ready(function() {
     });
 
    	$('#mylist').delegate('li', 'click', function () {
-   		var id = $(this).attr('data-id'),res_name = $(this).attr('data-name');
+   		var id = $(this).attr('data-id'),res_name = $(this).attr('data-name'),res_code = $(this).attr('data-code');
       // alert(id);
-      sessionStorage.res_id = id;
+		sessionStorage.res_id = id;
    		sessionStorage.res_name = res_name;
-
+		sessionStorage.res_code = res_code;
+		
       console.log(remoteHost+"clickPlatev2/app_resto/searchBranches/"+id);
       $.ajax({
         // url : remoteHost+"resto/restoList/searchBranches/"+id,
@@ -139,13 +136,7 @@ $(document).ready(function() {
             // console.log('>>> ' + data.resto);
             var search = JSON.parse(sessionStorage.resto_branches);
             $.each(search,function(k,v){
-                // console.log(v.branch_name);
-                // sessionStorage.res_name = v.res_name;
-                // sessionStorage.branch[v.res_name] = array('code'=>v.res_code,
-                //                                           'name'=>v.res_name,
-                //                                           'desc'=>v.res_desc,
-                //                                           'type'=>v.res_type
-                // );
+
                 var user_id = '';
                 if(sessionStorage.user_id != undefined)
                   user_id = sessionStorage.user_id;

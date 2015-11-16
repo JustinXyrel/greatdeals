@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <META charset="utf-8" />
+        <META name="format-detection" content="telephone=no" />
+        <META name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <META name="viewport" content="initial-scale=1, maximum-scale=1">
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+		<link href='plugins/starrating/jquery.rating.css' type="text/css" rel="stylesheet"/>
+		<link href='plugins/raty/lib/jquery.raty.css' type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+		<script src="js/jquery-1.11.1.min.js"></script>
+        <script src='plugins/starrating/jquery.rating.js' type="text/javascript" language="javascript"></script>
+        <script src='plugins/raty/lib/jquery.raty.js' type="text/javascript" language="javascript"></script>
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="includes/js/functions.js"></script>	
+		<script type="text/javascript" src="includes/js/sidenav_actions.js"></script>	
+		<script type="text/javascript" src="includes/js/info.js"></script>	
+        <title>clickPlate</title>
+        <style>
+            img.ui-li-thumb {
+                vertical-align: middle;
+                margin: 22px 16px;
+            }
+            .app-btn-new-badge .ui-btn-inner:before {
+                content: 'new';
+                position: absolute;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                float: right;
+                width: 30px;
+                height: 30px;
+                right: 0px;
+                top: 0px;
+                margin-right: -15px;
+                margin-top:  -15px;
+                background-color: red;
+                background-image: -webkit-linear-gradient(top, #f7847e 0%,#f9363d 49%,#e8100e 50%,#c30910 100%);
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 30px;
+                border: black;
+                border-radius: 30px;
+                border: solid 2px white;
+                z-index: 2;
+            }
+            .custom_listview_img {
+                margin:0px;
+                padding:0px;
+                /*background-image:url('img/bgg.png');*/
+                /*background-image:url('img/world_chicken.jpg');*/
+                /*background-repeat: no-repeat;*/
+                background-size: inherit;
+                /*background-position: right;*/
+            }
+            .midbtn{
+                font-size: 10px;
+            }
+            .pagetitle{
+                font-weight: bold;
+            }
+            .ui-icon-cart {
+                background-image: url(img/icons/cart-20.png) !important;
+                background-repeat: no-repeat;
+                background-position:center left;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div data-role="page" data-theme="a" id="index">
+            <!-- MENU -->
+            <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
+
+            </div>
+            <!-- HEADER -->
+            <div data-role="header" data-position="fixed">
+                <a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+                <h1 class="pagetitle"></h1>
+                <a href="#myPanel" data-icon="bars" class="ui-btn-right" data-iconpos="notext"></a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul style="border:1px black solid;">
+                        <li><a href="info.html" data-ajax="false" class="ui-btn-active">Info</a></li>
+                        <li><a href="menu.html" data-ajax="false">Menu</a></li>
+                        <li><a href="order_method_details.html" data-ajax="false">Services</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div role="page" class="ui-content" data-fullscreen="true" id="body_content">
+                <ul data-role="listview" data-inset="false" data-corners="false" class="compHdr">
+                    <li id="subHdr_infopage" style="height:100px;text-align:center!important;" class="custom_listview_img"></li>
+                </ul>
+                <br/>
+                <div class="ui-grid-c">
+                    <!-- <div class="ui-block-a"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-arrow-l">Call</a></div> -->
+                    <!-- <div class="ui-block-a"><input type="button" data-icon="phone" value="Call" class="midbtn"></div> -->
+                    <!-- <div class="ui-block-b"><a href="reviews.html" data-role="button" rel="external" class="midbtn" data-icon="phone">Reviews</a></div> -->
+                    <!-- <div class="ui-block-d"><input type="button" data-icon="arrow-u-r" value="Payment" class="midbtn"></div> -->
+                    <div class="ui-block-c"><a href="tel:024771818" data-role="button" rel="external" class="midbtn" data-icon="phone"  data-theme="b" data-ajax="false">CALL</a></div>
+                    <div class="ui-block-c"><a href="reviews.html" data-role="button" rel="external" class="midbtn" data-icon="star"  data-theme="a" data-ajax="false">REVIEWS</a></div>
+                    <div class="ui-block-c"><a href="gallery.html" data-role="button" rel="external" class="midbtn" data-icon="camera"  data-theme="d" data-ajax="false">PHOTOS</a></div>
+                    <div class="ui-block-c"><a href="resto_branch.html" data-role="button" rel="external" class="midbtn" data-icon="navigation"  data-theme="c" data-ajax="false">BRANCHES</a></div>
+                </div>
+                <ul data-role="listview" data-inset="true" data-corners="false" data-theme="a" data-content-theme="b">
+                  <li data-role="list-divider">Address</li>
+                  <li id="br_addr" style="white-space: normal !important;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
+                  <li data-role="list-divider">About Us</li>
+                  <li id="br_attr" style="white-space: normal !important;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
+                  <li data-role="list-divider">Store Hours</li>
+                  <li id="br_hours" style="white-space: normal !important;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
+                  <li data-role="list-divider">Delivery Contact No.</li>
+                  <li id="br_cont" style="white-space: normal !important;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</li>
+                </ul>
+                <!-- <center><a href="#">Cash & Credit Cards Accepted</a></center> -->
+                </div>
+     
+                <!-- FOOTER-->
+                <div data-role="footer" data-theme="e" style="border:0px;">
+                    <center><a href="index.html"  data-ajax="false"><img src="img/poweredby.png" class="poweredby"></a></center>
+                </div>
+            </div>
+    </body>
+</html>

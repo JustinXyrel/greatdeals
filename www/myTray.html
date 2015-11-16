@@ -4,21 +4,24 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />	
         <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-        <script src="css/jquery-1.11.1.min.js"></script>
-
-        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-        <META HTTP-EQUIV="Expires" CONTENT="-1">
-
-        <script type="text/javascript" src="js/index.js"></script>
-
-        <title>clickPlate</title>
+		<link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+		<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/underscore-min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="includes/js/functions.js"></script>
+				<script type="text/javascript" src="includes/js/myTray.js"></script>
+        <title>Great Deals</title>
         <style>
             img.ui-li-thumb {
                 vertical-align: middle;
@@ -198,7 +201,7 @@
 
             <!-- BODY -->
             <div role="page" class="ui-content">
-                <h3 style="text-align:center;font-weight:bold;">CHECK YOUR ORDERS BELOW</h3>
+                <h3 style="text-align:center;font-weight:bold;">CHECK YOUR VOUCHERS BELOW</h3>
                 <div data-role="collapsible-set" data-theme="a"  id="orderList" data-corners="false"></div>
                 <br><br><br>
                 <div class="ui-grid-a">
@@ -208,348 +211,12 @@
 
                 <form id="checkoutCart"></form>
 
-                <script>
-                    $(document).ready(function() {
-                        function display_profile(){
-                            var logged_user = sessionStorage.logged_name;
-                            var content = '';
-                            if(typeof logged_user !== 'undefined'){
-                                content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout_" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
-                                content += '</ul>';
-                                $('#myPanel').html(content);
-                            }else{
-                                content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
-                                content += '</ul>';
-                                $('#myPanel').html(content);
-                            }
-
-                            $('#sidenav_user_profile').click(function(e){
-                                window.location.href = "user_profile.html";
-                            });
-                            $('#sidenav_logout_').click(function(e){
-                                window.location.href = 'logout.html';
-                            });
-                            $('#sidenav_logout').click(function(e){
-                                window.location.href = 'login_form.html';
-                            });
-                            $('#sidenav_about').click(function(e){
-                                window.location.href = 'about_us.html';
-                            });
-                        }
-                        display_profile();
-                        function showCart() {
-                            var item_cart = sessionStorage.orderCart;
-                            // item_cart = JSON.parse(item_cart);
-                            // console.log(item_cart);
-
-                            // var item_cart = toObject(item_cart);
-                            // console.log(item_cart);
-
-                            // $.each(item_cart,function(k,v){
-                            //     var a = getUrlParameter(v);
-                            //     console.log(a);
-                            // });
-                            // console.log(item_cart);
-                        }
-
-                        $( '#panelTrgr').click(function(e){
-                            // alert('zzzz');
-                            showCart();
-                        });
-
-                        Array.prototype.remove = function(index){
-                            delete this[index];
-                            return this;
-                        };
-                        Array.prototype.clean = function(){
-                            var arr1 = this, arr2 = [];
-                            for(var a in arr1){
-                                if(arr1[a]&&arr1.hasOwnProperty(a)){
-                                    arr2.push(arr1[a]);
-                                }
-                            }
-                            this.splice(0);
-                            for(var b in arr2){
-                                if(arr2.hasOwnProperty(b)){
-                                    this.push(arr2[b]);
-                                }
-                            }
-                            return this;
-                        };
-
-                        function deleteIfMatches(array, keyName, value) {
-                            // for (i=0; i<array.length; i++) {
-                            //     if (array[i][keyName] === value) {
-                            //        return array.splice(i, 1);
-                            //        console.log('----------------------------------------WEEEE');
-                            //        console.log(array);
-                            //     }
-                            // }
-                            // // returns un-modified array
-                            // return array;
-                            var i = 0,
-                            count = array.length;
-
-                            // delete all objects with descrip of tuna
-                            // console.log('old:: ');
-                            // console.log(array[i]);
-                            for(i; i < count; i++) {
-                                console.log('selected item:: array['+i+']['+keyName+']');
-                                if (array[i][keyName] === value) {
-                                    array.remove(i).clean();
-                                }
-                            }
-                            // console.log('new:: ');
-                            // console.log(array.length);
-                            // if(array.length = )
-                        }
-
-                        function getTrayTotalAmnt(cart){
-                            var total = 0;
-                            console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
-                            console.log(cart);
-                            $.each(cart, function(k,v){
-                                console.log('------------------------');
-                                console.log('------------------------');
-                                total += Number(v.menu_cost * v.order_qty);
-                                console.log('------------------------');
-                                console.log('------------------------');
-                            });
-                            console.log('TOTAL:::'+total);
-                            return total;
-                        }
-
-                        // function checkoutDisabler(){
-                        //     var orderCart = sessionStorage.orderCart;
-                        //     orderCart = JSON.parse(orderCart);
-                        //     var total = getTrayTotalAmnt(orderCart);
-
-                        //     if(Number(total) == 0){
-                        //         $('#place_ordered').parent().hide();
-                        //     }
-                        // }
-                        // checkoutDisabler();
-                        /*************************************************************************************
-                        *****************************************HEADER***************************************
-                        *************************************************************************************/
-                        var subHeader = '';
-                        var br_name = sessionStorage.br_name;
-                        var br_address = sessionStorage.br_address;
-
-                        // subHeader += '<img src="img/urlogo.png" class="ui-li-thumb"><input type="hidden" id="backing6"><div id="rating_menupage" data-rateit-ispreset="true" data-rateit-readonly="true"><h2 id="compName" style="white-space : normal;">'+br_name+'</h2><p style="white-space : normal;">'+br_address+'</p>';
-                        // $('#subHdr_menupage').html(subHeader);
-
-                        /*************************************************************************************
-                        ******************************************BODY****************************************
-                        *************************************************************************************/
-
-                        var content = '';
-                        var orderCart = sessionStorage.orderCart;
-                        // console.log(typeof orderCart);
-                        $('#back_to_menu,#place_ordered').parent().hide();
-
-                        if(orderCart !== "undefined" && sessionStorage.getItem('orderCart') !== null) {
-                            $('#back_to_menu,#place_ordered').parent().show();
-                            orderCart = JSON.parse(orderCart);
-                            subtotal = 0;
-                            shipping_cost = 0;
-                            total = 0;
-                            var om = sessionStorage.order_method;
-
-                            /**********************************************
-                            UNCOMMENT FOR PLOTTING ORDERS AS LISTVIEW
-                            **********************************************/
-                            content += '<ul data-role="listview" id="orderList" style="font-size:14px;border:0px;" data-icon="star">';
-                            $.each(orderCart,function(k,v){
-                                content += '<li style="min-height:70px;" id="line_id_'+k+'"><span data-iconpos="right" style="position:relative;float:left;" id="editline-'+v.menu_id+'" data-rel="popup"></span><span style="white-space: normal;padding-left:10px;">'+unescape(v.menu_name)+'</span><span class="ui-btn-icon-notext ui-icon-delete delete-line"  data-line-id="'+k+'" data-id="'+v.menu_id+'" data-iconpos="right" style="position:relative;float:right;"></span><span class="ui-btn-icon-notext ui-icon-edit edit-line"  data-line-id="'+k+'" data-id="'+v.menu_id+'" data-iconpos="right" style="position:relative;float:right;padding-right:5%;"></span><span style="border:0px;font-weight:bold !important;font-size:14px !important;color:#d11f26;float:right;">₱'+displayInCurr(v.menu_cost*v.order_qty)+'</span><p style="width: 50%!important;overflow:hidden;text-overflow:ellipsis;font-weight:bold;padding-left:14%;" class="mod_'+k+'">';
-
-                                    var orderModCart = sessionStorage.orderModCart;
-                                    orderModCart = JSON.parse(orderModCart);
-                                    var mods = '';
-                                    console.log(orderModCart);
-
-                                    $.each(orderModCart, function(k1,v1){
-                                        if(v1.line_id === k){
-                                            mods += v1.mod_name+'<br>';
-                                        }
-                                    });
-                                content += mods;
-                                // content += '</p><p style="width: 50%!important;overflow:hidden;text-overflow:ellipsis;font-weight:bold;padding-left:14%;">QTY: '+unescape(v.order_qty)+'</p></li>';
-                                content += '</p><p style="width: 50%!important;overflow:hidden;text-overflow:ellipsis;font-weight:bold;padding-left:10px;">'+unescape(v.order_qty)+' @ ₱'+displayInCurr(v.menu_cost)+'</p></li>';
-                                subtotal += v.menu_cost * v.order_qty;
-                            });
-                            content += '</ul>';
-
-                            content += '<ul data-role="listview" style="border:0px;">';
-                                content += '<li style="border:0px;text-shadow:0;padding-left:10%;"><span>Sub-total:</span><span class="ui-li-count subTotalAmnt" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;"> ₱'+displayInCurr(subtotal)+'</span></li>';
-                                if(om == 'delivery'){
-                                    content += '<li style="border:0px;text-shadow:0;padding-left:10%;"><span class="delcharge">Delivery Charge:</span><span class="ui-li-count delcharge" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;"> ₱'+displayInCurr(shipping_cost)+'</span></li>';
-                                }
-                                var total = subtotal += shipping_cost;
-                                content += '<li style="border:0px;text-shadow:0;padding-left:10%;background-color:#d11f26;color:white;"><span>Total:</span><span class="ui-li-count totalAmnt" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;background-color:#d11f26;color:white;"> ₱'+displayInCurr(total)+'</span></li>';
-                            content += '</ul>';
-                            /**********************************************
-                            UNCOMMENT FOR PLOTTING ORDERS AS TABULAR
-                            **********************************************/
-                            // var hdr = ["Item", "Qty", "Price", "Amnt", ""];
-
-                            // content += '<table data-role="table" class="ui-responsive order-list" id="orderstbl">';
-                            //     content += '<thead><tr>';
-                            //         for (var i=0; i<hdr.length; i++){
-                            //             content += '<th class="title">'+hdr[i]+'</th>';
-                            //         }
-                            //     content += '</tr></thead>';
-                            //     content += '<tbody>';
-                            //         var subTotal = 0;
-                            //         var grandTotal = 0;
-                            //         $.each(orderCart,function(k,v){
-                            //             content += '<tr style="border-top:2px dashed;">';
-                            //                 content += '<td>'+unescape(v.menu_name)+'</td>';
-                            //                 content += '<td>'+unescape(v.order_qty)+'</td>';
-                            //                 content += '<td> ₱'+displayInCurr(v.menu_cost)+'</td>';
-                            //                 var amnt = 0;
-                            //                 amnt = parseFloat(v.order_qty*v.menu_cost);
-                            //                 subTotal += Number(amnt);
-                            //                 content += '<td> ₱'+displayInCurr(amnt)+'</td>';
-                            //                 content += '<td><span class="ui-btn-icon-notext ui-icon-delete delete-line"  data-line-id="'+k+'" data-id="'+v.menu_id+'" data-iconpos="right" style="position:relative;float:right;"></span>';
-                            //                 content += '<span class="ui-btn-icon-notext ui-icon-edit delete-line"  data-line-id="'+k+'" data-id="'+v.menu_id+'" data-iconpos="right" style="position:relative;float:right;"></span></td>';
-                            //             content += '</tr>';
-                            //         });
-                            //     content += '</tbody>';
-                            // content += '</table>';
-
-                            // content += '<ul data-role="listview" style="border:0px;position:relative;margin-top:10px;">';
-                            //     content += '<li style="border:0px;text-shadow:0;padding-left:10%;"><span>Sub-total:</span><span class="ui-li-count subTotalAmnt" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;"> ₱'+displayInCurr(subtotal)+'</span></li>';
-                            //     if(om == 'delivery'){
-                            //         content += '<li style="border:0px;text-shadow:0;padding-left:10%;"><span class="delcharge">Delivery Charge:</span><span class="ui-li-count delcharge" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;"> ₱'+displayInCurr(shipping_cost)+'</span></li>';
-                            //     }
-                            //     var total = subTotal;
-                            //     content += '<li style="border:0px;text-shadow:0;padding-left:10%;background-color:#d11f26;color:white;"><span>Total:</span><span class="ui-li-count totalAmnt" style="text-align:right;border:0px;font-size: 16px !important;padding-right:10%;background-color:#d11f26;color:white;"> ₱'+displayInCurr(total)+'</span></li>';
-                            // content += '</ul>';
-
-                        }else{
-                            content = 'No order yet.';
-                        }
-                        $( "#orderList" ).html(content);
-                        $('#orderList').enhanceWithin();
-                        $('#orderstbl').table( "refresh" );
-                        $('#summarytbl').table( "refresh" );
-
-                        $('.delete-line').click(function(e){
-                            var id = $(this).attr('data-line-id');
-                            // alert(id);
-
-                            var item_cart = sessionStorage.orderCart;
-                            item_cart = JSON.parse(item_cart);
-                            // console.log(item_cart);
-
-                            deleteIfMatches(item_cart,'line_id',Number(id));
-                            // console.log('=============================');
-                            // console.log(item_cart);
-                            // console.log('=============================');
-                            var new_item_cart = JSON.stringify(item_cart);
-
-                            // if(new_item_cart)
-                            sessionStorage.orderCart = new_item_cart;
-                            // console.log("$("'#line_id_"+id+"'").remove()");
-                            // $("'#line_id_"+id+"'").remove();
-                            $('#line_id_'+id).remove();
-
-                            // console.log('----waaaaaaaaaaaaaaaaaaaaaaaa----');
-                            // console.log(aa);
-                            var total = getTrayTotalAmnt(item_cart);
-                            $('.subTotalAmnt,.totalAmnt').html(' ₱'+displayInCurr(total));
-                        });
-                        //------------------------------------------------------------------------------
-
-
-                        // var categories = sessionStorage.categories;
-                        // var cat_list = JSON.parse(categories);
-                        // var res_id = sessionStorage.res_id;
-                        // var content = '';
-
-                        // $.each(cat_list,function(k,v){
-                        //     var items = '';
-                        //     $.ajax({
-                        //       url : remoteHost+"resto/restoList/restoItems/"+res_id+"/"+v.br_id,
-                        //       type: 'POST',
-                        //       dataType : "json",
-                        //       cache: false,
-                        //       data: {"name":"JSON_Request"},
-                        //       success:function(data) {
-                        //         items = JSON.stringify(data.items);
-                        //         items = JSON.parse(items);
-                        //         var item_per_category = '';
-                        //         var content = '';
-                        //         var popups = '';
-
-                        //         content += '<div data-role="collapsible"><h2>'+v.br_name+'</h2>';
-                        //             content += '<ul data-role="listview" data-split-icon="search" data-split-theme="a" id="itemlist">';
-                        //             // console.log(items);
-                        //             $.each(items,function(k,v){
-                        //                 item_per_category += '<li ><a href="#" style="white-space: normal;"><img src="img/icon-72-hdpi.png" class="ui-li-thumb">'+v.item_name+'<p style="white-space: normal;">'+isEmpty(v.desc)+'</p><h5 class="item_price">₱'+displayInCurr(v.price)+'</h5></a><a href="#item-'+v.item_code+'" data-rel="popup" data-position-to="window" data-transition="pop">View</a></li>';
-
-                        //                 $( "#checkoutCart" ).append(popups).enhanceWithin();
-                        //             });
-
-                        //             content += item_per_category;
-                        //             content += '</ul>';
-                        //         content += '</div>';
-
-                        //         $( "#catlist" ).append( content );
-                        //         $('#catlist').enhanceWithin();
-                        //         $('.ui-content .customDialogOption1').click(function(e){
-                        //             var item_id = $(this).attr('data-item-id');
-                        //             var qty = $(this).parent().find('#qty').val();
-                        //             var price = $(this).parent().find('#item_price').val();
-
-                        //             //session Storage
-                        //             var nested = [];
-                        //             nested = {'item_id':item_id,'quantity':qty, 'price': price};
-                        //             var asJson = JSON.stringify(nested);
-                        //             sessionStorage['data'] = asJson;
-                        //             var asObject = JSON.parse(sessionStorage['data']);
-
-                        //         });
-                        //       },
-                        //       error: function(data) {
-                        //         alert('Error loading.'+data);
-                        //         console.log('error' + data);
-                        //       }
-                        //     });
-                        // });
-                        // $('div#pages').find('div.page#test');
-                        // $('#itemlist').find('#addtotray').hide();
-
-                        $('#place_ordered').click(function(e){
-                            var orderCart = sessionStorage.order_header;
-                            if(typeof orderCart === "undefined"){
-                                window.location = 'order_method_details.html';
-                            }else{
-                                window.location = 'checkout.html';
-                            }
-                        });
-
-                        $('#back_to_menu').click(function(e){
-                            window.location = 'menu.html';
-                        });
-
-                    });
-                </script>
-            </div><!-- /content -->
+      <!-- /content -->
 
             <!-- FOOTER-->
             <div data-role="footer" data-theme="e" style="border:0px;">
-                <center><img src="img/poweredby.png" class="poweredby"></center>
+                <center><a href="index.html" data-ajax="false"><img src="img/poweredby.png" class="poweredby"></a></center>
             </div>
         </div>
-        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
-        <script src="css/jquery.mobile-1.4.3.min.js"></script>
     </body>
 </html>

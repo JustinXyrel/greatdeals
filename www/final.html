@@ -11,15 +11,23 @@
 
         <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-        <script src="css/jquery-1.11.1.min.js"></script>
+	     <link href="plugins/starrating/jquery.rating.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <script src="js/jquery-1.11.1.min.js"></script>
 
         <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
         <META HTTP-EQUIV="Expires" CONTENT="-1">
 
-        <link href="plugins/starrating/rateit.css" rel="stylesheet" type="text/css">
-        <script src="plugins/starrating/jquery.rateit.js"></script>
 
-        <title>clickPlate</title>
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+        <script src="plugins/starrating/jquery.rating.js"></script>
+	    <script type="text/javascript" src="js/index.js"></script>
+
+
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <script type="text/javascript" src="plugins/gmap/gmap3.js"></script>
+
+        <title>Great Deals</title>
         <style>
             img.ui-li-thumb {
             vertical-align: middle;
@@ -44,6 +52,7 @@
     <body>
         <div data-role="page" data-theme="a" id="index">
             <!-- MENU -->
+			
             <div data-role="panel" id="myPanel" data-position="right"  data-display="overlay">
                 <ul data-role="listview" data-icon="false">
                     <li class="ui-li-static ui-first-child" data-icon-"false">History</li>
@@ -75,6 +84,8 @@
             </div> -->
             <header data-role="header">
               <!-- <a href="#" data-icon="back" data-rel="back" title="Go back">Back</a> -->
+              <a href="index.html" data-icon="home" data-iconpos="notext" id="glb_home" data-ajax="false"></a>
+               
               <h1 class="pagetitle"><b> </b></h1>
               <!-- <a href="index.html" data-icon="gear" class="ui-btn-right">Cart</a> -->
               <!-- <a href="#another-page" data-role="button" data-theme="reset" class="ios app-btn-new-badge">Cart</a> -->
@@ -112,15 +123,15 @@
                     }
                 </style>
                 <div id="logo_image">
-                    <h2 style="color:#d12027;">THANK YOU!</h2>
-                   <img src="img/brand_logo.png"  alt="Image Header" >
+                  
+                   <img src="img/courtesy.png"  alt="Image Header" >
+				    <h2 style="color:#d12027;">THANK YOU!</h2>
                    <p>
-                    Your order has been successfully registered.<br><br>
+                    Your voucher has been successfully claimed.<br><br>
 
-                    We will send you an e-mail or give you a call for confirmation.
                     </p>
                     <div data-role="fieldcontain">
-                        <a href="index.html" data-role="button" data-mini="true" id="place_ordered" data-theme="a" data-ajax="false">Place Additional Order</a>
+                        <a href="index.html" data-role="button" data-mini="true" id="place_ordered" data-theme="a" data-ajax="false">Done</a>
                     </div>
                 </div>
                 <script>
@@ -154,11 +165,6 @@
                             // val = decodeURIComponent(val);
                             $('.'+key).html(val);
                         }
-                        // order_method_details = JSON.stringify(order_method_details);
-                        // var order_method_list = JSON.parse(order_method_details);
-                        // $.each(order_method_list,function(k,v){
-                        //     console.log(k+' --- '+v);
-                        // });
 
                         var categories = sessionStorage.categories;
                         var cat_list = JSON.parse(categories);
@@ -211,34 +217,8 @@
                                     console.log(qty);
                                     console.log(price);
 
-                                    //session Storage
-                                    // var nested = [];
-                                    // nested = {'item_id':item_id,'quantity':qty, 'price': price};
-                                    // var asJson = JSON.stringify(nested);
-                                    // sessionStorage['data'] = asJson;
-                                    // var asObject = JSON.parse(sessionStorage['data']);
-
-                                    //temporarily save
-                                    // var db = openDatabase('clickPlate_db', '1.0', 'Test DB', 2 * 1024 * 1024);
-                                    // db.transaction(function (tx) {
-                                    //     tx.executeSql('DROP TABLE IF EXISTS order_cart;');
-                                    //     tx.executeSql('CREATE TABLE IF NOT EXISTS order_cart ' +
-                                    //                 ' (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-                                    //                 ' item_id INTEGER NOT NULL, qty TEXT NOT NULL, price TEXT);');
-                                    //     tx.executeSql('INSERT INTO order_cart(item_id,item_name,price) VALUES (?,?,?);',[item_id, qty,'550.25']);
-                                    // });
-
                                 });
 
-
-                                    // return false;
-
-                                // subHeader = '<ul data-role="listview" data-inset="true"><li><a href="#"><img src="../_assets/img/album-bb.jpg"><h2>World Chicken</h2><p>Fastfood</p></a></li></ul>';
-                                // $( "#compHdr" ).append( subHeader ).collapsibleset( "refresh" );
-                                // $('.compName').val('zxzzz');
-                                // $('#compHdr').enhanceWithin();
-
-                                // $( "#checkoutCart" ).append(popups).refresh();
                               },
                               error: function(data) {
                                 alert('Error loading.'+data);
@@ -264,22 +244,13 @@
                 </script>
                 <!-- FOOTER-->
                 <div data-role="footer" data-theme="e" style="border:0px;">
-                    <center><img src="img/poweredby.png" class="poweredby"></center>
+                    <center><a href="index.html" data-ajax="false"><img src="img/poweredby.png" class="poweredby"></a></center>
                 </div>
             </div><!-- /content -->
 
             <!-- FOOTER-->
         </div>
 
-
-        <script type="text/javascript" src="js/index.js"></script>
-        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
-        <script src="css/jquery.mobile-1.4.3.min.js"></script>
-
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
-        <script type="text/javascript" src="plugins/gmap/gmap3.js"></script>
-
-        <!-- // <script type="text/javascript" src="includes/js/menu.js"></script> -->
 
     </body>
 </html>

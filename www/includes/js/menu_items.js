@@ -68,10 +68,10 @@ function show_brands(){
     var block = ['a','b','c','d'];
     var ctr = 0;
     $('#category-name').text(cat_name);
-    console.log(remoteHost+"clickPlatev2/app_menus/getBranchMenus/"+res_id+"/"+cat_id);
-    // $.post(remoteHost+"clickPlatev2/get/resto_logos",function(data){
+    console.log(remoteHost+"clickPlatevp/app_menus/getBranchMenus/"+res_id+"/"+cat_id);
+    // $.post(remoteHost+"clickPlatevp/get/resto_logos",function(data){
     $.ajax({
-      url : remoteHost+"clickPlatev2/app_menus/getBranchMenus/"+res_id+"/"+cat_id,
+      url : remoteHost+"clickPlatevp/app_menus/getBranchMenus/"+res_id+"/"+cat_id,
       type: 'POST',
       dataType : "json",
       data: {"name":"JSON_Request"},
@@ -93,7 +93,8 @@ function show_brands(){
                 'border-raduis': '2px'
             });
             var img = $('<img>').attr({
-                                'src': remoteHost+'clickPlatev2/'+v.menu_image
+                                'src': remoteHost+'clickPlatevp/'+v.menu_image,
+								'height': '100%'
                             });
             var h2 = $('<h2/>').text(v.menu_name);
             var a = $('<a/>').attr({
@@ -106,77 +107,19 @@ function show_brands(){
                         'border-radius': '5px',
                         'margin-top':'5px',
                         'margin-bottom':'5px'
+                    }).click(function(){
+            
+						loaderzShow();
+                   
                     }).append(img).append(h2);
             li.append(a);
             ul.append(li);
-            // var main = $('<div/>').addClass('ui-block-'+block[ctr]);
-            // var body = $('<div/>').addClass('ui-body ui-body-a ui-corner-all').attr('menu_id',v.menu_id);
-            // var tile = $('<div/>').addClass('tile-bg');
-            // var title = $('<div/>').addClass('tile-title').append('<p>'+v.menu_name+'</p>');
-
-            // title.appendTo(tile);
-            // tile.css({
-            //   'background':'url("'+remoteHost+'clickPlatev2/'+v.menu_image+'") 100% 100% no-repeat ',
-            //   'href':'menu.html',
-            //   'background-position':'center',
-            //   // 'background-size':'cover'
-            // }).appendTo(body);
-
-            // tile.click(function(){
-            //   var menu_id = $(this).parent().attr('menu_id');
-            //   // alert(menu_id);
-            //   // sessionStorage.menu_cat_id = menu_id;
-            //   //menu_details.html?res_id=1&id=18&reloaded=no
-            //   window.location = "menu_details.html?res_id="+res_id+"&id="+menu_id+"&reloaded=no";
-            // });
-            // body.appendTo(main);
-            // $('#category_list').append(main);
+       
             ctr++;
         });
         $('#category_list').append(ul);
         $("#menu-list").listview().listview("refresh");
       }
     });
-    // $.ajax(remoteHost+"clickPlatev2/app_menus/getCategories/"+res_id,function(data){
-    //   console.log(data.categories);
-    //   var block = ['a','b','c','d'];
-    //   var ctr = 0;
-    //   $.each(data.categories,function(val){
-    //     console.log(val);
-    //     // if(ctr == 4)
-    //     //     ctr = 0;
-    //     // var main = $('<div/>').addClass('ui-block-'+block[ctr]);
-    //     // var body = $('<div/>').addClass('ui-body ui-body-a ui-corner-all').attr('res_id',resto_id);
-    //     // var tile = $('<div/>').addClass('tile-bg');
 
-    //     // tile.css({
-    //     //     // 'background':'url("'+remoteHost+'clickPlatev2/'+val['path']+'") no-repeat',
-    //     //     'href':'menu.html',
-    //     //     'background-position':'center',
-    //     //     'background-size':'contain'
-    //     // }).appendTo(body);
-
-    //     // tile.click(function(){
-    //     //     var resto_id = $(this).parent().attr('res_id');
-    //     //     sessionStorage.res_id = resto_id;
-
-    //     //     console.log(remoteHost+"clickPlatev2/app_resto/getRestoName/"+resto_id);
-    //     //     $.ajax({
-    //     //       url : remoteHost+"clickPlatev2/app_resto/getRestoName/"+resto_id,
-    //     //       type: 'POST',
-    //     //       dataType : "json",
-    //     //       data: {"name":"JSON_Request"},
-    //     //       success:function(data) {
-    //     //         console.log(data.resto_name);
-    //     //         sessionStorage.res_name = '';
-    //     //         sessionStorage.res_name = data.resto_name;
-    //     //       }
-    //     //     });
-    //     //     window.location = 'menu.html';
-    //     // });
-    //     // body.appendTo(main);
-    //     // $('#brands-con').append(main);
-    //     // ctr++;
-    //   });
-    // },'json');
 }

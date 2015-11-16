@@ -49,7 +49,10 @@ var app = {
 };
 
 // HOST ADDRESS
-var remoteHost = 'http://127.0.0.1/';
+//var remoteHost = 'http://pointonesolutions.com.ph/';
+ // var remoteHost = 'localhost/polvoucher/';
+ // var remoteHost = 'http://www.pointonesolutions.com.ph/';
+	var remoteHost = 'http://127.0.0.1/';
 // var remoteHost = 'http://192.168.254.7/';
 // var remoteHost = 'http://192.168.254.4/';
 // var remoteHost = 'http://122.3.195.117/';
@@ -170,7 +173,27 @@ $(document).ready(function() {
             }
         }
     }
-
+ /**idle loading function - JX**/
+     self.loaderzShow = function(){
+	 //   $div = " <div id='loadingz' style='display:none;'><img id='loadingz-image' src='img/foodrush-loader.gif' alt='Loading...' /></div>";
+		$div = " <div id='loadingz' style='display:none;'></div>";		
+		$('body').append($div);
+		
+		$('div#loadingz').show();
+		
+    }
+	
+	 self.loaderzHide= function(){
+		$loadingz = $('div#loadingz');
+		if($loadingz.length > 0){
+			$loadingz.fadeOut();
+			$loadingz.remove();
+			
+		}
+    }
+ 
+ 
+ /**END idle loader**/
     $.fn.serializeObject = function(){
         var o = {};
         var a = this.serializeArray();

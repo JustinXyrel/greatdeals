@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
+        <META charset="utf-8" />
+        <META name="format-detection" content="telephone=no" />
+        <META name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        <META name="viewport" content="initial-scale=1, maximum-scale=1">
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-
         <link rel="stylesheet" href="css/themes/clickPlate.min.css" />
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-        <script src="css/jquery-1.11.1.min.js"></script>
-
-        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-        <META HTTP-EQUIV="Expires" CONTENT="-1">
-
+		<link href='plugins/starrating/jquery.rating.css' type="text/css" rel="stylesheet"/>
+		<link href='plugins/raty/lib/jquery.raty.css' type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+		<script src="js/jquery-1.11.1.min.js"></script>
         <script src='plugins/starrating/jquery.rating.js' type="text/javascript" language="javascript"></script>
-        <link href='plugins/starrating/jquery.rating.css' type="text/css" rel="stylesheet"/>
         <script src='plugins/raty/lib/jquery.raty.js' type="text/javascript" language="javascript"></script>
-        <link href='plugins/raty/lib/jquery.raty.css' type="text/css" rel="stylesheet"/>
-
-        <title>clickPlate</title>
+        <script src="js/jquery.mobile-1.4.3.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="includes/js/functions.js"></script>	
+		<script type="text/javascript" src="includes/js/sidenav_actions.js"></script>	
+		<script type="text/javascript" src="includes/js/info.js"></script>	
+        <title>Great Deals</title>
         <style>
             img.ui-li-thumb {
                 vertical-align: middle;
@@ -71,8 +74,6 @@
             }
         </style>
 
-        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-
     </head>
     <body>
         <div data-role="page" data-theme="a" id="index">
@@ -89,7 +90,6 @@
                     <ul style="border:1px black solid;">
                         <li><a href="info.html" data-ajax="false" class="ui-btn-active">Info</a></li>
                         <li><a href="menu.html" data-ajax="false">Menu</a></li>
-                        <li><a href="order_method_details.html" data-ajax="false">Services</a></li>
                     </ul>
                 </div>
             </div>
@@ -97,7 +97,7 @@
             <!-- BODY -->
             <div role="page" class="ui-content" data-fullscreen="true" id="body_content">
                 <ul data-role="listview" data-inset="false" data-corners="false" class="compHdr">
-                    <li id="subHdr_infopage" style="height:100px;" class="custom_listview_img"></li>
+                    <li id="subHdr_infopage" style="height:100px;text-align:center!important;" class="custom_listview_img"></li>
                 </ul>
                 <br/>
                 <div class="ui-grid-c">
@@ -106,9 +106,9 @@
                     <!-- <div class="ui-block-b"><a href="reviews.html" data-role="button" rel="external" class="midbtn" data-icon="phone">Reviews</a></div> -->
                     <!-- <div class="ui-block-d"><input type="button" data-icon="arrow-u-r" value="Payment" class="midbtn"></div> -->
                     <div class="ui-block-c"><a href="tel:024771818" data-role="button" rel="external" class="midbtn" data-icon="phone"  data-theme="b" data-ajax="false">CALL</a></div>
-                    <div class="ui-block-c"><a href="reviews.html" data-role="button" rel="external" class="midbtn" data-icon="star"  data-theme="a" data-ajax="false">REVIEWS</a></div>
-                    <div class="ui-block-c"><a href="gallery.html" data-role="button" rel="external" class="midbtn" data-icon="camera"  data-theme="d" data-ajax="false">PHOTOS</a></div>
-                    <div class="ui-block-c"><a href="resto_branch.html" data-role="button" rel="external" class="midbtn" data-icon="navigation"  data-theme="c" data-ajax="false">BRANCHES</a></div>
+                    <div class="ui-block-c"><a href="reviews.html" onclick="loaderzShow();" data-role="button" rel="external" class="midbtn" data-icon="star"  data-theme="a" data-ajax="false">REVIEWS</a></div>
+                    <div class="ui-block-c"><a href="gallery.html" onclick="loaderzShow();" data-role="button" rel="external" class="midbtn" data-icon="camera"  data-theme="d" data-ajax="false">PHOTOS</a></div>
+                    <div class="ui-block-c"><a href="resto_branch.html" onclick="loaderzShow();" data-role="button" rel="external" class="midbtn" data-icon="navigation"  data-theme="c" data-ajax="false">BRANCHES</a></div>
                 </div>
                 <ul data-role="listview" data-inset="true" data-corners="false" data-theme="a" data-content-theme="b">
                   <li data-role="list-divider">Address</li>
@@ -122,156 +122,11 @@
                 </ul>
                 <!-- <center><a href="#">Cash & Credit Cards Accepted</a></center> -->
                 </div>
-                <script>
-                    $(document).ready(function() {
-                        function display_profile(){
-                            var logged_user = sessionStorage.logged_name;
-                            var content = '';
-                            if(typeof logged_user !== 'undefined'){
-                                content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout_" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
-                                content += '</ul>';
-                                $('#myPanel').html(content);
-                            }else{
-                                content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
-                                content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
-                                content += '</ul>';
-                                $('#myPanel').html(content);
-                            }
-
-                            $('#sidenav_user_profile').click(function(e){
-                                window.location.href = "user_profile.html";
-                            });
-                            $('#sidenav_logout_').click(function(e){
-                                window.location.href = 'logout.html';
-                            });
-                            $('#sidenav_logout').click(function(e){
-                                window.location.href = 'login_form.html';
-                            });
-                            $('#sidenav_about').click(function(e){
-                                window.location.href = 'about_us.html';
-                            });
-                        }
-                        display_profile();
-                        function showCart() {
-                            var item_cart = sessionStorage.orderCart;
-                            item_cart = JSON.parse(item_cart);
-
-                            content = '';
-                            subtotal = 0;
-                            ctr = 0;
-                            gtotal = 0;
-                            for(var i in item_cart){
-                                var line = JSON.parse(item_cart[i]);
-                                content += '<li data-role="list-divider" style="list-style-type: none;padding-left:30px;"><h4 style="white-space: normal;">'+unescape(line.name)+' </h4>@ ₱'+displayInCurr(line.price)+' - '+unescape(line.qty)+'pcs. <strong>₱'+unescape(line.qty*line.price)+'</strong></li><br><hr>';
-                                ctr++;
-                                subtotal += Number(line.qty*line.price);
-                                gtotal += Number(line.qty);
-                            }
-                            content += '<li style="text-align:right;">TOTAL : <strong>'+subtotal+'</strong></li>';
-                            $('#tray_content').html(content);
-                            var icount = Object.keys(item_cart).length;
-                            $('#tray_content').html(' ('+gtotal+')');
-                            $('#tray_content').trigger('updatelayout');
-                        }
-
-                        $( '#panelTrgr').click(function(e){
-                          showCart();
-                        });
-                        $('.midbtn').parent().css({"width": "50%"});
-                        // $('.midbtn').children().children().css('font-size','10px')
-                    // $(document).on('pagebeforeshow', '#ui-content', function(){
-                        /*************************************************************************************
-                        *****************************************HEADER***************************************
-                        *************************************************************************************/
-                        var subHeader = '';
-                        var br_name = sessionStorage.br_name;
-                        var br_address = sessionStorage.br_address;
-                        var br_id = sessionStorage.br_id;
-                        var res_id = sessionStorage.res_id;
-
-                        var res_name = sessionStorage.res_name;
-                        $('.pagetitle').html(res_name);
-                        var img_path = '';
-                        // $(function () { $('#rateit6').rateit({ max: 5, value: 5 }); });
-                        $.post(remoteHost+"clickPlatev2/get/resto_logos/"+res_id,function(data){
-                            $.each(data,function(resto_id,val){
-                                console.log(val.path);
-                                // if(val.path != ''){
-                                    sessionStorage.res_img_path = remoteHost+'clickPlatev2/'+val.path;
-                                    // console.log(img_path);
-                                    // subHeader += '<img src="'+img_path+'" class="ui-li-thumb"><input type="hidden" id="backing6"><div id="rateit6" data-rateit-ispreset="true" data-rateit-readonly="true"><h2 id="compName" style="white-space : normal;">'+res_name+'</h2><p style="white-space : normal;">';
-
-                                // }
-                            });
-                        });
-
-
-                        subHeader += '<img src="'+sessionStorage.res_img_path+'" class="ui-li-thumb"><input type="hidden" id="backing6"><div id="rateit6" data-rateit-ispreset="true" data-rateit-readonly="true"><h2 id="compName" style="white-space : normal;">'+res_name+'</h2><p style="white-space : normal;">';
-
-                        var ratings = 0;
-                        var stars = '';
-                        if(typeof data !== "undefined") {
-                            $.ajax({
-                                url: remoteHost+"clickPlatev2/reviews/get_branch_reviews_avg/"+br_id,
-                                type: 'POST',
-                                dataType : "json",
-                                cache: false,
-                                data: {"name":"JSON_Request"},
-                                success:function(data) {
-                                    // subHeader+= data.avg;
-
-                                    sessionStorage.countStars = data.avg;
-                                    console.log('---> '+sessionStorage.countStars);
-                                    // $('.starrating').html(data.avg);
-                                    $('#compHdr').listview('refresh');
-                                }
-                            });
-                        }
-                        stars = '';
-                        ratings = sessionStorage.countStars;
-                        stars+='<br><span>';
-                        for(var i=0;i<ratings;i++){
-                            stars += '<img src="plugins/raty/lib/images/star-on.png">';
-                        }
-                        stars+='</span>';
-                        subHeader += stars;
-                        subHeader += '</p>';
-                        window.location = 'info.html#loaded';
-                        console.log(subHeader);
-                        $('#subHdr_infopage').html(subHeader);
-                        $('#compHdr').listview('refresh');
-
-                        // //Clear star rating after...
-                        // sessionStorage.countStars = 0;
-
-
-                        /*************************************************************************************
-                        ******************************************BODY****************************************
-                        *************************************************************************************/
-                        // $('#br_addr').html(sessionStorage.br_address);
-                        // $('#br_cont').html(sessionStorage.br_delivery_no);
-                        // $('#br_attr').html(sessionStorage.br_desc);
-                    });
-                </script>
+     
                 <!-- FOOTER-->
                 <div data-role="footer" data-theme="e" style="border:0px;">
-                    <center><img src="img/poweredby.png" class="poweredby"></center>
+                    <center><a href="index.html"  data-ajax="false"><img src="img/poweredby.png" class="poweredby"></a></center>
                 </div>
             </div>
-
-        <script type="text/javascript" src="js/index.js"></script>
-        <link rel="stylesheet" href="css/jquery.1.4.3/jquery.mobile.structure-1.4.3.min.css" />
-        <script src="css/jquery.mobile-1.4.3.min.js"></script>
-
-        <!-- // <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
-        <!-- // <script type="text/javascript" src="plugins/gmap/gmap3.js"></script> -->
-        <!-- // <script type="text/javascript" src="includes/js/info.js"></script> -->
-
-
     </body>
 </html>

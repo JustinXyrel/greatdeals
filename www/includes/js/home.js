@@ -1,14 +1,18 @@
 
 app.initialize();
+
 $(document).bind('mobileinit',function(){
    $.mobile.selectmenu.prototype.options.nativeMenu = false;
 });
+
 $(document).on('pageinit','#splash',function(){
     // alert('yyy');
     setTimeout(function(){
         $.mobile.changePage("#loaded", "fade");
     }, 2000);
 });
+
+
 $(document).ready(function() {
     // window.location = "home.html#loaded";
 
@@ -19,40 +23,16 @@ $(document).ready(function() {
     $pullmsg.hide();
 
     $("#srch").prop('disabled', false);
+    var mySwiper = new Swiper('.swiper-container',{
+        pagination: '.pagination',
+        paginationClickable: true,
+        slidesPerView: 1,
+        visibilityFullFit: true
+    });
 
-    function display_profile(){
-        var logged_user = sessionStorage.logged_name;
-        var content = '';
-        if(typeof logged_user !== 'undefined'){
-            content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList">';
-            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="myTray.html" class="ui-btn ui-icon-shop ui-btn-icon-left" data-theme="a" id="sidenav_mytray" data-ajax="false" style="font-weight:normal;">My Tray<span id="tray_content" style="display:inline;"></span></a></li>';
-            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-user ui-btn-icon-left" data-theme="a" id="sidenav_user_profile" data-ajax="false" style="font-weight:normal;">User Profile</a></li>';
-            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
-            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout_" data-ajax="false" style="font-weight:normal;">Logout</a></li>';
-            content += '</ul>';
-            $('#myPanel').html(content);
-        }else{
-            content += '<ul data-role="listview" data-icon="false" class="ui-listview" id="cartList" style="">';
-            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-power ui-btn-icon-left" data-theme="a" id="sidenav_logout">Login</a></li>';
-            content += '<li class="ui-li ui-li-divider ui-bar-d"><a href="#" class="ui-btn ui-icon-info ui-btn-icon-left" data-theme="a" id="sidenav_about" data-ajax="false" style="font-weight:normal;">About clickPLATE</a></li>';
-            content += '</ul>';
-            $('#myPanel').html(content);
-        }
-
-        $('#sidenav_user_profile').click(function(e){
-            window.location.href = "user_profile.html";
-        });
-        $('#sidenav_logout_').click(function(e){
-            window.location.href = 'logout.html';
-        });
-        $('#sidenav_logout').click(function(e){
-            window.location.href = 'login_form.html';
-        });
-        $('#sidenav_about').click(function(e){
-            window.location.href = 'about_us.html';
-        });
-    }
-    display_profile();
+    mySwiper.resizeFix();
+    mySwiper.params.autoplay = 2000;
+    mySwiper.startAutoplay();
     function showCart() {
         var item_cart = sessionStorage.orderCart;
         item_cart = JSON.parse(item_cart);
@@ -75,21 +55,22 @@ $(document).ready(function() {
         $('#tray_content').html(' ('+gtotal+')');
         $('#tray_content').trigger('updatelayout');
     }
-
+  console.log(remoteHost+"clickPlatevp/app_resto/searchRestoByKeyword/");
     $.ajax({
-        url : remoteHost+"clickPlatev2/app_resto/searchRestoByKeyword/all",
+        url : remoteHost+"clickPlatevp/app_resto/searchRestoByKeyword/all",
         type: 'POST',
         dataType : "json",
         data: {"name":"JSON_Request"},
         success:function(data) {
-            console.log(data);
+            //console.log(data);
         }
     });
 
     function searchKeyword(param){
-        console.log(remoteHost+"clickPlatev2/app_resto/searchRestoByKeyword/"+param);
+        console.log(remoteHost+"clickPlatevp/app_resto/searchRestoByKeyword/"+param);
+		loaderzShow();
         $.ajax({
-            url : remoteHost+"clickPlatev2/app_resto/searchRestoByKeyword/"+param,
+            url : remoteHost+"clickPlatevp/app_resto/searchRestoByKeyword/"+param,
             type: 'POST',
             dataType : "json",
             data: {"name":"JSON_Request"},
@@ -103,6 +84,7 @@ $(document).ready(function() {
                 }else{
                     alert('Keyword entered not found.');
                 }
+				loaderzHide();
             },
             error: function() {
                 // alert('Keyword entered not found.');
@@ -136,21 +118,11 @@ $(document).ready(function() {
         });
     });
 
-    $('.complogo').click(function(e){
+    $('img.complogo').click(function(e){
         // window.location = "home.html";
         window.location = "index.html";
     });
 
-    var mySwiper = new Swiper('.swiper-container',{
-        pagination: '.pagination',
-        paginationClickable: true,
-        slidesPerView: 1,
-        visibilityFullFit: true
-    });
-    // mySwiper.stopAutoplay();
-    mySwiper.resizeFix();
-    mySwiper.params.autoplay = 2000;
-    mySwiper.startAutoplay();
 
     $("body").css("display", "none");
     $("body").fadeIn(2000);
@@ -163,9 +135,9 @@ $(document).ready(function() {
         if(code == 13) {
             var keyword =$(this).val();
 
-            // console.log(remoteHost+"clickPlatev2/app_resto/searchRestoByKeyword/"+keyword);
+            // console.log(remoteHost+"clickPlatevp/app_resto/searchRestoByKeyword/"+keyword);
             // $.ajax({
-            //     url : remoteHost+"clickPlatev2/app_resto/searchRestoByKeyword/"+keyword,
+            //     url : remoteHost+"clickPlatevp/app_resto/searchRestoByKeyword/"+keyword,
             //     type: 'POST',
             //     dataType : "json",
             //     data: {"name":"JSON_Request"},
@@ -196,12 +168,15 @@ $(document).ready(function() {
     ///////////////////////////////////////
     show_brands();
     function show_brands(){
-        $.post(remoteHost+"clickPlatev2/get/resto_logos",function(data){
+
+        $.post(remoteHost+"clickPlatevp/get/resto_logos",function(data){
+		  console.log('hhhhhhhhhhhhhhhh');
           console.log(data);
           var block = ['a','b','c','d'];
           var ctr = 0;
+		  console.log('aaaaaaaaaa');
           $.each(data,function(resto_id,val){
-            console.log(val);
+            console.log(resto_id);
             if(ctr == 4)
                 ctr = 0;
             var main = $('<div/>').addClass('ui-block-'+block[ctr]);
@@ -209,31 +184,36 @@ $(document).ready(function() {
             var tile = $('<div/>').addClass('tile-bg');
 
             tile.css({
-                'background':'url("'+remoteHost+'clickPlatev2/'+val['path']+'") no-repeat',
+                'background':'url("'+remoteHost+'clickPlatevp/'+val['path']+'") no-repeat',
                 'href':'menu.html',
                 'background-position':'center',
                 'background-size':'contain'
             }).appendTo(body);
 
             tile.click(function(){
+				loaderzShow();
                 var resto_id = $(this).parent().attr('res_id');
                 sessionStorage.res_id = resto_id;
-
-                console.log(remoteHost+"clickPlatev2/app_resto/getRestoName/"+resto_id);
+					
+                console.log(remoteHost+"clickPlatevp/app_resto/getRestoName/"+resto_id);
                 $.ajax({
-                  url : remoteHost+"clickPlatev2/app_resto/getRestoName/"+resto_id,
+                  url : remoteHost+"clickPlatevp/app_resto/getRestoName/"+resto_id,
                   type: 'POST',
                   dataType : "json",
                   data: {"name":"JSON_Request"},
                   success:function(data) {
-                    console.log(data.resto_name);
+				//  console.log('aaaaaaaaa');
+                  //  console.log(data.resto_name);
                     sessionStorage.res_name = '';
                     sessionStorage.res_name = data.resto_name;
+					sessionStorage.res_code= data.resto_code;
                     window.location = 'menu.html';
+					loaderzHide();
                   }
                 });
             });
             body.appendTo(main);
+			console.log(main);
             $('#brands-con').append(main);
             ctr++;
           });

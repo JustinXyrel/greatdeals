@@ -127,3 +127,26 @@ img.profile_image {
    background-color: #E2E2E2 !important;
 }
 
+#loadingz {
+			   
+	display : block;
+    position : fixed;
+    z-index: 100;
+    background-image : url('../img/food.gif');
+    background-color: #fff;
+    background-size: 75%;
+    opacity : 0.8;
+    background-repeat : no-repeat;
+    background-position : center;
+    left : 0;
+    bottom : 0;
+    right : 0;
+    top : 0;
+}
+
+#loadingz-image {
+			  position: absolute;
+			  top: 50%;
+			  margin: auto;
+			  z-index: 100;
+}
